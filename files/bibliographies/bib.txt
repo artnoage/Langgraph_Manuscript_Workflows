@@ -1,0 +1,3 @@
+bib="""L. Chizat, G. Peyre, B. Schmitzer, and F.-X. Vialard: _An interpolating distance between optimal transport and Fisher-Rao metrics_. Found. Comput. Math. 
+L. Chizat, G. Peyre, B. Schmitzer and F.-X. Vialard. _Unbalanced optimal transport: Dynamic and Kantorovich formulations_. Journal of Functional Analysis, **274(11)**:3090-3123, 2018.
+S. Di Marino and L. Chizat: _A tumor growth model of Hele-Shaw type as a gradient flow_. ESAIM Control Optim. Calc. Var. **26**:103 (2020) 1-38."""
