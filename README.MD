@@ -46,7 +46,7 @@ This project continues to evolve, aiming to significantly aid academic researche
     ```
 4. Activate the virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
-    source Langgraph_Manuscript_Workflows/bin/activate
+    source Langgraph_Manuscript_Workflows/scripts/activate
     ```
     ```sh
     conda activate Langgraph_Manuscript_Workflows
