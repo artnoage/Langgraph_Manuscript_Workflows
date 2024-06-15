@@ -1,21 +1,31 @@
-# LLM-Review-Generator
+# Academic Manuscript Processing
 
-## Description
+## Overview
 
-LLM-Review-Generator is a project that utilizes large language model (LLM) agents within LangGraph to automatically generate comprehensive review papers. By taking a list of research papers as input, the LLM-Review-Generator synthesizes the state of the art and the historical development of the chosen topic, providing a thorough overview without introducing new original research. This tool aims to streamline the process of creating literature reviews and survey papers, making it easier for researchers to stay up-to-date with advancements in their field.
+This project leverages large language model (LLM) agents within LangGraph to develop workflows for processing academic manuscripts. Users can execute these workflows individually through the provided Jupyter notebook (currently the more reliable option) or orchestrate the entire process via a robust LLM accessed through a Streamlit interface. The ultimate aim is to create an app that simplifies some of the more tedious aspects of academic research for researchers. For instance, a tangible goal would be to summarize the state of the art and the historical development of a chosen topic, providing a comprehensive survey.
 
-## Features
+## Current Workflows
 
-- **Automated Review Generation**: Generate detailed review papers from a list of input papers.
-- **State-of-the-Art Synthesis**: Summarize current advancements and historical context in the chosen research area.
-- **LangGraph Integration**: Leverage the power of LangGraph for efficient processing and analysis.
-- **LLM Agents**: Utilize advanced large language models to ensure high-quality content creation.
+- **Arxiv Paper Retrieval**: Given a list of keywords, this workflow retrieves the most relevant papers from arXiv.
+  
+- **PDF to Text**: Utilizes Nougat from Meta for OCR conversion of papers. This method, while effective, requires significant computational resources.
 
-## Usage
+- **OCR Enhancer**: Since Nougat sometimes distorts citation formats, this workflow uses MuPDF to generate a secondary text file. Although MuPDF's quality is lower (especially for mathematical content), it corrects citation formats. By comparing the two text files, the workflow merges the best aspects of both.
 
-1. **Input Paper List**: Provide a list of research papers relevant to your topic.
-2. **Run the LLM Agents**: Use the integrated LLM agents to process the papers.
-3. **Generate Review Paper**: Obtain a comprehensive review paper summarizing the state of the art and historical developments.
+- **Proof Remover**: Aiming to clean texts by removing proofs before summarization, this workflow has been the least successful. Suggestions for improvement are welcome.
+
+- **Keyword Extraction and Topic Summarization**: This workflow extracts keywords and summarizes the content of an article, page by page. There is potential for improvement by performing multiple passes over the paper.
+
+- **Context-Based Translation**: This workflow has been particularly successful. It uses the summarization from the previous step to translate the article into different languages. Context-based translation ensures that the terminology is appropriate for the specific academic community.
+
+## Upcoming Features
+
+- **Survey Creation**: The LLM will identify the most relevant citations in a paper, retrieve related papers from arXiv or other sources, process each paper using the current workflows, and compile a comprehensive survey. This feature aims to streamline the creation of complex surveys.
+
+- **Proof Explainer**: This ambitious feature intends to analyze mathematical texts, generate context, and explain proofs. A secondary goal is to categorize proofs with similar arguments, enhancing understanding and learning.
+
+This project continues to evolve, aiming to significantly aid academic researchers by automating and improving various manuscript processing tasks.
+
 
 ## Installation
 
@@ -32,9 +42,31 @@ LLM-Review-Generator is a project that utilizes large language model (LLM) agent
     pip install -r requirements.txt
     ```
 
+## Running
+
+You have two options to work with the various mini-workflows in the project. 
+One is through the jupyter notebook called playground.ipnyb and the other through 
+the fronent that uses streamlit for the user interface. 
+
+In the playground you can find details for what is happening under the hood for each workflow. 
+Evenmore you have a better control of which llms you are using. I suggest this for the first time.
+
+
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## Shoulders of Giants
+
+I got the slide template by: Srikar Sharma Sadhu (https://tinyurl.com/3n2cfpda)
+For ocr I used nougat : https://github.com/facebookresearch/nougat
+I used alot of ChatGPT and Claude Opus 
+
+I would like also to thank:
+My girflried for being patient with me the whole month preparing this project for Nvidia competition.
+My friend Anna for participating in the promotional video. 
+
 
 ## License
 

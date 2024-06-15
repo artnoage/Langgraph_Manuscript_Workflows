@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from langgraph.graph import END, StateGraph
 from langchain_core.messages import  BaseMessage, ToolMessage, HumanMessage
 from langgraph.prebuilt import ToolInvocation
@@ -16,6 +15,7 @@ from sentence_transformers import SentenceTransformer, util
 from langchain_openai import OpenAIEmbeddings
 import torch
 import streamlit as st
+
 class ArxivState(TypedDict):
     receptionist_retriever_history : Annotated[list[BaseMessage], operator.add]
     last_action_outcome:Annotated[list[BaseMessage], operator.add]
@@ -47,10 +47,19 @@ class TranslatorState(TypedDict):
     
 
 class ArxivRetrievalWorkflow:
-    def __init__(self,streaming=False, streamcon=None, 
-                 retriever_model=ChatOpenAI(model="gpt-3.5-turbo"), 
-                 cleaner_model=ChatNVIDIA(model="meta/llama3-70b-instruct"), 
-                 receptionist_model=ChatNVIDIA(model="meta/llama3-70b-instruct")):
+    def __init__(self,streaming=False, streamcon=None, retriever_model=None, cleaner_model=None, receptionist_model=None):
+        if retriever_model==None:
+            self.retriever_model==ChatOpenAI(model="gpt-3.5-turbo")
+        else:
+            self.retriever_model = retriever_model
+        if  cleaner_model==None:
+            self.cleaner_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.cleaner_model = cleaner_model
+        if receptionist_model==None:
+            self.receptionist_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.receptionist_model = receptionist_model
         self.streaming=streaming
         self.streamcon = streamcon
         self.retriever_model = retriever_model
@@ -176,11 +185,17 @@ class ArxivRetrievalWorkflow:
 
 
 class OcrEnchancerWorkflow():
-    def __init__(self, enhancer_model=ChatNVIDIA(model="meta/llama3-70b-instruct"),  
-                 embeder=OpenAIEmbeddings(model="text-embedding-3-small"), streaming=False, streamcon=None):
-        self.enhancer_model = enhancer_model
+    def __init__(self, enhancer_model=None,  embeder=None, streaming=False, streamcon=None):
+        if enhancer_model==None:
+            self.enhancer_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.enhancer_model = enhancer_model
+        if embeder==None:
+            self.embeder=OpenAIEmbeddings(model="text-embedding-3-small")
+        else:
+            self.embeder = embeder
+
         self.enhancer= ocr_enhancer_prompt_template | self.enhancer_model
-        self.embeder = embeder
         self.streaming=streaming
     def run_enhancer(self,state):
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
@@ -224,10 +239,15 @@ class OcrEnchancerWorkflow():
 
 
 class ProofReamovingWorkflow:
-    def __init__(self, remover_model=ChatNVIDIA(model="meta/llama3-70b-instruct"), 
-                 stamper_model=ChatNVIDIA(model="meta/llama3-70b-instruct"),streaming=False ,streamcon=None):
-        self.remover_model = remover_model
-        self.stamper_model = stamper_model
+    def __init__(self, remover_model=None, stamper_model=None, streaming=False ,streamcon=None):
+        if remover_model==None:
+            self.remover_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.remover_model = remover_model
+        if stamper_model==None:
+            self.stamper_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.stamper_model = stamper_model
         self.remover = proof_remover_prompt_template | self.remover_model
         self.stamper= proof_stamper_prompt_template | self.stamper_model
         self.streaming = streaming
@@ -275,8 +295,11 @@ class ProofReamovingWorkflow:
 
 class TranslationWorkflow:
     def __init__(self, translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct"),streaming=False,streamcon=None):
+        if translator_model==None:
+            self.translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.translator_model = translator_model
         self.streamcon=streamcon
-        self.translator_model = translator_model
         self.streaming = streaming
         self.translator = translator_prompt_template | self.translator_model
         
@@ -330,13 +353,11 @@ class TranslationWorkflow:
 
 
 class KeywordAndSummaryWorkflow:
-    def __init__(self, keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct"), streaming=False):
-        """
-        This class takes a text in a form of a string and extracts the keywords and summary.
-        :param model: The model used for generating keywords and summary.
-        :param streaming: A boolean indicating if streaming is used.
-        """
-        self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
+    def __init__(self, keyword_and_summary_maker_model=None, streaming=False):
+        if keyword_and_summary_maker_model==None:
+            self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
         self.streaming = streaming
         self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
     
