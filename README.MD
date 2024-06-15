@@ -31,7 +31,7 @@ This project continues to evolve, aiming to significantly aid academic researche
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/username/LLM-Review-Generator.git
+    git clone https://github.com/artnoage/Langgraph_Manuscript_Workflows.git
     ```
 2. Navigate to the project directory:
     ```sh
@@ -44,21 +44,33 @@ This project continues to evolve, aiming to significantly aid academic researche
     ```
     conda create -n LLM-Review-Generator python=3.8
     ```
-4. Activate the virtual environment:
+4. Activate the virtual environment(python env and conda env respectively):
     ```sh
     source LLM-Review-Generator/bin/activate
     ```
     ```sh
     conda activate LLM-Review-Generator
     ```
-5. Install the required dependencies:
+5. Install the required dependencies(python env and conda env respectively):
     ```sh
     pip install -r requirements.txt
     ```  
     ```sh
     pip install -r requirements_conda.txt
     ```
+6. Create an enviroment file:
+    ```sh
+    touch .env
+    ```
 
+6. Getting an OpenAi Api key:
+    ```sh
+    If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key"
+    ```
+7. Getting a Nvidia Api key:
+    ```sh
+    If you dont have an NVIDIA_API_KEY, get one from here: https://developer.nvidia.com/nvidia-smi, and put it in the .env file like this: NVIDIA_API_KEY = "your key"
+    ```
 ## Running
 
 You have two options to work with the various mini-workflows in the project. 
