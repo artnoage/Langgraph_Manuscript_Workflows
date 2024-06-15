@@ -116,7 +116,7 @@ For ocr I used nougat : https://github.com/facebookresearch/nougat
 I used alot of ChatGPT and Claude Opus 
 
 I would like also to thank:
-My girflried for being patient with me the whole month preparing this project for Nvidia competition.
+My girfried for being patient with me the whole month preparing this project for Nvidia competition.
 My friend Anna for participating in the promotional video. 
 Nikos Mouratidis and Kostas Kostopoulos for beta testing. 
 

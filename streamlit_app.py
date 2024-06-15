@@ -15,7 +15,7 @@ import os
 def invoke(state,container):   
     
     supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
-    TranslationTool =TranslationToolClass(streaming=True,streamcon=None,translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct"))
+    TranslationTool =TranslationToolClass(translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct"))
     
     TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
                            description=TranslationTool.description)

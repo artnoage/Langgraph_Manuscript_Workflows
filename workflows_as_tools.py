@@ -111,8 +111,8 @@ class ProofRemovalToolClass():
             "report": HumanMessage(content=""),
             "file": [""]
         }    
-        proof_remover_app =ProofRemovingWorkflow()
-        proof_remover_app = proof_remover_app.create_workflow(stamper_model=self.stamper_model, remover_model=self.remover_model)
+        proof_remover_app =ProofRemovingWorkflow(stamper_model=self.stamper_model, remover_model=self.remover_model)
+        proof_remover_app = proof_remover_app.create_workflow()
         proof_remover_app = proof_remover_app.compile()
         state = proof_remover_app.invoke(input)
         return state["report"].content
