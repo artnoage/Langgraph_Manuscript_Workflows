@@ -34,8 +34,10 @@ def invoke(state,container):
                         st.write(tool_call["name"],tool_call["args"])
                         Invocation=ToolInvocation(tool=tool_call["name"], tool_input=tool_call["args"])
                         st.write(Invocation)
-                        response = tool_executor.invoke(Invocation)
-                    
+                        try:
+                            response = tool_executor.invoke(action)
+                        except Exception as e:
+                            response = str(e)
                         st.write(response)
                         response=ToolMessage(response, tool_call_id=tool_call["id"])
                         st.session_state.chat_history.append(response)

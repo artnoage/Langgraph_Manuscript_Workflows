@@ -106,7 +106,10 @@ class ArxivRetrievalWorkflow:
         last_message = state["last_action_outcome"][-1]
         tool_call = last_message.tool_calls[0]
         action = ToolInvocation(tool=tool_call["name"],tool_input=tool_call["args"])
-        response = self.tool_executor.invoke(action)
+        try:
+            response = self.tool_executor.invoke(action)
+        except Exception as e:
+            response = str(e)
         report=ToolMessage("The tool was called", tool_call_id=tool_call["id"])
         response=ToolMessage(response, tool_call_id=tool_call["id"])
         if tool_call["name"] == "get_id_from_url":
