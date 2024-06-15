@@ -37,21 +37,21 @@ This project continues to evolve, aiming to significantly aid academic researche
     ```sh
     cd LLM-Review-Generator
     ```
-3. Create a virtual environment (python env and conda env respectively):
+3. Create a virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
     python -m venv LLM-Review-Generator or alternatively
     ```
     ```
     conda create -n LLM-Review-Generator python=3.8
     ```
-4. Activate the virtual environment(python env and conda env respectively):
+4. Activate the virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
     source LLM-Review-Generator/bin/activate
     ```
     ```sh
     conda activate LLM-Review-Generator
     ```
-5. Install the required dependencies(python env and conda env respectively):
+5. Install the required dependencies. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
     pip install -r requirements.txt
     ```  
@@ -95,7 +95,7 @@ I used alot of ChatGPT and Claude Opus
 I would like also to thank:
 My girflried for being patient with me the whole month preparing this project for Nvidia competition.
 My friend Anna for participating in the promotional video. 
-
+Nikos Mouratidis and Kostas Kostopoulos for beta testing. 
 
 ## License
 
