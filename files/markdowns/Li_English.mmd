@@ -1,0 +1,800 @@
+Here is the translation:
+
+# Optimal Estimation of the Gradient of the Heat Semigroup on the Heisenberg Group
+
+Hong-Quan Li
+
+# Abstract
+
+SerB 611, Institute of Applied Mathematics, University of Bonn, Poppelsdorfer Allee 82, D-53115 Bonn, Germany
+
+Received on July 6, 2005; accepted on February 21, 2006
+
+Available online on April 18, 2006
+
+Communicated by G. Pisier
+
+## Summary
+
+Using the Poincaré inequality and the representation formula, we show that on the 3-dimensional real Heisenberg group, $\mathbb{H}^{1}$, there exists a constant $C>0$ such that:
+
+\[\left|\nabla e^{t\,\Delta}f\right|(g)\leqslant Ce^{t\,\Delta}\big{(}|\nabla f| \big{)}(g),\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f\in C_{o}^{\infty}\big{(} \mathbb{H}^{1}\big{)}.\]
+
+This result answers affirmatively the open question in [B.K. Driver, T. Melcher, Hypoelliptic heat kernel inequalities on the Heisenberg group, J. Funct. Anal. 221 (2005) 340-365]. Moreover, the main result of [B.K. Driver, T. Melcher, Hypoelliptic heat kernel inequalities on the Heisenberg group, J. Funct. Anal. 221 (2005) 340-365] can be considered as an immediate consequence of the above inequality. 2006 Elsevier Inc. All rights reserved.
+
+## 1 Introduction
+
+On $\mathbb{R}^{n}$, let $\nabla$ denote the gradient, and $e^{t\,\Delta}$ ($t>0$) the heat semigroup. We see that $\nabla$ and $e^{t\,\Delta}$ commute, i.e.
+
+\[\nabla e^{t\Delta}f(g)=e^{t\Delta}(\nabla f)(g),\quad\forall g\in\mathbb{R}^{n},\ t>0,\ f\in C_{o}^{\infty}\big(\mathbb{R}^{n}\big).\]
+
+In general, this property no longer holds in the context of complete Riemannian manifolds, $(M,\,g_{M})$. However, if the Ricci curvature on $M$, $\mathrm{Ric}(M)$, is bounded below by $k$ ($k\in\mathbb{R}$), then D. Bakry showed in [4] that:
+
+\[\big{|}\nabla e^{t\Delta}f(g)\big{|}\leqslant e^{-kt}e^{t\Delta}\big{(}|\nabla f|\big{)}(g),\quad\forall g\in M,\ t>0,\ f\in C_{o}^{\infty}(M).\]Here is the translation:
+
+"When the Ricci curvature on M is bounded from below, M is stochastically complete, i.e., e^{tΔ}1=1 for all t>0. An immediate consequence of (1.1) is that for all 1≤w<+∞, we have
+
+\[|\nabla e^{tΔ}f(g)| ≤ e^{-kt}[e^{tΔ}(|∇f|^w)(g)]^{1/w}, ∀g∈M, t>0, f∈C_o^∞(M),\]
+
+or, more weakly,
+
+\[||∇e^{tΔ}f||_{L^∞} ≤ e^{-kt}||∇f||_{L^∞}, ∀t>0, f∈C_o^∞(M).\]
+
+Estimates of type (1.2) or in a weaker (or stronger) form have many applications, for example, in the study of Poincaré and logarithmic Sobolev inequalities for the heat semigroup, in the study of the Γ_2 criterion, and also in the study of Riesz transforms, see, for example, [1-3,7] and their references.
+
+Recently, von Renesse and Sturm have shown that in the framework of complete Riemannian manifolds, the estimate (1.3) with k∈ℝ implies that Ric(M)≥k, see [24]. For other results equivalent to the estimate (1.1), see, for example, [1,24] and their references.
+
+And in [17] (see also [18]), it has been shown that estimates (1.3) or (1.2) no longer hold on conical manifolds. More precisely, on the cone C(S_θ) with θ>2π, which is a Riemannian manifold with zero sectional curvature but not complete, there exists a smooth compactly supported function f_o defined on C(S_θ) such that ||∇e^{tΔ}f_o||_{L^∞}=+∞ for all t>0.
+
+In [9], Driver and Melcher have studied estimates of type (1.2) in the framework of the 3-dimensional real Heisenberg group, ℍ^1, which can be considered as a manifold equipped with a degenerate Laplacian."Here is the translation:
+
+"Let us recall, see for example [12, p. 98], that \(\mathbb{H}^{1}=\mathbb{R}^{2}\times\mathbb{R}\) is a stratified Lie group with the law
+
+\[(x_{1},x_{2},t)\cdot(x_{1}^{\prime},x_{2}^{\prime},t^{\prime})=\big{(}x_{1}+x_{1}^{\prime},x_{2}+x_{2}^{\prime},t_{1}+t_{1}^{\prime}+2(x_{1}^{\prime}x_{2}-x_{1}x_{2}^{\prime})\big{)}.\]
+
+And the sub-Laplacian on \(\mathbb{H}^{1}\) is written as
+
+\[\Delta=\mathrm{X}_{1}^{2}+\mathrm{X}_{2}^{2},\]
+
+where the two left-invariant vector fields on \(\mathbb{H}^{1}\), \(\mathrm{X}_{1}\) and \(\mathrm{X}_{2}\), are defined by
+
+\[\mathrm{X}_{1}=\frac{\partial}{\partial x_{1}}+2x_{2}\frac{\partial}{\partial t},\qquad\mathrm{X}_{2}=\frac{\partial}{\partial x_{2}}-2x_{1}\frac{\partial}{\partial t}.\]
+
+Let us denote \(\nabla=(\mathrm{X}_{1},\mathrm{X}_{2})\) the gradient, and \(e^{t\Delta}\) (\(t>0\)) the heat semigroup on \(\mathbb{H}^{1}\).
+
+By a probabilistic method, Driver and Melcher have shown that for any \(1<w<+\infty\), there exists a constant \(C_{w}>0\) (and, in addition, we must have \(C_{w}>1\)) such that:
+
+\[\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant C_{w}\big{[}e^{t\Delta}\big{(}|\nabla f|^{w}\big{)}(g)\big{]}^{1/w},\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f \in C_{o}^{\infty}\big{(}\mathbb{H}^{1}\big{)}. \tag{1.4}\]
+
+They have also shown that their method does not work for the case where \(w=1\), which remains open. Moreover, Melcher has given in [23] some families of functions for which the previous estimate with \(w=1\) is satisfied.
+
+We also note that Lust-Piquard and Villani have shown in [21] the estimates (1.4) (with \(1<w<+\infty\)) by an analytic method. More precisely, they have used classical estimates of the heat kernel and its gradient.
+
+The purpose of this article is to give a positive answer to the open question of [9]. In other words, we have:
+
+**Theorem 1.1**.: _On \(\mathbb{H}^{1}\), there exists a constant \(C_{1}>0\) such that..."Here is the translation:
+
+\[|\nabla e^{t\Delta}f|(g)\leqslant C_{1}e^{t\Delta}(|\nabla f|)(g),\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f\in C_{o}^{\infty}(\mathbb{H}^{1}).
+
+By Theorem 1.1, we immediately obtain the logarithmic Sobolev inequality for the heat semigroup as follows:
+
+**Corollary 1.2**.: _Let $C_{1}>1$ be as in Theorem 1.1. Then, for all $t>0$ and all $f\in C_{o}^{\infty}(\mathbb{H}^{1})$, we have:_
+
+\[e^{t\Delta}(f^{2}\log f^{2})(g)-e^{t\Delta}(f^{2})(g)\log e^{t\Delta}(f^{2})(g)\leqslant C_{1}^{2}t e^{t\Delta}(|\nabla f|^{2})(g),\quad\forall g\in\mathbb{H}^{1},\]
+
+_and also_
+
+\[e^{t\Delta}(f^{2}\log f^{2})(g)-e^{t\Delta}(f^{2})(g)\log e^{t\Delta}(f^{2})(g)\geqslant C_{1}^{2}t\frac{|\nabla e^{t\Delta}f^{2}|^{2}(g)}{e^{t\Delta}f^{2}(g)},\quad\forall g\in\mathbb{H}^{1}.\]
+
+To show this corollary, it suffices to slightly modify the proof of part (i) $\Rightarrow$ (ii) of Theorem 5.4.7 in [1, pp. 85-86].
+
+The idea of the proof of Theorem 1.1 is to use the Poincaré inequality and the representation formula, which we recall in Section 2 (attentive readers will find that, in fact, the locally doubling volume property and the local representation formula are sufficient). This idea comes from an observation in the Euclidean space setting and is very easy to understand. However, the proof of Theorem 1.1 is relatively difficult: we must use the sub-Riemannian structure of $\mathbb{H}^{1}$ (i.e., the explicit expression of the Carnot-Carathéodory distance and geodesic) as well as the optimal estimates of the heat kernel and its gradient, which we recall or give in Section 3.
+
+### Some remarks on our methodHere is the translation:
+
+'1. In general, in the context of complete Riemannian manifolds with lower bounded Ricci curvature, the estimates (1.2) only provide precise information for \(t\to 0^{+}\), and they become very weak when \(t\to+\infty\). In certain cases, the method of this article allows us to obtain optimal estimates of type (1.2) when \(t\to+\infty\).
+
+To better understand the advantages of our method (which consists of directly using heat kernel and its gradient estimates, rather than the Bochner-Lichnerowicz formula, as in [4]), consider a compact, boundaryless, n-dimensional Riemannian manifold, \(N\).
+
+Let \(p_{t}\) be the heat kernel on \(N\), \(\lambda_{1}>0\) the first non-zero eigenvalue of the Laplacian, and \(|N|\) its volume. Then, for \(t\gg 1\), on the one hand, ...'Here is the translation:
+
+\[|\nabla e^{t\Delta}f(g)| = \left|\nabla\int\limits_{N}p_{t}(g,g^{\prime})\left(f(g^{\prime}) -\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*})\right)d\mu(g^{\prime})\right|\]
+\[\leqslant\int\limits_{N}|\nabla p_{t}(g,g^{\prime})| \cdot\left|f(g^{\prime})-\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*}) \right|d\mu(g^{\prime})\]
+\[\leqslant C_{1}e^{-\lambda_{1}t}\int\limits_{N}\left|f(g^{\prime})-\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*})\right|d\mu(g^{\prime})\]
+\[ \quad\text{since }|\nabla p_{t}(g,g^{\prime})|\leqslant C_{1}e^{-\lambda_{1}t}\text{ for all }t\gg 1\text{ and }g,g^{\prime}\in N\]
+\[\leqslant C_{2}e^{-\lambda_{1}t}\,\text{diam}(N)\int\limits_{N} |\nabla f|(g^{\prime})\,d\mu(g^{\prime})\]
+\[ \quad\text{by the Poincaré inequality}\]
+\[\leqslant Ce^{-\lambda_{1}t}\,\text{diam}(N)|N|\int\limits_{N}p_{t}(g,g^{\prime})|\nabla f|(g^{\prime})\,d\mu(g^{\prime})\]
+\[ \quad\text{since }p_{t}(g,g^{\prime})\geqslant 2^{-1}|N|^{-1}\text{ for all }t\gg 1\text{ and }g,g^{\prime}\in N\]
+\[\leqslant Ce^{-\lambda_{1}t}\,\text{diam}(N)|N|\left[e^{t\Delta} \left(|\nabla f|^{w}\right)(g)\right]^{1/w},\]
+
+for all $g\in N$, $f\in C^{\infty}(N)$, and $1\leqslant w<+\infty$.
+
+On the other hand, let $\upsilon_{1}$ be a normalized eigenfunction associated with $\lambda_{1}$. Then, for all $1\leqslant w<+\infty$, when $t\gg 1$, we have:
+
+\[\sup\limits_{g\in N}\frac{|\nabla e^{t\Delta}\upsilon_{1}(g)|}{[e^{t\Delta}(|\nabla\upsilon_{1}|^{w})(g)]^{1/w}} =\sup\limits_{g\in N}\frac{e^{-\lambda_{1}t}|\nabla\upsilon_{1}|(g)}{ \left[\int_{N}p_{t}(g,g^{\prime})|\nabla\upsilon_{1}|^{w}(g^{\prime})\,d\mu(g^{\prime})\right]^{1/w}}\]
+\[>e^{-\lambda_{1}t}\frac{\|\nabla\upsilon_{1}\|_{L^{\infty}}}{\|\nabla\upsilon_{1}\|_{L^{w}}}\left[\frac{2}{|N|}\right]^{-1/w},\]
+
+since $p_{t}(g,g^{\prime})\leqslant 2|N|^{-1}$ for all $t\gg 1$ and $g,g^{\prime}\in N$.Here is the translation:
+
+"In other words, in the context of compact Riemannian manifolds without boundary, we have
+
+\[\sup\limits_{g\in N,f\in C^{\infty}(N)}\frac{|\nabla e^{t\Delta}f(g)|}{[e^{t \Delta}(|\nabla f|^{w})(g)]^{1/w}}\sim e^{-\lambda_{1}t}.\]And we note that as \(t\to+\infty\), the factor \(e^{-\lambda_{1}t}\) decreases much faster than \(e^{-\max(0,k_{o})t}\) with \(k_{o}=\sup\{k\in\mathbb{R};\operatorname{Ric}(N)\geqslant k\}\), recalling that Lichnerowicz's theorem tells us that \(\lambda_{1}\geqslant\frac{n}{n-1}k_{o}\) for \(k_{o}>0\).
+
+2. In [21,23], the estimates (1.4) with \(1<w<+\infty\) were obtained in the context of nilpotent groups using a probabilistic method and an analytic method, respectively. However, in their proofs (independent of each other), they both used special properties of the Hormander system of left-invariant vector fields on Lie groups. Our method also allows us to give a simple and independent proof of their result. To reobtain their result, it suffices to use the doubling volume property, the local Poincaré inequality, the local representation formula, and to use the classical upper and lower bounds of the heat kernel and its gradient in the context of nilpotent groups (see, for example, [25, Theorem IV.4.2, p. 61]). The advantage of this method is that it does not use any special property of the nilpotent group and can be adapted to other situations, for example, in the context of complete Riemannian manifolds with bounded \(C^{1}\)-geometry in the sense of [6] (although we would obtain a much weaker estimate than the one obtained by Bakry).
+
+3. We note that in [2], an estimate of the type..."Here is the translation:
+
+\[|\nabla e^{t\Delta}f|(g) \leqslant C_w \big[e^{t\Delta}(|\nabla f|^w)\big]^{1/w}(g), \quad \forall g \in \mathbb{H}^1, t > 0, f \in C_0^\infty, 1 \leqslant w < +\infty,\]
+
+has been obtained in the framework of Lie groups with polynomial volume growth and also in other situations, using the Poincaré inequality and the heat kernel estimates and its gradient. It would be interesting to know if a slight modification of their method allows us to recover the estimates (1.4) with $1 < w < +\infty$ in the framework of nilpotent groups.
+
+### Notations
+
+In the following, we denote $o = (0,0)$, the origin of $\mathbb{H}^1$, $d$ the Carnot-Carathéodory distance, and $p_h$ ($h > 0$) the heat kernel on $\mathbb{H}^1$, and $g = (x,t) \in \mathbb{R}^2 \times \mathbb{R}$ will designate a point of $\mathbb{H}^1$. By convention, we denote
+
+\[d(g) = d(g,o), \qquad p(g) = p_1(g,o).\]
+
+If $E$ is a measurable set, then we denote $|E|$ its volume and $\chi_E$ its characteristic function.
+
+Throughout the following, $C$, $C_*$, $C^*$, etc. will denote universal constants that may depend on the properties of $\mathbb{H}^1$. These may change from one line to another.
+
+## 2 Reminder on the Poincaré inequality and the representation formula
+
+There are many works on the Poincaré inequality and the integral representation of a function in terms of its gradient, see for example [19,22] and their references. In particular, there exists a constant $C > 0$ such that for any $f \in C_0^\infty(\mathbb{H}^1)$, any $g \in \mathbb{H}^1$, and any $r > 0$, we have:Here is the translation:
+
+\[\int\limits_{B(g,r)}\big{|}f(g^{\prime})-f_{r}(g)\big{|}\,dg^{\prime}\leqslant Cr \int\limits_{B(g,r)}\big{|}\nabla f(g^{\prime})\big{|}\,dg^{\prime}, \tag{2.1}\]
+
+\[|f(g^{\prime})-f_{r}(g)|\leqslant C\int\limits_{B(g,r)}|\nabla f(g_{s})|\frac{d(g^{\prime},g_{s})}{|B(g^{\prime},d(g^{\prime},g_{s}))|}\, dg_{s},\quad\forall g^{\prime}\in B(g,r), \tag{2.2}\]
+
+or
+
+\[f_{r}(g)=|B(g,r)|^{-1}\int\limits_{B(g,r)}f(g^{\prime})\,dg^{\prime}.\]
+
+We also note that on $\mathbb{H}^{1}$, the Poincaré inequality (2.1) and the representation formula (2.2) are equivalent, see [19] (or see [10,11] for slightly weaker but sufficient results to show our result).
+
+## 3. Some results on $\mathbb{H}^{1}$
+
+### Reminder on the sub-Riemannian structure of $\mathbb{H}^{1}$
+
+We recall in this section the explicit expression of the Carnot-Carathéodory distance and the minimal geodesic between the origin $o$ and $(x,t)\in\mathbb{H}^{1}$. Almost all the results of this section come from [5, pp. 635-644] and [12].
+
+In the following, to simplify the notation, we assume that
+
+\[x=(x_{1},x_{2})\neq(0,0).\]
+
+Let
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{2\sin^{2}\varphi}:\,]-\pi,\pi[\to \mathbb{R}. \tag{3.1}\]
+
+Then
+
+\[\psi(x,\varphi)=\big{(}x,\mu(\varphi)\|x\|^{2}\big{)}:\big{\{}(x,\varphi)\in \mathbb{R}^{2}\times]-\pi,\pi[;\ x\neq(0,0)\big{\}}\to\big{\{}(x,t)\in\mathbb{H}^{1};\ x\neq(0,0)\big{\}} \tag{3.2}\]
+
+is a $C^{1}$-diffeomorphism.
+
+Let $\mu^{-1}$ and $\psi^{-1}$ be the reciprocal functions of $\mu$ and $\psi$, respectively. Then
+
+\[d^{2}(x,t)=\bigg{(}\frac{\theta}{\sin\theta}\bigg{)}^{2}\|x\|^{2}\quad\text{ with }\theta=\mu^{-1}\bigg{(}\frac{t}{\|x\|^{2}}\bigg{)} \tag{3.3}\]
+
+(see (1.40) and (1.30) of [5], and we have set $a=\tau=1$ and replaced $2\theta$ by $\theta$ in (1.30)), and the unique minimal geodesic between the origin and $(x,t)$,Here is the translation:
+
+$\gamma(s) = (x_1(s), x_2(s), t(s)) : [0,1] \to \mathbb{H}^1,$
+
+written as (it suffices to set $a = \tau = 1$ and replace $2\theta$ with $\theta$ in Theorem 1.21 of [5])
+$x(s) = \begin{pmatrix} x_1(s) \\ x_2(s) \end{pmatrix} = \frac{\sin s\theta}{\sin\theta} \begin{pmatrix} \cos(s-1)\theta & \sin(s-1)\theta \\ -\sin(s-1)\theta & \cos(s-1)\theta \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}, \tag{3.4}$
+
+$t(s) = t - (1-s) \frac{\theta}{\sin^2\theta} \|x\|^2 + \frac{1}{2} \frac{\sin 2\theta - \sin 2s\theta}{\sin^2\theta} \|x\|^2$
+
+$\quad= \frac{2s\theta - \sin 2s\theta}{2\sin^2\theta} \|x\|^2 = \frac{2s\theta - \sin 2s\theta}{2\sin^2s\theta} \|x(s)\|^2, \tag{3.5}$
+
+in other words, we have
+
+$\mu^{-1} \left(\frac{t(s)}{\|x(s)\|^2}\right) = s\mu^{-1} \left(\frac{t}{\|x\|^2}\right), \quad \forall 0 \leq s \leq 1. \tag{3.6}$
+
+### Optimal Estimates of the Heat Kernel and its Gradient
+
+By [12,14] or [20], we have the explicit expression of $p_h$ as follows:
+
+$p_h(x,t) = \frac{1}{2(4\pi h)^2} \int\limits_{\mathbb{R}} \exp\left(\frac{\lambda}{4h} \left(tu - \|x\|^2 \coth \lambda\right)\right) \frac{\lambda}{\sinh \lambda} \,d\lambda. \tag{3.7}$
+
+To show Theorem 1.1, we will need the optimal estimates of $p(x,t)$ and $|\nabla p(x,t)|$ as follows:
+
+**Lemma 3.1**.: _There exists a constant $L_1 > 1$ such that for all $(x,t) \in \mathbb{H}^1$, we have:_
+
+$L_1^{-1} e^{-d^2(x,t)/4} \left(1 + \|x\|d(x,t)\right)^{-1/2} \leq p(x,t) \leq L_1 e^{-d^2(x,t)/4} \left(1 + \|x\|d(x,t)\right)^{-1/2}. \tag{3.8}$
+
+**Lemma 3.2**.: _There exists a constant $L_2 > 1$ such that:_
+
+$|\nabla p(x,t)| \leq L_2 d(x,t) p(x,t), \quad \forall (x,t) \in \mathbb{H}^1. \tag{3.9}$**Proof of Lemma 3.1.** The estimate (3.8) is an immediate consequence of the explicit expression of the Carnot-Carathéodory distance (3.3) and Theorems 1.1, 1.3, and Remark 1.5 of [13] (see also [5,12] for partial results).
+
+**Proof of Lemma 3.2.** Observe that
+
+\[\big{|}\nabla p(x,t)\big{|}^{2}=|\mathrm{X}_{1}p|^{2}(x,t)+|\mathrm{X}_{2}p|^{2}(x,t),\]
+
+and
+
+\[\mathrm{X}_{1}p(x,t)=\frac{1}{4(4\pi)^{2}}\int\limits_{\mathbb{R}}\lambda(-x_{1}\coth\lambda+x_{2}t)\exp\bigg{(}\frac{\lambda}{4}\big{(}tu-\|x\|^{2}\coth \lambda\big{)}\bigg{)}\frac{\lambda}{\sinh\lambda}\,d\lambda,\]
+
+\[\mathrm{X}_{2}p(x,t)=-\frac{1}{4(4\pi)^{2}}\int\limits_{\mathbb{R}}\lambda(x_{2}\coth\lambda+x_{1}t)\exp\bigg{(}\frac{\lambda}{4}\big{(}tu-\|x\|^{2}\coth \lambda\big{)}\bigg{)}\frac{\lambda}{\sinh\lambda}\,d\lambda.\]Let
+
+\[W_{1}=\int\limits_{\mathbb{R}}\lambda\exp\biggl{(}\frac{\lambda}{4}\bigl{(}tu-\|x\|^{2}\coth\lambda\bigr{)}\biggr{)}\frac{\lambda}{\sinh\lambda}\,d\lambda,\] \[W_{2}=\int\limits_{\mathbb{R}}\cosh\lambda\exp\biggl{(}\frac{\lambda}{4}\bigl{(}tu-\|x\|^{2}\coth\lambda\bigr{)}\biggr{)}\biggl{(}\frac{\lambda}{\sinh\lambda}\biggr{)}^{2}d\lambda.\]
+
+Then
+
+\[\bigl{|}\nabla p(x,t)\bigr{|}\leqslant\frac{1}{4(4\pi)^{2}}\bigl{(}|x_{1}|+|x_{2}|\bigr{)}\bigl{(}|W_{1}|+|W_{2}|\bigr{)}.\]
+
+As $|x_{1}|+|x_{2}|\leqslant 2\|x\|\leqslant 2d(x,t)$ (see (3.3)), by (3.8), to complete the proof of (3.9), it remains to show that there exists a constant $C>0$ such that for all $(x\neq(0,0),t)\in\mathbb{H}^{1}$, we have:
+
+\[|W_{1}| \leqslant Ce^{-\frac{d^{2}(x,t)}{4}}\bigl{(}1+\|x\|d(x,t)\bigr{)}^{-1/2}, \tag{3.10}\] \[|W_{2}| \leqslant C\frac{d(x,t)}{\|x\|}e^{-\frac{d^{2}(x,t)}{4}}\bigl{(}1+\|x\|d(x,t)\bigr{)}^{-1/2}. \tag{3.11}\]Here is the translation:
+
+"By comparing the integral expression of \(W_{1}\) (resp. \(W_{2}\)) with that of \(p\) (resp. \(p_{*}(\|\mathbf{x}\|=\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}+x_{4}^{2}},t)=p_{*1}(x_{1},x_{2},x_{3},x_{4},t)\), the heat kernel at time \(h=1\) on the 5-dimensional real Heisenberg group, \(\mathbb{H}^{2}\)), we find that there is only a difference of a factor, the analytic function on the complex plane, \((2\pi)^{-2}\lambda\) (resp. \((2\pi)^{-3}\cosh\lambda\)). We also observe that the estimate of \(W_{1}\) is analogous to that of \(p\) obtained in Theorem 2.17 of [5] and that the estimate of \(W_{2}\) is weaker than that of \(p_{*1}\) obtained in Theorem 4.6 of [5]. Therefore, it suffices to repeat word for word the proof of Theorem 2.17 (resp. Theorem 4.6 with \(n=2\)) of [5] to show (3.10) (resp. (3.11)).
+
+## 4 Proof of Theorem 1.1
+
+In the following, \(V(r)=|B(o,r)|\) (\(r>0\)). We recall that
+
+\[\bigl{|}B(g,r)\bigr{|}=V(r)\sim r^{4},\quad\forall g\in\mathbb{H}^{1},\ r>0. \tag{4.1}\]
+
+By the left invariance of \(\nabla\) and \(p_{h}\) as well as the dilation on \(\mathbb{H}^{1}\), we note that to prove Theorem 1.1, it suffices to show that there exists a constant \(C>1\) such that (see also Lemma 2.3 and Proposition 2.6 of [9] for a detailed explanation):
+
+\[\bigl{|}\nabla e^{\Delta}f\bigr{|}(o)\leqslant Ce^{\Delta}\bigl{(}|\nabla f| \bigr{)}(o),\quad\forall f\in C_{o}^{\infty}. \tag{4.2}\]
+
+Throughout the following, to simplify the notation, we set
+
+\[f_{o}=\frac{1}{|B(o,1)|}\int\limits_{B(o,1)}f(g)\,dg,\qquad\text{A}_{\infty}=e^{1000}(L_{1}+L_{2})^{8},\]
+
+where \(L_{1}\), \(L_{2}>1\) come from (3.8) and (3.9) respectively.
+
+**The main idea of the proof of (4.2).** We briefly explain the main idea of the proof of (4.2):
+
+Since \(\mathbb{H}^{1}\) is stochastically complete, we have..."Here is the translation:
+
+\[|\nabla e^{\Delta}f|(o)=\left|\int\limits_{\mathbb{H}^{1}}\nabla p(g^{-1})(f(g)-f_{o})\,dg\right|\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\cdot|f(g)-f_{o}|\,dg.\]
+
+We can formally write
+
+\[|\nabla e^{\Delta}f|(o) \leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\cdot|f(g)-f_{o}|\,dg\] \[\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\left[\int\limits_{\mathbb{H}^{1}}|\nabla f(g')|K(g,g')\,dg'\right]\,dg\] \[=\int\limits_{\mathbb{H}^{1}}|\nabla f(g')|\left[\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|K(g,g')\,dg\right]\,dg'\] \[\leqslant C\int\limits_{\mathbb{H}^{1}}p(g')|\nabla f(g')|\,dg'.\]
+
+In other words, to prove the estimate (4.2), it is sufficient to find a function $K$ defined on $\mathbb{H}^{1}\times\mathbb{H}^{1}$ that satisfies the two following conditions:
+
+\[|f(g)-f_{o}|\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla f(g')|K(g,g')\,dg',\quad\forall g\in\mathbb{H}^{1},\ f\in C_{o}^{\infty}(\mathbb{H}^{1}), \tag{4.3}\]
+
+\[\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|K(g,g')\,dg\leqslant Cp(g'),\quad\forall g'\in\mathbb{H}^{1}. \qquad\Box \tag{4.4}\]Here is the translation:
+
+The condition (4.3) naturally leads us to use the Poincaré inequality (locally) and the representation formula (locally). The difficulty lies in fulfilling condition (4.4): we must choose $K$ from (4.3) as well as possible, and use optimal estimates of the heat kernel and its gradient, as well as the sub-Riemannian structure of $\mathbb{H}^{1}$. We will also see that the difficulty in controlling $K(g,g^{\prime})$ lies in the case where $d(g,g^{\prime})\ll 1$ with $d(g)\to+\infty$.
+
+**Proof of (4.2).** Let
+
+\[J_{1} =\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)\leqslant A_{\infty}\}}d(g) p(g)\cdot\big{|}f(g)-f_{o}\big{|}\,dg,\] \[J_{2} =\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)>A_{\infty}\}}d(g)p(g) \cdot\big{|}f(g)-f_{o}\big{|}\,dg.\]
+
+By the fact that
+
+\[\big{|}\nabla p\big{(}g^{-1}\big{)}\big{|}\leqslant L_{2}d\big{(}g^{-1}\big{)} p\big{(}g^{-1}\big{)}=L_{2}d(g)p(g),\]
+
+we have
+
+\[\big{|}\nabla e^{\Delta}f\big{|}(o)\leqslant L_{2}(J_{1}+J_{2}).\]
+
+As
+
+\[e^{\Delta}\big{(}|\nabla f|\big{)}(o)=\int\limits_{\mathbb{H}^{1}}p\big{(}g^{-1}\big{)}|\nabla f|(g)\,dg=\int\limits_{\mathbb{H}^{1}}p(g)|\nabla f|(g)\,dg,\]
+
+to prove (4.2), it remains to show that there exists a constant $C>0$, independent of $f$, such that
+
+\[J_{1}+J_{2}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)|\nabla f|(g)\,dg.\qquad\Box\]
+
+### Estimation of $J_{1}$
+
+We see that
+
+\[\big{|}f(g)-f_{o}\big{|}\leqslant\big{|}f_{1}(g)-f_{o}\big{|}+\big{|}f(g)-f_{1}(g)\big{|}.\]
+
+The representation formula (see (2.2)) tells us that
+
+\[J_{11*}=\big{|}f(g)-f_{1}(g)\big{|} \leqslant C_{1}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime}) \big{|}\frac{d(g,g^{\prime})}{|B(g,d(g,g^{\prime}))|}\,dg^{\prime}\] \[=C_{1}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime})\big{|}\frac{ d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg^{\prime},\quad\text{ by (4.1).}\]
+
+Moreover,Here is the translation:
+
+\[J_{12*}=\big{|}f_{o}-f_{1}(g)\big{|}\leqslant\big{|}f_{o}-f_{A_{\infty}+2}(o) \big{|}+\big{|}f_{1}(g)-f_{A_{\infty}+2}(o)\big{|}.\]
+Using Poincaré's inequality (see (2.1)), we have
+
+\[\big{|}f_{o}-f_{A_{\infty}+2}(o)\big{|} =\frac{1}{|B(o,1)|}\bigg{|}\int\limits_{B(o,1)}\big{(}f(g^{\prime} )-f_{A_{\infty}+2}(o)\big{)}\,dg^{\prime}\bigg{|}\] \[\leqslant\frac{1}{|B(o,1)|}\int\limits_{B(o,A_{\infty}+2) }\big{|}f(g^{\prime})-f_{A_{\infty}+2}(o)\big{|}\,dg^{\prime}\] \[\leqslant C(A_{\infty})\int\limits_{B(o,A_{\infty}+2) }|\nabla f|(g^{\prime})\,dg^{\prime},\]
+
+and similarly,
+
+\[\big{|}f_{1}(g)-f_{A_{\infty}+2}(o)\big{|}\leqslant C(A_{\infty})\int\limits_{B(o,A_{\infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime}.\]
+
+By the upper estimates of $p$, (3.8), we therefore have
+
+\[J_{1} \leqslant C^{\prime}(A_{\infty})\int\limits_{B(o,A_{\infty}+1)}\bigg{[}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime} )\big{|}\frac{d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg^{\prime}+ \int\limits_{B(o,A_{\infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime} \bigg{]}dg\] \[\leqslant C_{*}(A_{\infty})\int\limits_{B(o,A_{\infty}+2)}|\nabla f|(g^{\prime})\bigg{[}1+\int\limits_{B(g^{\prime},1)}\frac{d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg\bigg{]}dg^{\prime}\] \[\leqslant C(A_{\infty})\int\limits_{B(o,A_{\infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime}\quad\text{by (3.9)}\] \[\leqslant C^{*}(A_{\infty})\int\limits_{B(o,A_{\infty}+2)}p(g^{\prime})|\nabla f|(g^{\prime})\,dg^{\prime}\quad\text{by (3.10)}\] \[\leqslant C^{*}(A_{\infty})\int\limits_{\mathbb{H}^{1}}p(g^{\prime})|\nabla f|(g^{\prime})\,dg^{\prime}.\]
+
+### Estimation of $J_{2}$
+
+Since
+
+\[J_{2}=\int\limits_{\{g=(x,t)\in\mathbb{H}^{1};d(g)>\mathrm{A}_{\infty},x\neq(0,0)\}}d(g)\,p(g)\big{|}f(g)-f_{o}\big{|}\,dg,\]Here is the translation:
+
+"Let us assume throughout the following:
+
+\[g=(x,t)\in\Sigma=\big{\{}\mathbb{R}^{2}\times\mathbb{R}\setminus\big{\{}(0,0, t);t\in\mathbb{R}\big{\}};\ d(g)>\mathrm{A}_{\infty}\big{\}}.\]
+
+Let us denote by $\gamma$ the minimal geodesic (unique) originating from $g=(x,t)$, which is defined by (3.4) and (3.5).
+
+Let
+
+\[N(g)=\left[100d^{3/2}(g)\ln d(g)\right]+1,\]
+
+where $[h]$ ($h\in\mathbb{R}$) denotes the integer part of $h$, and let
+
+\[g\big{(}N(g)\big{)}=\gamma\big{(}1-N(g)d^{-7/2}(g)\big{)}.\]
+
+We must inform the reader that the choice of $N(g)$ and $\{g(i)=\gamma(1-id^{-7/2}(g))\}_{0\leqslant i\leqslant d(g)N(g)}$ defined in Section 4.2.2 is not unique but very delicate, depending not only on optimal estimates of the heat kernel and its gradient, but also on the sub-Riemannian structure of $\mathbb{H}^{1}$ (more precisely, we will need results analogous to Lemmas 4.2 and 4.3 of this article).
+
+Then
+
+Using the Poincaré inequality (see (2.1)) and the volume estimate of balls in $\mathbb{H}^{1}$ (see (4.1)), we have
+
+\[\big{|}f_{2d^{-5/2}(g)}\big{(}g\big{(}N(g)\big{)}\big{)}-f_{o} \big{|} \leqslant\big{|}f_{o}-f_{d(g(N(g))+4d^{-5/2}(g)}(o)\big{|}\]
+\[\leqslant Cd^{11}(g)\int\limits_{B(o,d(g)-90\frac{\ln d(g)}{d(g)})} \big{|}\nabla f(g^{\prime})\big{|}\,dg^{\prime}.\]
+
+Thus,
+
+\[\big{|}f(g)-f_{o}\big{|}\leqslant Cd^{11}(g)\int\limits_{B\big{(}o,d(g)-90 \frac{\ln d(g)}{d(g)})}\big{|}\nabla f(g^{\prime})\big{|}\,dg^{\prime}+\big{|} f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N(g)\big{)}\big{)}\big{|}.\]
+
+Let
+
+\[J_{21}=\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)>\text{A}_{\infty}\}}d^{12}(g)\, p(g)\bigg{[}\int\limits_{B(o,d(g)-90\frac{\ln d(g)}{d(g)})}\big{|}\nabla f(g^{ \prime})\big{|}\,dg^{\prime}\bigg{]}\,dg,\]
+
+\[J_{22}=\int\limits_{\Sigma}d(g)\,p(g)\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g \big{(}N(g)\big{)}\big{)}\big{|}\,dg.\]
+
+We note that..."Here is the translation:
+
+\[J_{2}\leqslant C(J_{21}+J_{22}).\] To complete the proof of Theorem 1.1, it suffices to show that there exists a constant $C>0$ such that for all $f\in C_{o}^{\infty}(\mathbb{H}^{1})$, we have
+
+\[J_{21}+J_{22}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)\big{|}\nabla f(g) \big{|}\,dg.\]
+
+#### 4.2.1 Estimation of $J_{21}$
+
+By a simple calculation, we observe that
+
+\[\bigg{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times\mathbb{H}^{1};d(g)> \mathrm{A}_{\infty},d(g^{\prime})<d(g)-90\frac{\ln d(g)}{d(g)}\bigg{\}}\] \[\quad\subset\Big{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times\mathbb{ H}^{1};d(g)>\mathrm{A}_{\infty},d(g^{\prime})\leqslant\mathrm{A}_{\infty}-1 \Big{\}}\] \[\quad\quad\cup\bigg{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times \mathbb{H}^{1};d(g^{\prime})>\mathrm{A}_{\infty}-1,d(g)>d(g^{\prime})+46\frac{ \ln d(g^{\prime})}{d(g^{\prime})}\bigg{\}}.\]
+
+Thus, using the upper estimates of $p(g)$ (see (3.8)), we have
+
+\[J_{21} \leqslant C\int\limits_{d(g^{\prime})\leqslant\mathrm{A}_{\infty}-1} \big{|}\nabla f(g^{\prime})\big{|}\,dg^{\prime}\int\limits_{d(g)>\mathrm{A}_{ \infty}}d^{12}(g)e^{-d^{2}(g)/4}\,dg\] \[\quad+C\int\limits_{d(g^{\prime})>\mathrm{A}_{\infty}-1}\big{|} \nabla f(g^{\prime})\big{|}\int\limits_{d(g)>d(g^{\prime})+46\frac{\ln d(g^{\prime})}{d(g^{\prime})}}d^{12}(g)e^{-d^{2}(g)/4}\,dg\bigg{]}dg^{\prime}.\]
+
+By the volume estimate of balls in $\mathbb{H}^{1}$ (see (4.1)), we have
+
+\[\int\limits_{d(g)>\mathrm{A}_{\infty}}d^{12}(g)e^{-d^{2}(g)/4}\,dg\leqslant CA_ {\infty}^{14}e^{-\mathrm{A}_{\infty}^{2}/4}\leqslant C\big{(}1+\mathrm{A}_{ \infty}^{2}\big{)}^{-1/2}e^{-(\mathrm{A}_{\infty}-1)^{2}/4},\]
+
+and when $d(g^{\prime})>\mathrm{A}_{\infty}-1$, we have
+
+\[\int\limits_{d(g)>d(g^{\prime})+46\frac{\ln d(g^{\prime})}{d(g^{\prime})}}d^{1 2}(g)e^{-\frac{d^{2}(g)}{4}}\,dg\leqslant Cd^{-1}(g^{\prime})e^{-\frac{d^{2}(g ^{\prime})}{4}}.\]
+
+Consequently, the lower estimates of $p$ (see (3.8)) tell us thatHere is the translation:
+
+\[J_{21}\leqslant C\int\limits_{\mathbb{H}^{1}}\big{|}\nabla f(g^{\prime})\big{|} \,p(g^{\prime})\,dg^{\prime}.\]
+
+#### Estimation of $J_{22}$
+
+Let us recall that
+
+\[{\rm A}_{\infty}=e^{1000}(L_{1}+L_{2})^{8},\]
+
+where the two constants $L_{1}$, $L_{2}>1$ come from (3.8) and (3.9) respectively.
+
+Let us also recall that
+
+\[J_{22}=\int\limits_{\Sigma}d(g)p(g)\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N (g)\big{)}\big{)}\big{|}\,dg,\]
+
+where
+
+\[\Sigma=\big{\{}\mathbb{R}^{2}\times\mathbb{R}\setminus\big{\{}(0,0,t);t\in \mathbb{R}\big{\}};d(g)>{\rm A}_{\infty}\big{\}},\]
+
+\[N(g)=\big{[}100d^{3/2}(g)\ln d(g)\big{]}+1,\quad g\big{(}N(g)\big{)}=\gamma \big{(}1-N(g)d^{-7/2}(g)\big{)},\]
+
+and $\gamma$ denotes the minimal geodesic (unique) of origin at $g=(x,t)$, defined by (3.4)-(3.6).
+
+The difficulty of the proof of Theorem 1.1 lies in showing that there exists a constant $C>0$ such that for all $f\in C^{\infty}_{o}(\mathbb{H}^{1})$, we have
+
+\[J_{22}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)\big{|}\nabla f(g)\big{|}\,dg. \tag{4.5}\]
+
+In the following, to simplify the notation, we set
+
+\[g=(x,t)\in\Sigma,\] \[s(i)=1-id^{-7/2}(g),\quad\text{for }0\leqslant i\leqslant d (g)N(g),\] \[g(i)=\big{(}x(i),t(i)\big{)} =\big{(}x_{1}(i),x_{2}(i),t(i)\big{)} =\gamma\big{(}s(i)\big{)}.\]
+
+And we note that
+
+\[d\big{(}g(i),g(j)\big{)}=|i-j|d^{-5/2}(g),\quad\forall 0\leqslant i,j\leqslant d (g)N(g).\]
+
+We now estimate
+
+\[J_{22*}=\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N(g)\big{)}\big{)}\big{|}.\]
+
+Observe that
+
+\[J_{22*}\leqslant\sum_{i=0}^{N(g)-1}\big{|}f\big{(}g(i)\big{)}-f\big{(}g(i+1) \big{)}\big{|}+\big{|}f\big{(}g\big{(}N(g)\big{)}\big{)}-f_{2d^{-5/2}(g)} \big{(}g\big{(}N(g)\big{)}\big{|}.\]By the representation formula (see (2.2)), we have \[\big{|}f\big{(}g\big{(}N(g)\big{)}\big{)}-f_{2d^{-5/2}(g)}\big{(}g \big{(}N(g)\big{)}\big{)}\big{|}\] \[\qquad\leqslant C\int\limits_{B(g(N(g)),4d^{-5/2}(g))}\big{|}\nabla f (g^{\prime})\big{|}\frac{d(g(N(g)),g^{\prime})}{|B(g(N(g)),d(g(N(g)),g^{\prime} ))|}\,dg^{\prime},\]
+
+and
+
+\[\big{|}f\big{(}g(i)\big{)}-f\big{(}g(i+1)\big{)}\big{|}\] \[\qquad\leqslant\big{|}f\big{(}g(i)\big{)}-f_{2d^{-5/2}(g)}\big{(} g(i)\big{)}\big{|}+\big{|}f\big{(}g(i+1)\big{)}-f_{2d^{-5/2}(g)}\big{(}g(i) \big{)}\big{|}\] \[\qquad\leqslant C\int\limits_{B(g(i),4d^{-5/2}(g))}\big{|}\nabla f (g^{\prime})\big{|}\frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{\prime}))|}\,dg ^{\prime}\] \[\qquad+C\int\limits_{B(g(i+1),4d^{-5/2}(g))}\big{|}\nabla f(g^{ \prime})\big{|}\frac{d(g(i+1),g^{\prime})}{|B(g(i+1),d(g(i+1),g^{\prime}))|}\, dg^{\prime}.\]
+
+Thus,
+
+\[J_{22*}\leqslant C\sum\limits_{i=0}^{N(g)}\int\limits_{B(g(i),4d^{-5/2}(g))} \big{|}\nabla f(g^{\prime})\big{|}\frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{ \prime}))|}\,dg^{\prime}, \tag{4.6}\]
+
+and
+
+\[J_{22}\leqslant C\int\limits_{\Sigma}d(g)\,p(g)\sum\limits_{i=0}^{N(g)}\!\! \bigg{[}\int\limits_{B(g(i),4d^{-5/2}(g))}\big{|}\nabla f(g^{\prime})\big{|} \frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{\prime}))|}\,dg^{\prime}\bigg{]}dg.\]
+
+Before continuing the proof of (4.5), we must inform the reader that the crucial step in demonstrating (4.5) (and therefore Theorem 1.1) lies in obtaining the estimate (4.6), and that the choice of $\{g(i)\}_{0\leqslant i\leqslant N(g)}$ and $d^{-5/2}(g)$ in the estimate (4.6) is not unique but very delicate (it depends on the optimal estimates of the heat kernel and its gradient, as well as the sub-Riemannian structure of $\mathbb{H}^{1}$).
+
+Let $\chi$ be the characteristic function,Here is the translation:
+
+\[Q=Q(g,g^{\prime})=d(g)\sum\limits_{i=0}^{N(g)}\frac{d(g^{\prime},g(i))}{|B(g(i),d(g^{\prime},g(i)))|}\chi\left\{(g,g^{\prime})\in\Sigma\times\mathbb{H}^{1};d \big{(}g^{\prime},g(i)\big{)}<\frac{4}{d^{5/2}(g)}\right\},\]
+
+\[J_{22}^{*}=\int\limits_{\Sigma}p(g)\,Q\,dg.\]
+
+Then, using Fubini's theorem, we have
+
+\[J_{22}\leqslant C\int\limits_{d(g^{\prime})>\Delta_{\infty}-100(\ln\Delta_{ \infty})/\Delta_{\infty}-5\Delta_{\infty}^{-5/2}}\big{|}\nabla f(g^{\prime}) \big{|}J_{22}^{*}\,dg^{\prime}.\]
+
+Therefore, to show (4.5), it remains to show the following result:
+
+**Proposition 4.1**.: _There exists a constant $C>0$ such that_
+
+\[J_{22}^{*}\leqslant Cp(g^{\prime}),\quad\forall d(g^{\prime})>{\rm A}_{\infty}-100\frac{\ln{\rm A}_{\infty}}{{\rm A}_{\infty}}-5{\rm A}_{\infty}^{-5/2}. \tag{4.7}\]
+
+**Proof.**: Note that
+
+\[Q\neq 0 \Rightarrow d\big{(}g^{\prime},g(i)\big{)}<\frac{4}{d^{5/2}(g)}\quad\text{ for some }0\leqslant i\leqslant N(g)+1 \tag{4.8}\] \[\Rightarrow \frac{d(g^{\prime})+4/d^{5/2}(g)}{1-200(\ln d(g))/d^{2}(g)} \geqslant d(g)=\frac{d(g(i))}{s(i)}\geqslant d(g^{\prime})-\frac{4}{d^{5/2}(g)}\] \[\Rightarrow \frac{d(g^{\prime})/d(g)+4/d^{7/2}(g)}{1-200(\ln d(g))/d^{2}(g)} \geqslant 1\geqslant\frac{d(g^{\prime})}{d(g)}-\frac{4}{d^{7/2}(g)}.\]
+
+In particular, we have
+
+\[N(g^{\prime})-1\leqslant N(g)\leqslant N(g^{\prime})+1,\quad\text{and}\quad \frac{2}{\sqrt{5}}d(g)\leqslant d(g^{\prime})\leqslant\frac{\sqrt{5}}{2}d(g). \tag{4.9}\]
+
+Using (4.1), we therefore have
+
+\[Q\leqslant 2d(g^{\prime})\sum_{i=0}^{N(g^{\prime})+1}\frac{d(g^{\prime},g(i))} {|B(g^{\prime},d(g^{\prime},g(i)))|}\chi\left\{(g,g^{\prime})\in\Sigma\times \mathbb{H}^{1};d\big{(}g^{\prime},g(i)\big{)}<\frac{4}{d^{5/2}(g)}\right\}.\]
+
+Consequently,
+
+\[J_{22}^{*}\leqslant 2d(g^{\prime})\sum_{i=0}^{N(g^{\prime})+1}\int\limits_{\{g \in\Sigma;d(g^{\prime},g(i))<4d^{-5/2}(g)\}}p(g)\frac{d(g^{\prime},g(i))}{|B( g^{\prime},d(g^{\prime},g(i)))|}\,dg. \tag{4.10}\]
+
+Recall thatHere is the translation:
+
+The function $s(j)$ is defined as:
+
+\[s(j)=1-jd^{-7/2}(g),\quad 0\leqslant j\leqslant d(g)N(g),\]
+
+and $\mu^{-1}$ denotes the reciprocal function of $\mu$, which is defined as:
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{\sin^{2}\varphi}:]-\pi,\pi[\to \mathbb{R}.\]
+
+We need the following two lemmas, whose proofs will be given at the end of this section.
+
+**Lemma 4.2**.: _Let $L_{1}>1$ be as in (3.8) and let $(g=(x,t),\,g^{\prime})\in\Sigma\times\mathbb{H}^{1}$ satisfy_
+
+\[d\big{(}g^{\prime},g(i)\big{)}<4d^{-5/2}(g)\quad\text{for some }0\leqslant i \leqslant N(g^{\prime})+1,\]
+
+_then_
+
+\[p(g)\leqslant 400L_{1}^{2}p(g^{\prime})e^{-i/(5d^{3/2}(g^{\prime}))}\bigg{(} \frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^{1/2}. \tag{4.11}\]
+
+**Lemma 4.3**.: _There exists a constant $C>0$ such that for all $g^{\prime}\in\mathbb{H}^{1}$ and all $0\leqslant i\leqslant N(g^{\prime})+1$, we have_
+
+\[\int\limits_{\{g=(x,t)\in\Sigma;d(g^{\prime},g(i))<\frac{4}{d^{3/2}(g)}\}} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)} ^{1/2}\frac{d(g^{\prime},g(i))}{|B(g^{\prime},d(g^{\prime},g(i)))|}\,dg\]
+
+\[\leqslant Cd^{-5/2}(g^{\prime}). \tag{4.12}\]
+
+We admit the two lemmas for now and continue with the proof of Proposition 4.1.
+
+_End of the proof of Proposition 4.1._ By (4.10)-(4.12), we have
+
+\[J_{22}^{*}\leqslant Cd^{-3/2}(g^{\prime})p(g^{\prime})\sum\limits_{i=0}^{N(g^{\prime})+1}e^{-\frac{i}{5}d^{-3/2}(g^{\prime})}\leqslant Cp(g^{\prime})\!\! \left[1+\int\limits_{0}^{+\infty}e^{-h/5}\,dh\right]\!=6Cp(g^{\prime}).\]
+
+Hence Proposition 4.1.
+
+**Proof of Lemma 4.2**.: By the upper and lower estimates of $p$ (see (3.8)), we have
+
+\[p(g)=p\big{(}g(i)\big{)}\frac{p(g)}{p(g(i))}\leqslant L_{1}^{2}p\big{(}g(i) \big{)}e^{\frac{d^{2}(g(i))-d^{2}(g)}{4}}\bigg{(}\frac{1+\|x(s(i))\|d(g(s(i))) }{1+\|x\|d(g)}\bigg{)}^{1/2}.\]
+
+And by the definition of $g(i)$ and (3.5), we have...Here is the translation of the text:
+
+\[\big{[}d\big{(}g(i)\big{)}\leqslant d(g),\qquad\big{\|}x\big{(}s(i)\big{)}\big{\|}= \frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\|x\|,\]
+
+and
+
+\[e^{\frac{d^{2}(g(i))-d^{2}(g)}{4}}=e^{-\frac{d^{2}(g)}{4}(1-s(i)^{2})}<e^{-\frac{i}{4}d^{-3/2}(g)}<e^{-\frac{i}{5}d^{-3/2}(g^{\prime})},\quad\text{by (\ref{eq:p1})}.\]
+
+Moreover, by (4.9), we have
+
+\[1\geqslant s(i)\geqslant\frac{1}{2},\quad\text{when }0\leqslant i\leqslant N (g^{\prime})+1<2N(g),\]so,
+
+\[p(g)\leqslant 100L_{1}^{2}p\big{(}g(i)\big{)}e^{-\frac{i}{3}d^{-3/2}(g^{\prime})} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)} ^{1/2}.\]
+
+And to finish the proof of Lemma 4.2, it remains to show that
+
+\[p\big{(}g(i)\big{)}\leqslant 4p(g^{\prime}).\]
+
+In fact, we will show that
+
+\[\bigg{|}\frac{p(g(i))}{p(g^{\prime})}-1\bigg{|}\leqslant 1. \tag{4.13}\]
+
+_Proof of_ (4.13). We observe that
+
+\[\bigg{|}\frac{p(g(i))}{p(g^{\prime})}-1\bigg{|}=\frac{d(g^{\prime},g(i))}{p(g^{\prime})}\big{|}\nabla p(g_{*})\big{|}\quad\text{with }g_{*}\in B\big{(}g^{\prime},4d^{-5/2}(g)\big{)}.\]
+
+But, by the estimates of $p$ and $|\nabla p|$ (see (3.8) and (3.9)), we have
+
+\[\frac{1}{p(g^{\prime})}\leqslant L_{1}\big{(}1+d^{2}(g^{\prime})\big{)}^{ \frac{1}{2}}e^{\frac{d^{2}(g^{\prime})}{4}}\leqslant 2L_{1}d(g^{\prime})e^{ \frac{d^{2}(g^{\prime})}{4}},\]
+
+\[\big{|}\nabla p(g_{*})\big{|} \leqslant L_{2}d(g_{*})p(g_{*})\leqslant L_{1}L_{2}\big{(}d(g^{\prime})+4d^{-5/2}(g)\big{)}e^{-\frac{(d(g^{\prime})-4d^{-5/2}(g))^{2}}{4}}\] \[\leqslant 4L_{1}L_{2}d(g^{\prime})e^{-\frac{d^{2}(g^{\prime})}{4}},\]
+
+by (4.9) and the fact that $d(g)>1000$.
+
+Moreover, (4.9) and the fact that $g\in\Sigma$ tell us that
+
+\[d\big{(}g^{\prime},g(i)\big{)}<4d^{-5/2}(g)<5d^{-2}(g)\mathrm{A}_{\infty}^{-1/2}<\big{(}8L_{1}^{2}L_{2}\big{)}^{-1}d^{-2}(g^{\prime}).\]
+
+We thus have (4.13).
+
+**Proof of Lemma 4.3.** By (4.9), we can assume that $d(g^{\prime})>\frac{1}{2}\mathrm{A}_{\infty}$.
+
+Let us recall thatHere is the translation:
+
+Let
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{2\sin^{2}\varphi} : ]-\pi,\pi[\to\mathbb{R},\]
+
+and let
+
+\[\psi(x,\varphi)=\big{(}x,\mu(\varphi)\|x\|^{2}\big{)}:\big{\{}(x,\varphi)\in \mathbb{R}^{2}\times]-\pi,\pi[;\ x\neq(0,0)\big{\}}\to\big{\{}(x,t)\in\mathbb{H}^{1};x\neq 0\big{\}}\]
+
+be a $C^{1}$-diffeomorphism. Let $D\psi(x,\theta)$ be the Jacobian matrix of $\psi$ at $(x,\theta)$; then we have
+
+\[\det D\psi\left(x,\theta\right)=\frac{2\sin\theta-2\theta\cos\theta}{\sin^{3}\theta} \|x\|^{2}.\]
+
+Let
+
+\[\Omega_{g^{\prime}}=\left\{g=\left(x,t\right)\in\mathbb{H}^{1};x\neq\left(0,0 \right),d(g)>\frac{1}{2}d(g^{\prime})\right\}.\]
+
+For $0\leqslant i\leqslant N(g^{\prime})+1$, define
+
+\[\Theta_{i}\left(g\right)=g(i):\Omega_{g^{\prime}}\rightarrow\mathbb{H}^{1} \setminus\left\{\left(0,0,t\right)\in\mathbb{H}^{1};t\in\mathbb{R}\right\},\]
+
+and
+
+\[\Phi_{i}:\psi^{-1}(\Omega_{g^{\prime}}) \rightarrow\left(\mathbb{R}^{2}\setminus\left\{\left(0,0\right) \right\}\right)\times]-\pi,\pi[,\]
+\[(x,\theta)=\psi^{-1}\big{(}g=(x,t)\big{)} \mapsto\psi^{-1}\big{(}g(i)\big{)}=\big{(}x(i),s(i)\theta\big{)},\]
+
+where (see the definition of $s(i)$, (3.3) and (3.4))
+
+\[s(i)=s(i)(g)=1-\frac{i}{d^{7/2}(g)}\quad\text{with }d(g)=\frac{\theta}{\sin\theta}\|x\|,\ \theta=\mu^{-1}\bigg{(}\frac{t}{\|x\|^{2}}\bigg{)}, \tag{4.14}\]
+
+\[x_{1}(i)=\frac{\sin s(i)\theta}{\sin\theta}\big{(}x_{1}\cos\big{(}s(i)-1\big{)}\theta+x_{2}\sin\big{(}s(i)-1\big{)}\theta\big{)}, \tag{4.15}\]
+
+\[x_{2}(i)=\frac{\sin s(i)\theta}{\sin\theta}\big{(}-x_{1}\sin\big{(}s(i)-1 \big{)}\theta+x_{2}\cos\big{(}s(i)-1\big{)}\theta\big{)}. \tag{4.16}\]
+
+Note that $\Phi_{i}$ and $\Theta_{i}$ are of class $C^{1}$, and that
+
+\[\Theta_{i}=\psi\circ\Phi_{i}\circ\psi^{-1}.\]
+
+We will need the following two results, whose proof will be given later:Here is the translation:
+
+'1. $\Phi_{i}$ is injective on $\psi^{-1}(\Omega_{g^{\prime}})$;
+2. we have \[\det D\Phi_{i}\big{(}(x,\theta)\big{)}=\bigg{(}\frac{\sin s(i)\theta}{\sin \theta}\bigg{)}^{2}\bigg{[}1+\frac{5}{2}id^{-7/2}(g)\bigg{]}.\] (4.17)
+
+The two previous results tell us that $\Theta_{i}$ is also injective on $\Omega_{g^{\prime}}$, and for all $g=\psi\left(x,\theta\right)\in\Omega_{g^{\prime}}$, we have
+
+\[\det D\Theta_{i}\left(g\right) =\det D\psi\left(x(i),s(i)\theta\right)\cdot\det D\Phi_{i}(x, \theta)\cdot\big{[}\det D\psi\left(x,\theta\right)\big{]}^{-1}\] \[=\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{4}\bigg{[} \frac{\sin\theta-\theta\cos\theta}{\sin^{3}\theta}\bigg{]}^{-1}\frac{\sin s(i)\theta-s(i)\theta\cos s(i)\theta}{\sin^{3}s(i)\theta} \bigg{[}1+\frac{5}{2}\frac{i}{d^{7/2}(g)}\bigg{]}\neq 0,\]so, distinguishing the two cases, $|\theta|=\mu^{-1}(|t|/\|x\|^{2})\leqslant\pi/2$ and $\pi/2<|\theta|<\pi$, we easily see that
+
+\[\bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^ {1/2}\big{[}\det D\Theta_{i}(g)\big{]}^{-1}\leqslant 1000.\]
+
+Consequently, by the global inversion theorem, the change of variables formula, and (4.9), we have
+
+\[\int\limits_{[g=(x,t)\in\Sigma;d(g^{\prime},g(i))<4d^{-5/2}(g)]} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^ {1/2}\frac{d(g^{\prime},g(i))}{|B(g^{\prime},d(g^{\prime},g(i)))|}\,dg\] \[\leqslant 1000\int\limits_{g(i)\in B(g^{\prime},10d^{-5/2}(g^{ \prime}))}\frac{d(g^{\prime},g(i))}{|B(g^{\prime},d(g^{\prime},g(i)))|}\,dg(i)\] \[<Cd^{-5/2}(g^{\prime}),\]
+
+thanks to the doubling volume property or (4.1).
+
+$\Phi_{i}$ _is injective on $\psi^{-1}(\Omega_{g^{\prime}})$. Let_
+
+\[\psi^{-1}(g_{*})=(x_{*},\theta_{*}),\,\psi^{-1}(g^{*})=(x^{*},\theta^{*})\in \psi^{-1}(\Omega_{g^{\prime}}),\]
+
+satisfyingHere is the translation:
+
+\[\big{(}x_{*}(i),s_{*}(i)\theta_{*}\big{)}=\Phi_{i}(x_{*},\theta_{*})=\Phi_{i}( x^{*},\theta^{*})=\big{(}x^{*}(i),s^{*}(i)\theta^{*}\big{)}.\]
+
+Since
+
+\[d\big{(}\psi\big{(}x_{*}(i),s_{*}(i)\theta_{*}\big{)}\big{)}=s_{*}(i)d(g_{*})= \bigg{(}1-\frac{i}{d^{7/2}(g_{*})}\bigg{)}d(g_{*})\]
+
+\[=d\big{(}\psi\big{(}x^{*}(i),s^{*}(i)\theta^{*}\big{)}\big{)}=s^{*}(i)d(g^{*})= \bigg{(}1-\frac{i}{d^{7/2}(g^{*})}\bigg{)}d(g^{*}),\]
+
+and the function $\tau(h)=h-ih^{-5/2}$ is strictly increasing, we have $d(g_{*})=d(g^{*})$. Therefore, $s_{*}(i)=s^{*}(i)$ and $\theta_{*}=\theta^{*}$. And (3.4) implies that $x_{*}=x^{*}$.
+
+We have thus shown that $\Phi_{i}$ is injective on $\psi^{-1}(\Omega_{g^{\prime}})$.
+
+_Proof of (4.17)._ In the following, to simplify the notation, we set
+
+\[K_{1}=\cos\big{(}s(i)-1\big{)}\theta,\qquad K_{2}=\sin\big{(}s(i)-1\big{)}\theta.\]
+
+Then, by the definition of $\Phi_{i}$ (see (4.14)-(4.16)), we have the explicit expression of $D\Phi_{i}(x,\theta)$ as follows:
+
+\[\left(\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{\partial s(i )}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{2 }+\frac{\partial s(i)}{\partial x_{2}}\frac{dx_{1}(i)}{ds(i)}&\frac{\partial s(i )}{\partial\theta}\frac{dx_{1}(i)}{ds(i)}+\frac{dx_{1}(i)}{d\theta}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{1}} \frac{dx_{2}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{\partial s (i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}&\frac{\partial s(i)}{\partial\theta }\frac{dx_{2}(i)}{ds(i)}+\frac{dx_{2}(i)}{d\theta}\\ \theta\frac{\partial s(i)}{\partial x_{1}}&\theta\frac{\partial s(i)}{\partial x _{2}}&s(i)+\theta\frac{\partial s(i)}{\partial\theta}\end{array}\right)\]
+
+where the sense of $dx_{1}(i)/ds(i)$, $dx_{1}(i)/d\theta$, $dx_{2}(i)/ds(i)$, $dx_{2}(i)/d\theta$ is clear.
+
+LetHere is the translation:
+
+\[R_{1}^{*}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}+\frac{\partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)}&\frac {\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{2}}\frac{ dx_{1}(i)}{ds(i)}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{1}} \frac{dx_{2}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{\partial s (i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}\end{array}\right|,\]
+
+\[R_{2}^{*}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}&\frac{\sin s(i)\theta}{\sin\theta}K_{2}&\frac{dx_{1}(i)}{d\theta} \\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}&\frac{\sin s(i)\theta}{\sin\theta}K_{1 }&\frac{dx_{2}(i)}{d\theta}\\ \frac{\partial s(i)}{\partial x_{1}}&\frac{\partial s(i)}{\partial x_{2}}& \frac{\partial s(i)}{\partial\theta}\end{array}\right|,\]
+
+\[R_{1}=s(i)R_{1}^{*},\qquad R_{2}=\theta\,R_{2}^{*}.\]
+
+By the fact that
+
+\[\left(\theta\,\frac{\partial s(i)}{\partial x_{1}},\theta\,\frac{\partial s(i )}{\partial x_{2}},s(i)+\theta\,\frac{\partial s(i)}{\partial\theta}\right)= \left(0,0,s(i)\right)+\theta\left(\frac{\partial s(i)}{\partial x_{1}},\frac{ \partial s(i)}{\partial x_{2}},\frac{\partial s(i)}{\partial\theta}\right),\]
+
+we can therefore write
+
+\[\det D\Phi_{i}(x,\theta)=s(i)R_{1}^{*}+\theta\,R_{**},\]
+
+where we have denotedHere is the translation:
+
+\[R_{**}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}+\frac{\partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)}& \frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{2}} \frac{dx_{1}(i)}{ds(i)}&\frac{\partial s(i)}{\partial\theta}\frac{dx_{1}(i)} {ds(i)}+\frac{dx_{1}(i)}{d\theta}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{1}} \frac{dx_{2}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{ \partial s(i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}&\frac{\partial s(i)}{ \partial\theta}\frac{dx_{2}(i)}{ds(i)}+\frac{dx_{2}(i)}{d\theta}\\ \frac{\partial s(i)}{\partial x_{1}}&\frac{\partial s(i)}{\partial x_{2}}& \frac{\partial s(i)}{\partial\theta}\end{array}\right|.\]
+
+Or, the first row of $R_{**}$ can be written as
+
+\[\left(\frac{\sin s(i)\theta}{\sin\theta}K_{1},\,\frac{\sin s(i)\theta}{\sin \theta}K_{2},\frac{dx_{1}(i)}{d\theta}\right)+\frac{dx_{1}(i)}{ds(i)}\left( \frac{\partial s(i)}{\partial x_{1}},\,\frac{\partial s(i)}{\partial x_{2}}, \,\frac{\partial s(i)}{\partial\theta}\right),\]
+
+and the second row of $R_{**}$ can be written as
+
+\[\left(-\frac{\sin s(i)\theta}{\sin\theta}K_{2},\,\frac{\sin s(i)\theta}{\sin\theta}K_{1},\,\frac{dx_{2}(i)}{d\theta}\right)+\frac{dx_{2}(i)}{ds(i)}\left( \frac{\partial s(i)}{\partial x_{1}},\,\frac{\partial s(i)}{\partial x_{2}}, \,\frac{\partial s(i)}{\partial\theta}\right),\]
+
+we have $R_{**}=R_{2}^{*}$, so
+
+\[\det D\Phi_{i}(x,\theta)=R_{1}+R_{2}. \tag{4.18}\]
+
+_Calculation of $R_{1}$. Since the first column of $R_{1}^{*}$ can be written as_
+
+\[\frac{\sin s(i)\theta}{\sin\theta}\left(\begin{array}{c}K_{1}\\ -K_{2}\end{array}\right)+\frac{\partial s(i)}{\partial x_{1}}\left(\begin{array} []{c}dx_{1}(i)/ds(i)\\ dx_{2}(i)/ds(i)\end{array}\right),\]
+
+_and the second column of $R_{1}^{*}$ can be written as_Here is the translation:
+
+\[\frac{\sin s(i)\theta}{\sin\theta}\begin{pmatrix}K_{2}\\ K_{1}\end{pmatrix}+\frac{\partial s(i)}{\partial x_{2}}\begin{pmatrix}dx_{1}(i)/ds(i)\\ dx_{2}(i)/ds(i)\end{pmatrix},\]
+
+on a
+
+\[\begin{split} R_{1}^{*}=&\left(\frac{\sin s(i)\theta}{\sin\theta} \right)^{2}\begin{vmatrix}K_{1}&K_{2}\\ -K_{2}&K_{1}\end{vmatrix}\\ &+\frac{\sin s(i)\theta}{\sin\theta}\left\{\begin{array}{cc} \frac{\partial s(i)}{\partial x_{2}}\begin{vmatrix}K_{1}&dx_{1}(i)/ds(i)\\ -K_{2}&dx_{2}(i)/ds(i)\end{vmatrix}+\frac{\partial s(i)}{\partial x_{1}} \begin{vmatrix}dx_{1}(i)/ds(i)&K_{2}\\ dx_{2}(i)/ds(i)&K_{1}\end{vmatrix}\right\}\\ =&\left(\frac{\sin s(i)\theta}{\sin\theta}\right)^{2}+\frac{\sin s(i)\theta}{ \sin\theta}\big{(}K_{1}R_{11}^{*}+K_{2}R_{12}^{*}\big{)},\end{split}\]
+
+or we note
+
+\[R_{11}^{*}=\frac{\partial s(i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}+\frac{ \partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)},\qquad R_{12}^{*}=\frac{ \partial s(i)}{\partial x_{2}}\frac{dx_{1}(i)}{ds(i)}-\frac{\partial s(i)}{ \partial x_{1}}\frac{dx_{2}(i)}{ds(i)}. \tag{4.19}\]
+
+It remains to calculate $\partial s(i)/\partial x_{1}$, $\partial s(i)/\partial x_{2}$, $dx_{1}(i)/ds(i)$, and $dx_{2}(i)/ds(i)$.
+
+In the following, to simplify the notation, we set
+
+\[s^{\prime}(i)=\frac{d}{d(d(g))}s(i)=\frac{7}{2}i{d^{-9/2}(g)}.\]
+
+We start by calculating $\partial s(i)/\partial x_{1}$ and $\partial s(i)/\partial x_{2}$. Since (see (3.3))
+
+\[d^{2}(g)=\left(\frac{\theta}{\sin\theta}\right)^{2}\big{(}x_{1}^{2}+x_{2}^{2} \big{)},\]
+
+we have
+
+\[\frac{\partial s(i)}{\partial x_{1}}=s^{\prime}(i)\frac{1}{2d(g)}\frac{ \partial d^{2}(g)}{\partial x_{1}}=s^{\prime}(i)\frac{1}{d(g)}\left(\frac{ \theta}{\sin\theta}\right)^{2}x_{1}, \tag{4.20}\]Here is the translation:
+
+\[\frac{\partial s(i)}{\partial x_{2}}=s^{\prime}(i)\frac{1}{2d(g)}\frac{\partial d^{2}(g)}{\partial x_{2}}=s^{\prime}(i)\frac{1}{d(g)}\left(\frac{\theta}{\sin\theta}\right)^{2}x_{2}. \tag{4.21}\]
+
+We now calculate $\frac{dx_{1}(i)}{ds(i)}$ and $\frac{dx_{2}(i)}{ds(i)}$. By (4.15), (4.16) and elementary formulas linking trigonometric functions, we can write\[x_{1}(i)=\frac{1}{2\sin\theta}\big{\{}x_{1}\big{[}\sin\theta+\sin\big{(}2s(i)-1\big{)}\theta\big{]}+x_{2}\big{[}\cos\theta-\cos\big{(}2s(i)-1\big{)}\theta\big{]}\big{\}}, \tag{4.22}\]
+
+\[x_{2}(i)=\frac{1}{2\sin\theta}\big{\{}-x_{1}\big{[}\cos\theta-\cos\big{(}2s(i)-1\big{)}\theta\big{]}+x_{2}\big{[}\sin\theta+\sin\big{(}2s(i)-1\big{)}\theta\big{]}\big{\}}. \tag{4.23}\]
+
+Thus,
+
+\[\frac{dx_{1}(i)}{ds(i)}=\frac{\theta}{\sin\theta}\big{[}x_{1}\cos \big{(}2s(i)-1\big{)}\theta+x_{2}\sin\big{(}2s(i)-1\big{)}\theta\big{]}, \tag{4.24}\] \[\frac{dx_{2}(i)}{ds(i)}=\frac{\theta}{\sin\theta}\big{[}-x_{1}\sin \big{(}2s(i)-1\big{)}\theta+x_{2}\cos\big{(}2s(i)-1\big{)}\theta\big{]}. \tag{4.25}\]
+
+By (4.19)-(4.21), (4.24) and (4.25), we first note that
+
+\[R^{*}_{11}=s^{\prime}(i)\frac{1}{d(g)}\bigg{(}\frac{\theta}{\sin \theta}\bigg{)}^{3}\|x\|^{2}\cos\big{(}2s(i)-1\big{)}\theta,\] \[R^{*}_{12}=s^{\prime}(i)\frac{1}{d(g)}\bigg{(}\frac{\theta}{\sin \theta}\bigg{)}^{3}\|x\|^{2}\sin\big{(}2s(i)-1\big{)}\theta,\]
+
+then, using the fact that $d^{2}(g)=(\frac{\theta}{\sin\theta})^{2}\|x\|^{2}$ (see (3.3)), we have
+
+\[R^{*}_{11}=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos\big{(}2s(i)-1\big{)}\theta,\]
+
+\[R^{*}_{12}=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\sin\big{(}2s(i)-1\big{)}\theta.\]
+
+Thus,
+
+\[K_{1}R^{*}_{11}+K_{2}R^{*}_{12}\] \[=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\big{[}\cos\big{(}s(i) -1\big{)}\theta\cos\big{(}2s(i)-1\big{)}\theta+\sin\big{(}s(i)-1\big{)}\theta \sin\big{(}2s(i)-1\big{)}\theta\big{]}\] \[=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos s(i)\theta.\]
+
+Consequently,Here is the translation:
+
+\[R_{1}=s(i)\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{2}+s(i)\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos s(i)\theta. \tag{4.26}\]
+
+_Calculation of $R_{2}$_. Let
+
+\[R^{*}_{21}=\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{2}\frac{\partial s(i)}{\partial\theta},\]
+
+\[R_{22}^{*} =\frac{\sin s(i)\theta}{\sin\theta}\left\{\frac{dx_{1}(i)}{d\theta} \left[-K_{2}\frac{\partial s(i)}{\partial x_{2}}-K_{1}\frac{\partial s(i)}{\partial x_{1}}\right]-\frac{dx_{2}(i)}{d\theta}\left[K_{1}\frac{\partial s(i)}{\partial x_{2}}-K_{2}\frac{\partial s(i)}{\partial x_{1}}\right]\right\}\]
+
+\[=\frac{\sin s(i)\theta}{\sin\theta}\left\{K_{2}\left[\frac{dx_{2}(i)}{d\theta}\frac{\partial s(i)}{\partial x_{1}}-\frac{dx_{1}(i)}{d\theta}\frac{\partial s(i)}{\partial x_{2}}\right]-K_{1}\left[\frac{dx_{1}(i)}{d\theta}\frac{\partial s(i)}{\partial x_{1}}+\frac{dx_{2}(i)}{d\theta}\frac{\partial s(i)}{\partial x_{2}}\right]\right\}.\]
+
+We develop according to the third column of $R_{2}^{*}$, and we note that $R_{2}^{*}=R_{21}^{*}+R_{22}^{*}$ and therefore $R_{2}=\theta\,R_{21}^{*}+\theta\,R_{22}^{*}$.
+
+Recalling that $d(g)=\frac{\theta}{\sin\theta}\|x\|$, we have
+
+\[\frac{\partial s(i)}{\partial\theta}=s^{\prime}(i)\frac{\partial d(g)}{\partial\theta}=s^{\prime}(i)\frac{\sin\theta-\theta\cos\theta}{\sin^{2}\theta}\|x\|=s^{\prime}(i)d(g)\frac{1}{\theta}\frac{\sin\theta-\theta\cos\theta}{\sin\theta},\]
+
+so,
+
+\[R_{21}^{*}=\biggl{(}\frac{\sin s(i)\theta}{\sin\theta}\biggr{)}^{2}s^{\prime}(i)d(g)\frac{1}{\theta}\frac{\sin\theta-\theta\cos\theta}{\sin\theta}.\]
+
+To calculate $R_{22}^{*}$, we will need the explicit expressions of $\frac{dx_{1}(i)}{d\theta}$ and $\frac{dx_{2}(i)}{d\theta}$. Let's note...Here is the translation:
+
+\[U_{1}=\frac{d}{d\theta}\frac{\sin\theta+\sin(2s(i)-1)\theta}{2 \sin\theta}=\frac{2s(i)\sin\theta\cos(2s(i)-1)\theta-\sin 2s(i)\theta}{2 \sin^{2}\theta},\] 
+\[U_{2}=\frac{d}{d\theta}\frac{\cos\theta-\cos(2s(i)-1)\theta}{2 \sin\theta}=\frac{-1+2s(i)\sin\theta\sin(2s(i)-1)\theta+\cos 2s(i)\theta}{2 \sin^{2}\theta}.\]
+
+Then, by (4.22) and (4.23),
+
+\[\frac{dx_{1}(i)}{d\theta}=x_{1}U_{1}+x_{2}U_{2},\qquad\frac{dx_{2}(i)}{d\theta }=-x_{1}U_{2}+x_{2}U_{1}.\]
+
+Using (4.20) and (4.21), we note that
+
+\[R_{22}^{*} =\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)\frac{1}{d(g)} \biggl{(}\frac{\theta}{\sin\theta}\biggr{)}^{2}\|x\|^{2}(-K_{2}U_{2}-K_{1}U_{1})\] 
+\[=-\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)(K_{1}U_{1} +K_{2}U_{2})\quad\text{by (\ref{eq:R22})}\] 
+\[=-\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)\frac{s(i) \sin\theta\cos s(i)\theta-\cos\theta\sin s(i)\theta}{\sin^{2}\theta},\]
+
+where we have used three times the elementary formulas linking the trigonometric functions in the last equality.
+
+We therefore have
+
+\[R_{2}=\theta\,R_{21}^{*}+\theta\,R_{22}^{*}=s^{\prime}(i)d(g)\left\{\left( \frac{\sin s(i)\theta}{\sin\theta}\right)^{2}-\theta\,\frac{\sin s(i)\theta}{ \sin\theta}\frac{s(i)\cos s(i)\theta}{\sin\theta}\right\}. \tag{4.27}\]
+
+By (4.18), (4.26), and (4.27), we obtain (4.17).
+
+## 5 Some Open Problems
+
+To conclude this article, we give some interesting questions.Here is the translation:
+
+'1. I hope the reader can follow the method of proof of Theorem 1.1 to obtain an analogous result to Theorem 1.1 in the framework of real-dimensional Heisenberg groups ≥ 5 and also in the framework of classical cones, C(S_π) with 0 < π < 2π.
+2. In the framework of complete, non-compact Riemannian manifolds M, it would be very interesting to find a sufficient or necessary condition such that there exists a constant C > 0 satisfying \[|\nabla e^{tΔ}f|(g) ≤ Ce^{tΔ}(|∇f|)(g), ∀g ∈ M, t > 0, f ∈ C_0^∞(M). In particular, we are interested in obtaining estimates of the heat kernel and its gradient from such an inequality.
+3. On conical manifolds, C(N), due to the conical singularity, they have many special properties compared to complete Riemannian manifolds with lower bounded Ricci curvature, see for example [8,15-17] or [18]. When the first non-zero eigenvalue of the Laplacian on N, λ_1 ≥ dim N, it would be very interesting to know for which 1 ≤ w < +∞ the following estimates are satisfied: \[|\nabla e^{tΔ}f|(g) ≤ C_w [e^{tΔ}(|∇f|^w)(g)]^{1/w}, ∀g ∈ C(N), t > 0, f ∈ C_0^∞. Note that in this situation, the Ricci curvature on C(N) can be unbounded. And we also recall that for λ_1 < dim N, the previous estimates are not valid (see [17] or [18]).
+4. In the study of the representation formula, it would be very interesting to know if the technical condition (H2) in [19], i.e., assuming that the volume of balls grows at least linearly, is necessary. In any case, this condition is weak.
+
+## Acknowledgments'Here is the translation:
+
+"The author is supported by the DFG (SFB 611). I would like to thank T. Coulhon and L. Saloff-Coste for discussions and numerous suggestions, F. Lust-Piquard and M. Villani for communicating [21] to me. I would also like to thank the referee for pointing out an error in the original version of this article and for suggestions.
+
+## References
+
+* [1] C. Ane, S. Blachere, D. Chafai, P. Fougares, I. Gentil, F. Malrieu, C. Roberto, G. Scheffer, On logarithmic Sobolev inequalities, in: Panoramas and Syntheses, vol. 10, Soc. Math. France, Paris, 2000.
+* [2] P. Auscher, T. Coulhon, X.T. Duong, S. Hofmann, Riesz transform on manifolds and heat kernel regularity, Ann. Sci. Ecole Norm. Sup. (4) 37 (2004) 911-957.
+* [3] D. Bakry, Riesz transformations for symmetric semi-groups. II. Study under the condition \(\varGamma_{2}\geqslant 0\), in: Seminar on Probability, XIX, 1983/84, in: Lecture Notes in Math., vol. 1123, Springer, Berlin, 1985, pp. 145-174.
+* [4] D. Bakry, A non-explosion criterion for certain diffusions on a complete Riemannian manifold, C. R. Acad. Sci. Paris Ser. I Math. 303 (1986) 23-26."Here is the translation of the text:
+
+*[5] R. Beals, B. Gaveau, P.C. Greiner, Hamilton-Jacobi Theory and the Heat Kernel on Heisenberg Groups, J. Math. Pures Appl. (9) 79 (2000) 633-689.
+*[6] J. Cheeger, M. Gromov, M. Taylor, Finite Propagation Speed, Kernel Estimates for Functions of the Laplace Operator, and the Geometry of Complete Riemannian Manifolds, J. Differential Geom. 17 (1982) 15-53.
+*[7] T. Coulhon, X.-T. Duong, Riesz Transform and Related Inequalities on Noncompact Riemannian Manifolds, Comm. Pure Appl. Math. 56 (2003) 1728-1751.
+*[8] T. Coulhon, H.-Q. Li, Lower Estimates of the Heat Kernel on Conical Manifolds and Riesz Transforms, Arch. Math. 83 (2004) 229-242.
+*[9] B.K. Driver, T. Melcher, Hypoelliptic Heat Kernel Inequalities on the Heisenberg Group, J. Funct. Anal. 221 (2005) 340-365.
+*[10] B. Franchi, G. Lu, R.L. Wheeden, Representation Formulas and Weighted Poincaré Inequalities for Hörmander Vector Fields, Ann. Inst. Fourier (Grenoble) 45 (1995) 577-604.
+*[11] B. Franchi, G. Lu, R.L. Wheeden, A Relationship Between Poincaré-Type Inequalities and Representation Formulas in Spaces of Homogeneous Type, Int. Math. Res. Not. (1996) 1-14.
+*[12] B. Gaveau, Principle of Least Action, Heat Propagation, and Subelliptic Estimates on Certain Nilpotent Groups, Acta Math. 139 (1977) 95-153.
+*[13] H. Hueber, D. Müller, Asymptotics for Some Green Kernels on the Heisenberg Group and the Martin Boundary, Math. Ann. 283 (1989) 97-119.
+*[14] A. Hulanicki, The Distribution of Energy in the Brownian Motion in the Gaussian Field and Analytic-Hypoellipticity of Certain Subelliptic Operators on the Heisenberg Group, Studia Math. 56 (1976) 165-173.
+*[15] H.-Q. Li, The Riesz Transform on Conical Manifolds, J. Funct. Anal. 168 (1999) 145-238.
+*[16] H.-Q. Li, Estimates of the Heat Kernel on Conical Manifolds and Their Applications, Bull. Sci. Math. 124 (2000) 365-384.
+*[17] H.-Q. Li, On the Hölder Continuity of the Heat Semigroup on Conical Manifolds, C. R. Math. Acad. Sci. Paris 337 (2003) 283-286.
+*[18] H.-Q. Li, On the Hölder Continuity of the Heat Semigroup on Conical Manifolds, submitted.
+*[19] G.Z. Lu, R.L. Wheeden, An Optimal Representation Formula for Carnot-Carathéodory Vector Fields, Bull. London Math. Soc. 30 (1998) 578-584.
+*[20] F. Lust-Piquard, A Simple-Minded Computation of Heat Kernels on Heisenberg Groups, Colloq. Math. 97 (2003) 233-249.
+*[21] F. Lust-Piquard, M. Villani, Heat Inequalities on the Heisenberg Group: An Analytic Proof of a Result by Driver-Melcher, preprint.
+*[22] P. Maheux, L. Saloff-Coste, Analysis on the Balls of a Subelliptic Operator, Math. Ann. 303 (1995) 713-740.
+*[23] T. Melcher, Hypoelliptic Heat Kernel Inequalities on Lie Groups, PhD thesis, 2004.
+*[24] M.-K. von Renesse, K.-T. Sturm, Transport Inequalities, Gradient Estimates, Entropy, and Ricci Curvature, Comm. Pure Appl. Math. 58 (2005) 923-940.
+*[25] N.T. Varopoulos, L. Saloff-Coste, T. Coulhon, Analysis and Geometry on Groups, Cambridge Tracts in Math., vol. 100, Cambridge Univ. Press, Cambridge, 1992.

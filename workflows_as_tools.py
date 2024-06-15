@@ -18,19 +18,22 @@ class TranslatorInput(BaseModel):
     target_language: str = Field(description="The target language")
     main_text_filename: str = Field(description="The main text file to be translated")
 
-class ArxivRetrieverInput(BaseModel):
+class ArxivRetrievalInput(BaseModel):
     text_name: str = Field(description="The name of the collection of articles")
 
-class OcrEnchancerInput(BaseModel):
+class OcrEnhancingInput(BaseModel):
+    main_text_filename: str = Field(description="The main text file to be enhanced")
+    supporting_text_filename: str = Field(description="The supporting text file")
+class ProofRemovalInput(BaseModel):
     main_text_filename: str = Field(description="The main text file to be translated")
 
-class ProofRemoverInput(BaseModel):
-    main_text_filename: str = Field(description="The main text file to be translated")
+class KeywordSummaryInput(BaseModel):
+    main_text_filename: str = Field(description="The main text file to be summarized")
 
 class ArxivRetrievalToolClass:
-    def __init__(self, streaming: bool = True, streamcon=None, retriever_model=None, cleaner_model=None, receptionist_model=None):
+    def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
         if retriever_model==None:
-            self.retriever_model==ChatOpenAI(model="gpt-3.5-turbo")
+            self.retriever_model=ChatOpenAI(model="gpt-3.5-turbo")
         else:
             self.retriever_model = retriever_model
         if  cleaner_model==None:
@@ -41,8 +44,6 @@ class ArxivRetrievalToolClass:
             self.receptionist_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.receptionist_model = receptionist_model
-        self.streaming = streaming
-        self.streamcon =None
         self.description = "This tool takes a string that contains a collection of articles and retrieves them from arXiv."    
     def retrieve_bib(self, text_name: str) -> str:
         """This tool takes a string that contains a collection of articles and retrieves them from arXiv."""
@@ -55,42 +56,44 @@ class ArxivRetrievalToolClass:
             "should_I_clean": False
         }
         input["receptionist_retriever_history"][0] = HumanMessage(content="Please fetch me the following papers" + text_name)
-        retrieve_app = ArxivRetrievalWorkflow(streaming=self.streaming, streamcon=self.streamcon, 
-                                     retriever_model=self.retriever_model, cleaner_model=self.cleaner_model, 
+        retrieve_app = ArxivRetrievalWorkflow(retriever_model=self.retriever_model, cleaner_model=self.cleaner_model, 
                                      receptionist_model=self.receptionist_model)
         retrieve_app=retrieve_app.create_workflow()
         retrieve_app = retrieve_app.compile()
         state = retrieve_app.invoke(input)    
         return state["receptionist_retriever_history"][-1].content
 
-class OcrEnhancerToolClass:
-    def __init__(self, streaming: bool = True, streamcon=None, enhancer_model=None,embeder=None):
+class OcrEnhancingToolClass():
+    def __init__(self, enhancer_model=None, embeder=None):
         
         if enhancer_model==None:
             self.enhancer_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.enhancer_model = enhancer_model
-        self.streaming = streaming
-        self.streamcon = streamcon
 
-        self.description = "This tool takes a text in a form of a string and performs OCR on it."
-    def ocr_enchancer(self, text_name: str) -> str:
-        """This tool takes a text in a form of a string and performs OCR on it."""
+        if embeder==None:
+            self.embeder=OpenAIEmbeddings(model="text-embedding-3-small")
+        else:
+            self.embeder = embeder
+
+        self.description = """This tool takes a text in two text and improve the one using the second 
+        as a reference."""
+    def ocr_enhance(self, main_text_filename: str, supporting_text_filename: str) -> str:
+        """This tool takes a text in two text and improve the one using the second 
+        as a reference."""
         input = {
-            "main_text_filename": HumanMessage(content=text_name),
-            "report": HumanMessage(content=""),
-            "file": []
-        }    
-        ocr_enchancer_app = OcrEnchancerWorkflow(streaming=self.streaming, streamcon=self.streamcon, 
-                                                 enhancer_model=self.enhancer_model, embeder=self.embeder)
+            "main_text_filename": HumanMessage(content=main_text_filename),
+            "supporting_text_filename": HumanMessage(content=supporting_text_filename),
+            "report": HumanMessage(content="")}    
+        ocr_enchancer_app = OcrEnchancingWorkflow(enhancer_model=self.enhancer_model, embeder=self.embeder)
         ocr_enchancer_app = ocr_enchancer_app.create_workflow()
         ocr_enchancer_app = ocr_enchancer_app.compile()
         state = ocr_enchancer_app.invoke(input)
         return state["report"].content
 
 
-class ProofRemoverTool:
-    def __init__(self, streaming: bool = True, streamcon=None, stamper_model=None,remover_model=None):
+class ProofRemovalToolClass():
+    def __init__(self, stamper_model=None,remover_model=None):
         if stamper_model==None:
             self.stamper_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
@@ -99,10 +102,9 @@ class ProofRemoverTool:
             self.remover_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.remover_model = remover_model
-        self.streaming = streaming
-        self.streamcon = streamcon
         self.description = "This tool takes a text in a form of a string and removes the proof section from the text."
-    def proof_remover(self, text_name: str) -> str:
+    
+    def remove_proof(self, text_name: str) -> str:
         """This tool takes a text in a form of a string and removes the proof section from the text."""
         input = {
             "main_text_filename": HumanMessage(content=text_name),
@@ -116,7 +118,7 @@ class ProofRemoverTool:
         state = proof_remover_app.invoke(input)
         return state["report"].content
 
-class KeywordAndSummaryMakerTool:
+class KeywordAndSummaryToolClass:
     def __init__(self, streaming: bool = True, streamcon=None, keyword_and_summary_model=None):
         if keyword_and_summary_model==None:
             self.keyword_and_summary_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
@@ -129,7 +131,7 @@ class KeywordAndSummaryMakerTool:
         It processes the text in order to extract keywords and summary which it puts in a file.
         It returns the report of the process."""
         
-    def keyword_and_summary(self, text_name: str) -> str:
+    def get_keyword_and_summary(self, text_name: str) -> str:
         """This tool takes a string that corresponds to the filename of a text. 
         It processes the text in order to extract keywords and summary which it puts in a file.
         It returns the report of the process."""

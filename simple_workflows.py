@@ -5,20 +5,20 @@ from langgraph.prebuilt.tool_executor import ToolExecutor
 from typing import TypedDict, Annotated
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
 import operator
 from tqdm import tqdm
 from prompts import *
 from simple_tools import *
 from langchain_text_splitters import CharacterTextSplitter
-from sentence_transformers import SentenceTransformer, util
+from sentence_transformers import util
 from langchain_openai import OpenAIEmbeddings
 import torch
-import streamlit as st
+openai_api_key = os.getenv('OPENAI_API_KEY')
+nvidia_api_key = os.getenv('NVIDIA_API_KEY')
 
 class ArxivState(TypedDict):
     receptionist_retriever_history : Annotated[list[BaseMessage], operator.add]
-    last_action_outcome:Annotated[list[BaseMessage], operator.add]
+    last_action_outcome:Annotated[list[BaseMessage], operator.add] 
     metadata: BaseMessage
     article_keywords: BaseMessage
     title_of_retrieved_paper: BaseMessage
@@ -47,11 +47,12 @@ class TranslatorState(TypedDict):
     
 
 class ArxivRetrievalWorkflow:
-    def __init__(self,streaming=False, streamcon=None, retriever_model=None, cleaner_model=None, receptionist_model=None):
+    def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
         if retriever_model==None:
-            self.retriever_model==ChatOpenAI(model="gpt-3.5-turbo")
+            self.retriever_model=ChatOpenAI(model="gpt-3.5-turbo")
         else:
             self.retriever_model = retriever_model
+        
         if  cleaner_model==None:
             self.cleaner_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
@@ -60,26 +61,18 @@ class ArxivRetrievalWorkflow:
             self.receptionist_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.receptionist_model = receptionist_model
-        self.streaming=streaming
-        self.streamcon = streamcon
-        self.retriever_model = retriever_model
-        self.cleaner_model = cleaner_model
-        self.receptionist_model = receptionist_model
+        
         self.tools = [get_id_from_url,download_pdf]
-        self.retriever=arxiv_retriever_prompt_template | retriever_model.bind_tools(self.tools)
-        self.cleaner= arxiv_metadata_scraper_prompt_template |cleaner_model
-        self.receptionist=arxiv_receptionist_prompt_template |receptionist_model
+        self.retriever=arxiv_retriever_prompt_template | self.retriever_model.bind_tools(self.tools)
+        self.cleaner= arxiv_metadata_scraper_prompt_template |self.cleaner_model
+        self.receptionist=arxiv_receptionist_prompt_template |self.receptionist_model
         self.tool_executor=ToolExecutor(self.tools)
     
     def run_receptionist(self,state):
         action = self.receptionist.invoke(state)
         if "We are done" in action.content:
             pr="Receptionist"+action.content
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
-            else:
-                print(pr)
+            print(pr)
         else:
             print("Receptionist: The following has been forwarded to the arxiv_retriever: ", action.content)
         return {"receptionist_retriever_history":[action],"article_keywords":action.content,"last_action_outcome":["No action was taken"], "history_reset_counter": len(state["last_action_outcome"])}
@@ -92,16 +85,10 @@ class ArxivRetrievalWorkflow:
         if "tool_calls" in action.additional_kwargs:
             pr="Retriever: I am going to call  "+ action.tool_calls[0]["name"]
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"last_action_outcome":[action]}
         else:
             pr="Retriever:I am reporting back to the arxiv_receptionist with"+ action.content
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"receptionist_retriever_history":[action],"last_action_outcome": [action] }
 
     def run_cleaner(self,state):
@@ -109,16 +96,10 @@ class ArxivRetrievalWorkflow:
         if "error" in action.content:
             pr="Scraper: I got an error, going back to the arxiv_retriever"
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"last_action_outcome": [action], "should_I_clean":True}
         else:
             pr="Scraper: I got the following paper"+action.content
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"title_of_retrieved_paper":action.content, "last_action_outcome": [action], "should_I_clean":False}
 
     def call_tool(self,state):
@@ -131,16 +112,10 @@ class ArxivRetrievalWorkflow:
         if tool_call["name"] == "get_id_from_url":
             pr="Tool_executor: I am going to execute"+ str(tool_call["name"])+ "with"+ str(tool_call["args"])
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"last_action_outcome": [report],"metadata": response, "should_I_clean":True}
         elif tool_call["name"] == "download_pdf":
             pr="Tool_executor: I am going to execute"+ str(tool_call["name"])+ "with"+ str(tool_call["args"])
             print(pr)
-            if self.streaming==True and self.streamcon is not None:
-                with self.streamcon:
-                    st.write(pr)
             return {"last_action_outcome": [response]}
     
     def should_continue_receptionist(self,state):
@@ -184,8 +159,8 @@ class ArxivRetrievalWorkflow:
         return workflow
 
 
-class OcrEnchancerWorkflow():
-    def __init__(self, enhancer_model=None,  embeder=None, streaming=False, streamcon=None):
+class OcrEnchancingWorkflow():
+    def __init__(self, enhancer_model=None,  embeder=None):
         if enhancer_model==None:
             self.enhancer_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
@@ -196,7 +171,7 @@ class OcrEnchancerWorkflow():
             self.embeder = embeder
 
         self.enhancer= ocr_enhancer_prompt_template | self.enhancer_model
-        self.streaming=streaming
+
     def run_enhancer(self,state):
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
         main_text_filename=state["main_text_filename"].content
@@ -214,7 +189,7 @@ class OcrEnchancerWorkflow():
         good_embed=self.embeder.embed_documents(main_splitted_list)
         bad_embed=self.embeder.embed_documents(supporting_splitted_list)
         similarities = util.pytorch_cos_sim(good_embed, bad_embed)
-
+        print("Enhancing started")
         for i in tqdm(range(len(main_splitted_list))):
             main_text_indexed=main_splitted_list[i]
             supporting_text_temp=""
@@ -226,7 +201,7 @@ class OcrEnchancerWorkflow():
     
 
         reconstructed_text = ''.join(main_splitted_list)
-        with open("final.mmd", 'w') as file:
+        with open(f"files/markdowns/{main_text_filename}_enhanced.mmd", 'w') as file:
             file.write(reconstructed_text)
         return {"report":HumanMessage(content="Done!")}
     def create_workflow(self):
@@ -239,7 +214,7 @@ class OcrEnchancerWorkflow():
 
 
 class ProofReamovingWorkflow:
-    def __init__(self, remover_model=None, stamper_model=None, streaming=False ,streamcon=None):
+    def __init__(self, remover_model=None, stamper_model=None):
         if remover_model==None:
             self.remover_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
@@ -250,8 +225,6 @@ class ProofReamovingWorkflow:
             self.stamper_model = stamper_model
         self.remover = proof_remover_prompt_template | self.remover_model
         self.stamper= proof_stamper_prompt_template | self.stamper_model
-        self.streaming = streaming
-        self.streamcon=streamcon
     def run_stamper(self, state):
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
         main_text_filename=state[" main_text_filename"]
@@ -294,13 +267,11 @@ class ProofReamovingWorkflow:
 
 
 class TranslationWorkflow:
-    def __init__(self, translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct"),streaming=False,streamcon=None):
+    def __init__(self, translator_model=None):
         if translator_model==None:
             self.translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.translator_model = translator_model
-        self.streamcon=streamcon
-        self.streaming = streaming
         self.translator = translator_prompt_template | self.translator_model
         
     def run_translator(self, state):
@@ -318,9 +289,6 @@ class TranslationWorkflow:
                 keyword_and_summary = f.read()
         except FileNotFoundError:
             print("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
-            if self.streaming and (self.streamcon is not None): 
-                with self.streamcon:
-                    st.write("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
             keyword_and_summary = " "
 
         if "_without_proofs" in main_text_filename:
@@ -330,13 +298,8 @@ class TranslationWorkflow:
         translation = ""
 
         print(f"Translation of {main_text_filename} in progress")
-        if self.streaming and (self.streamcon is not None): 
-            with self.streamcon:
-                st.write(f"Translation of {main_text_filename} in progress")
+        
         for i in tqdm(range(len(listed_text))):
-            if self.streaming and (self.streamcon is not None): 
-                with self.streamcon:
-                    st.write(str(i/len(listed_text)*100) + " completed")
             translation = translation + self.translator.invoke({"language": target_language, "keyword_and_summary": keyword_and_summary, "page": listed_text[i]}).content
 
         with open(f"files/markdowns/{main_text_filename}_{target_language}.mmd", "w", encoding="utf-8") as f:
@@ -353,12 +316,11 @@ class TranslationWorkflow:
 
 
 class KeywordAndSummaryWorkflow:
-    def __init__(self, keyword_and_summary_maker_model=None, streaming=False):
+    def __init__(self, keyword_and_summary_maker_model=None):
         if keyword_and_summary_maker_model==None:
             self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
-        self.streaming = streaming
         self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
     
     def run_keyword_and_summary_maker(self, state):
@@ -371,11 +333,7 @@ class KeywordAndSummaryWorkflow:
         text = text_splitter.split_text(text)
         keyword_and_summary = ""
         print("keyword_and_summary in progress")
-        if self.streaming:
-            st.write("keyword_and_summary in progress")
         for i in tqdm(range(len(text))):
-            if self.streaming:
-                st.write("Summarizing the "+ str(i+1) + " page")
             keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content
 
         output_filename = f"files/markdowns/{text_name}_keyword_and_summary.mmd"
@@ -384,8 +342,6 @@ class KeywordAndSummaryWorkflow:
         
         report = f"keyword_and_summary completed successfully and the resulted file is named {text_name}_keyword_and_summary"
         print(report)
-        if self.streaming:
-            st.write(report)
         return {"report": report}
 
     def create_workflow(self):

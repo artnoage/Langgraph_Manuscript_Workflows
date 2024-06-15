@@ -49,12 +49,10 @@ def pdf_to_markdown(pdf_name:str)-> str:
     """This method takes as input the name of a pdf it turns it to markdown"""
     pdf_name=get_filename_without_extension(pdf_name)
     mupdf_name="mu_"+pdf_name
-    nougat_name=pdf_name
     pdf_path = os.path.join(r"files\pdfs", f"{pdf_name}.pdf")
     print("Processing the PDF with mupdf...")
     mupdf_path = os.path.join(r"files\markdowns", f"{mupdf_name}.mmd")
     print("Processing the PDF with nugat...")
-    nougat_path = os.path.join(r"files\markdowns", f"{nougat_name}.mmd")
     md_text = pymupdf4llm.to_markdown(pdf_path)
     pathlib.Path(mupdf_path).write_bytes(md_text.encode())
     # Define the command as a list of arguments
@@ -97,3 +95,12 @@ def get_filename_without_extension(file_path):
     # Split the base name and extract the first part before any dot
     file_name = os.path.splitext(base_name)[0]
     return file_name
+
+def list_files(directory_path):
+    try:
+        # List all files in the given directory
+        files = [os.path.splitext(f)[0] for f in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, f))]
+        return files
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return []

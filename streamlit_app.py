@@ -16,7 +16,7 @@ import os
 def invoke(state,container):   
     
     supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
-    TranslationTool =TranslationToolClass(streaming=True,streamcon=container,translator_model=llm1)
+    TranslationTool =TranslationToolClass(streaming=True,streamcon=None,translator_model=llm1)
     
     TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
                            description=TranslationTool.description)
@@ -62,14 +62,7 @@ def invoke(state,container):
             break
     return 
 
-def list_files(directory_path):
-    try:
-        # List all files in the given directory
-        files = [os.path.splitext(f)[0] for f in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, f))]
-        return files
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return []
+
 
 def main():
     st.set_page_config(page_title="Chat with Bot that broke academia! HERE HERE", layout="wide")
@@ -134,7 +127,7 @@ def main():
                 with open(save_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
                 st.success(f"File '{uploaded_file.name}' uploaded successfully!")
-        st.image("files/images/1.png", use_column_width=True)    
+        st.image("files/images/robot2.png", use_column_width=True)    
 
 
             

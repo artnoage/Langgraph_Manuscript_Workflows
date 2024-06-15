@@ -76,23 +76,34 @@ install a bash shell and download git.
     ```
 9. Try the playground.ipnyb notebook:
     ```sh   
-    python playground.ipynb
+    Use google colab or VScode with Jupyter extension.
     ``` 
 
-10. To strart the frontend use: 
+10. Use the orchetrated workflow by running main.py:
+    ```sh   
+    python main.py
+    ``` 
+
+11. To strart the frontend use: 
     ```sh
     streamlit run streamlit_app.py 
     ```
+
+
+
+
 ## Running
 
-You have two options to work with the various mini-workflows in the project. 
+You have three options to work with the various mini-workflows in the project. 
 One is through the jupyter notebook called playground.ipnyb and the other through 
 the fronent that uses streamlit for the user interface. 
 
 In the playground you can find details for what is happening under the hood for each workflow. 
 Evenmore you have a better control of which llms you are using. I suggest this for the first time.
 
-
+> ### WARNING
+> **Streamlit is a bit difficult with calcellation signals. Same holds for LLM Apis. It will be difficult or impossible
+> to cancel a tool call when it is running. For this reason, I recommend using small files for testing. Also the tools have printouts which I didnt manage to forward somehow in streamlit. When I get levels in using it, I will try to improve.**
 
 ## Contributing
 
