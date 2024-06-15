@@ -29,6 +29,9 @@ This project continues to evolve, aiming to significantly aid academic researche
 
 ## Installation
 
+To install the project, you can use the following commands. If you are using windows you should  first 
+install a bash shell and download git. 
+
 1. Clone the repository:
     ```sh
     git clone https://github.com/artnoage/Langgraph_Manuscript_Workflows.git
