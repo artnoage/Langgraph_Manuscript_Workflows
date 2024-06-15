@@ -66,13 +66,22 @@ install a bash shell and download git.
     touch .env
     ```
 
-6. Getting an OpenAi Api key:
+7. Getting an OpenAi Api key:
     ```sh
     If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key"
     ```
-7. Getting a Nvidia Api key:
+8. Getting a Nvidia Api key:
     ```sh
-    If you dont have an NVIDIA_API_KEY, get one from here: https://build.nvidia.com/explore/discover, and put it in the .env file like this: NVIDIA_API_KEY = "your key"
+    If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
+    ```
+9. Try the playground.ipnyb notebook:
+    ```sh   
+    python playground.ipynb
+    ``` 
+
+10. To strart the frontend use: 
+    ```sh
+    streamlit run streamlit_app.py 
     ```
 ## Running
 
