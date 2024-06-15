@@ -15,22 +15,10 @@ import os
 def invoke(state,container):   
     
     supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
-    TranslationTool =TranslationToolClass(translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct"))
-    
-    TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
-                           description=TranslationTool.description)
-    #In the translation tool you can pass an extra variable for the llm
-    #that is doing the translation. The default is LLamma3-70b-8192
-    #with Nvidia's API.
-    
-    tools =  [TranslationTool, pdf_to_markdown]
+    tools=create_tools()
     supervisor=supervisor_prompt_template | supervisor_model.bind_tools(tools)
     tool_executor=ToolExecutor(tools)
-    current_dir = os.getcwd()
-    # Define the target folders
-    target_folders = ["files/pdfs", "files/markdowns"]
-    # Get the folder structure
-    folder_structure = get_folder_structure(current_dir, target_folders)
+    folder_structure = get_folder_structure()
     while True:
         workflow_state = {"manager_history": state.chat_history, "folder_structure": folder_structure}
         action = supervisor.invoke(workflow_state)

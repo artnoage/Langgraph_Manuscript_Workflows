@@ -6,43 +6,20 @@ from langgraph.prebuilt.tool_executor import ToolExecutor
 from typing import TypedDict, Annotated
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
-import operator
 from prompts import *
 from simple_tools import *
 from workflows_as_tools import *
 import streamlit as st
-from io import StringIO
-import sys
 from dotenv import load_dotenv
 
-load_dotenv()
 
-    
-def create_    
 supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
-
-TranslationTool=TranslationToolClass()
-TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
-                           description=TranslationTool.description)
-ArxivRetrievalTool=ArxivRetrievalToolClass()
-ArxivRetrievalTool=StructuredTool(name="ArxivRetrievalTool",func=ArxivRetrievalTool.retrieve_bib,args_schema=ArxivRetrievalInput,
-                           description=ArxivRetrievalTool.description)
-OcrEnhancingTool=OcrEnhancingToolClass()
-OcrEnhancingTool=StructuredTool(name="OcrEnhancingTool",func=OcrEnhancingTool.ocr_enhance,args_schema=OcrEnhancingInput)
-
-ProofRemoverTool=ProofRemovalToolClass()
-ProofRemoverTool=StructuredTool(name="ProofRemovalTool",func=ProofRemoverTool.remove_proof,args_schema=ProofRemovalInput)
-
-KeywordAndSummaryTool=KeywordAndSummaryToolClass()
-KeywordAndSummaryTool=StructuredTool(name="KeywordAndSummaryTool",func=KeywordAndSummaryTool.get_keyword_and_summary,args_schema=KeywordSummaryInput)
-
-tools=[TranslationTool,ArxivRetrievalTool,OcrEnhancingTool,ProofRemoverTool,KeywordAndSummaryTool, pdf_to_markdown]
+tools=create_tools()
 supervisor=supervisor_prompt_template | supervisor_model.bind_tools(tools)
 tool_executor=ToolExecutor(tools)
 folder_structure = get_folder_structure()
-    
-while True:
+exit=False
+while not exit:
     workflow_state = {"manager_history": state.chat_history, "folder_structure": folder_structure}
     action = supervisor.invoke(workflow_state)
     message=st.session_state.messages[-1]
