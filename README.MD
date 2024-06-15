@@ -35,21 +35,21 @@ This project continues to evolve, aiming to significantly aid academic researche
     ```
 2. Navigate to the project directory:
     ```sh
-    cd LLM-Review-Generator
+    cd Langgraph_Manuscript_Workflows
     ```
 3. Create a virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
-    python -m venv LLM-Review-Generator or alternatively
+    python -m venv Langgraph_Manuscript_Workflows or alternatively
     ```
     ```
-    conda create -n LLM-Review-Generator python=3.8
+    conda create -n Langgraph_Manuscript_Workflows python=3.8
     ```
 4. Activate the virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
-    source LLM-Review-Generator/bin/activate
+    source Langgraph_Manuscript_Workflows/bin/activate
     ```
     ```sh
-    conda activate LLM-Review-Generator
+    conda activate Langgraph_Manuscript_Workflows
     ```
 5. Install the required dependencies. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
