@@ -111,32 +111,29 @@ class ProofRemovalToolClass():
             "report": HumanMessage(content=""),
             "file": []
         }    
-        proof_remover_app = ProofReamovingWorkflow()
-        proof_remover_app = proof_remover_app.create_workflow(streaming=self.streaming, streamcon=self.streamcon
-                                                             ,stamper_model=self.stamper_model, remover_model=self.remover_model)
+        proof_remover_app =ProofRemovingWorkflow()
+        proof_remover_app = proof_remover_app.create_workflow(stamper_model=self.stamper_model, remover_model=self.remover_model)
         proof_remover_app = proof_remover_app.compile()
         state = proof_remover_app.invoke(input)
         return state["report"].content
 
 class KeywordAndSummaryToolClass:
-    def __init__(self, streaming: bool = True, streamcon=None, keyword_and_summary_model=None):
+    def __init__(self, keyword_and_summary_model=None):
         if keyword_and_summary_model==None:
             self.keyword_and_summary_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.keyword_and_summary_model = keyword_and_summary_model
-        self.streaming = streaming
-        self.streamcon = streamcon
         self.description="""
         This tool takes a string that corresponds to the filename of a text.
         It processes the text in order to extract keywords and summary which it puts in a file.
         It returns the report of the process."""
         
-    def get_keyword_and_summary(self, text_name: str) -> str:
+    def get_keyword_and_summary(self, main_text_filename: str) -> str:
         """This tool takes a string that corresponds to the filename of a text. 
         It processes the text in order to extract keywords and summary which it puts in a file.
         It returns the report of the process."""
         input = {
-            "main_text_filename": HumanMessage(content=text_name),
+            "main_text_filename": HumanMessage(content=main_text_filename),
             "report": HumanMessage(content="")
         }
         keyword_and_summary_app = KeywordAndSummaryWorkflow()
@@ -147,14 +144,12 @@ class KeywordAndSummaryToolClass:
 
 
 class TranslationToolClass:
-    def __init__(self, streaming=False, streamcon=None, translator_model=None):
+    def __init__(self, translator_model=None):
         if translator_model==None:
             self.translator_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.translator_model = translator_model
-        self.streaming = streaming
-        self.streamcon = streamcon
-        self.translator_model = translator_model 
+
         self.description="""
         This tool takes three strings that correspond to the filename of a text containing keywords,
         a choice of language, and the filename of a text to be translated. Then it translates it to the 

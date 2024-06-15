@@ -213,7 +213,7 @@ class OcrEnchancingWorkflow():
 
 
 
-class ProofReamovingWorkflow:
+class ProofRemovingWorkflow:
     def __init__(self, remover_model=None, stamper_model=None):
         if remover_model==None:
             self.remover_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
@@ -227,17 +227,15 @@ class ProofReamovingWorkflow:
         self.stamper= proof_stamper_prompt_template | self.stamper_model
     def run_stamper(self, state):
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
-        main_text_filename=state[" main_text_filename"]
+        main_text_filename=state["main_text_filename"].content
         main_text_filename=get_filename_without_extension(main_text_filename)
         with open(f"files/markdowns/{ main_text_filename}.mmd") as f:
             text = f.read()    
 
         listed_text = text_splitter.split_text(text)
-
-        finalwithoutproofs=""
         print("Stamping phase is initiated.")
         for i in tqdm(range(len(listed_text))):
-            is_proof=self.proof_stamper.invoke(input={"text":listed_text[i]})
+            is_proof=self.stamper.invoke(input={"text":listed_text[i]})
             if is_proof.content=="Yes":
                 listed_text[i+1]="(PROOF CONTINOUS FROM PREVIOUS PAGE)" + listed_text[i+1]
 
@@ -249,7 +247,7 @@ class ProofReamovingWorkflow:
         print("Proof removal in progress")    
         finalwithoutproofs=""
         for i in tqdm(range(len(listed_text))):
-            result=self.proof_remover.invoke(input={"text":listed_text[i]}).content
+            result=self.remover.invoke(input={"text":listed_text[i]}).content
             finalwithoutproofs = finalwithoutproofs + result
         with open(f"files/markdowns/{main_text_filename}_without_proofs.mmd","w") as f:
             f.write(finalwithoutproofs)
@@ -260,10 +258,11 @@ class ProofReamovingWorkflow:
     def create_workflow(self):
         workflow = StateGraph(ProofRemoverState)
         workflow.set_entry_point("proof_stamper")
-        workflow.add_node("proof_removal",self.run_remover)
+        workflow.add_node("proof_remover",self.run_remover)
         workflow.add_node("proof_stamper",self.run_stamper)
-        workflow.add_edge("proof_stamper", "proof_removal")
-        workflow.add_edge("proof_removal", END)
+        workflow.add_edge("proof_stamper", "proof_remover")
+        workflow.add_edge("proof_remover", END)
+        return workflow
 
 
 class TranslationWorkflow:
