@@ -72,7 +72,7 @@ install a bash shell and download git.
     ```
 7. Getting a Nvidia Api key:
     ```sh
-    If you dont have an NVIDIA_API_KEY, get one from here: https://developer.nvidia.com/nvidia-smi, and put it in the .env file like this: NVIDIA_API_KEY = "your key"
+    If you dont have an NVIDIA_API_KEY, get one from here: https://build.nvidia.com/explore/discover, and put it in the .env file like this: NVIDIA_API_KEY = "your key"
     ```
 ## Running
 
