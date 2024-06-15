@@ -37,9 +37,26 @@ This project continues to evolve, aiming to significantly aid academic researche
     ```sh
     cd LLM-Review-Generator
     ```
-3. Install the required dependencies:
+3. Create a virtual environment (python env and conda env respectively):
+    ```sh
+    python -m venv LLM-Review-Generator or alternatively
+    ```
+    ```
+    conda create -n LLM-Review-Generator python=3.8
+    ```
+4. Activate the virtual environment:
+    ```sh
+    source LLM-Review-Generator/bin/activate
+    ```
+    ```sh
+    conda activate LLM-Review-Generator
+    ```
+5. Install the required dependencies:
     ```sh
     pip install -r requirements.txt
+    ```  
+    ```sh
+    pip install -r requirements_conda.txt
     ```
 
 ## Running
