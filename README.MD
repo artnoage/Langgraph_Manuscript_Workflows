@@ -42,15 +42,19 @@ install a bash shell and download git.
     ```
 3. Create a virtual environment. Use the first command for python enviroment and the second for conda enviroment:
     ```sh
-    python -m venv Langgraph_Manuscript_Workflows or alternatively
+    python -m venv Langgraph_Manuscript_Workflows 
     ```
+
     ```
     conda create -n Langgraph_Manuscript_Workflows python=3.8
     ```
-4. Activate the virtual environment. Use the first command for python enviroment and the second for conda enviroment:
+4. Activate the virtual environment. Use the first command for python enviroment in windows the second command for python enviroment in linux and the third for conda enviroment:
     ```sh
     source Langgraph_Manuscript_Workflows/scripts/activate
     ```
+    ```sh
+    source Langgraph_Manuscript_Workflows/bin/activate
+    ```   
     ```sh
     conda activate Langgraph_Manuscript_Workflows
     ```

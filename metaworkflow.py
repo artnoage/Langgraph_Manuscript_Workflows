@@ -18,55 +18,56 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+    
+def create_    
+supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
 
-class MetaState(TypedDict):
-    manager_history : Annotated[list[BaseMessage], operator.add]
+TranslationTool=TranslationToolClass()
+TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
+                           description=TranslationTool.description)
+ArxivRetrievalTool=ArxivRetrievalToolClass()
+ArxivRetrievalTool=StructuredTool(name="ArxivRetrievalTool",func=ArxivRetrievalTool.retrieve_bib,args_schema=ArxivRetrievalInput,
+                           description=ArxivRetrievalTool.description)
+OcrEnhancingTool=OcrEnhancingToolClass()
+OcrEnhancingTool=StructuredTool(name="OcrEnhancingTool",func=OcrEnhancingTool.ocr_enhance,args_schema=OcrEnhancingInput)
 
-    
-    
-    
-def meta_workflow(supervisor_model=llm1):
-    tools =  [translate_file]
-    supervisor=supervisor_prompt_template | supervisor_model.bind_tools(tools)
-    tool_executor=ToolExecutor(tools)
-    def run_supervisor(state):
-        action = supervisor.invoke(state)
-        return {"manager_history":[action]}
-    
-    def user(state):
-        xuser_input = state["manager_history"][-1].content
-        return {"manager_history":[HumanMessage(content=xuser_input)]}
-    
-    def call_tool(state):
-        last_message = state["manager_history"][-1]
-        tool_call = last_message.tool_calls[0]
-        action = ToolInvocation(tool=tool_call["name"],tool_input=tool_call["args"])
-        response = tool_executor.invoke(action)
-        return {"manager_history": [response] }
+ProofRemoverTool=ProofRemovalToolClass()
+ProofRemoverTool=StructuredTool(name="ProofRemovalTool",func=ProofRemoverTool.remove_proof,args_schema=ProofRemovalInput)
 
-    def where_next_human(state):
-        print(state)
-        last_message = state["manager_history"][-1].content
-        if last_message=="exit":
-            return "end"
-        else:
-            return "supervisor"
-    def where_next_supervisor(state):
-        last_message = state["manager_history"][-1]
-        if "tool_calls" in last_message.additional_kwargs:
-            return "tool"
-        else:
-            return "user" 
+KeywordAndSummaryTool=KeywordAndSummaryToolClass()
+KeywordAndSummaryTool=StructuredTool(name="KeywordAndSummaryTool",func=KeywordAndSummaryTool.get_keyword_and_summary,args_schema=KeywordSummaryInput)
 
-    workflow = StateGraph(MetaState)
-    workflow.set_entry_point("supervisor")
-    workflow.add_node("user",user)
-    workflow.add_node("supervisor", run_supervisor)
-    workflow.add_node("tool_executor", call_tool)
-    workflow.add_edge("tool_executor", "supervisor")
+tools=[TranslationTool,ArxivRetrievalTool,OcrEnhancingTool,ProofRemoverTool,KeywordAndSummaryTool, pdf_to_markdown]
+supervisor=supervisor_prompt_template | supervisor_model.bind_tools(tools)
+tool_executor=ToolExecutor(tools)
+folder_structure = get_folder_structure()
     
-    workflow.add_conditional_edges("user",where_next_human, {"supervisor": "supervisor","end": END})
-    workflow.add_conditional_edges("supervisor", where_next_supervisor,{"tool": "tool_executor","user": "user",})
-  
-    return workflow
+while True:
+    workflow_state = {"manager_history": state.chat_history, "folder_structure": folder_structure}
+    action = supervisor.invoke(workflow_state)
+    message=st.session_state.messages[-1]
+    if "tool_calls" in action.additional_kwargs:
+        with container:
+            with st.chat_message(message["role"],avatar=":material/build:"):
+                    st.write("I am currently using the following tool: "+ action.tool_calls[-1]["name"])
+                    st.write("Please be patient, some of the tools take time. Check your terminal for progress.")
+                    st.session_state.chat_history.append(action)
+                    st.session_state.messages.append({"role": "assistant", "content": "I am currently using the following tool: " + action.tool_calls[-1]["name"]})
+                    tool_call = action.tool_calls[-1]
+                    st.write(tool_call["name"],tool_call["args"])
+                    Invocation=ToolInvocation(tool=tool_call["name"], tool_input=tool_call["args"])
+                    st.write(Invocation)
+                    response = tool_executor.invoke(Invocation)
+                    
+                    st.write(response)
+                    response=ToolMessage(response, tool_call_id=tool_call["id"])
+                    st.session_state.chat_history.append(response)
+                    st.session_state.messages.append({"role": "tool", "content": response.content})
+    if "tool_calls" not in action.additional_kwargs:
+        with container:
+            with st.chat_message(message["role"]):
+                st.write(message["content"])       
+        st.session_state.chat_history.append(action)
+        st.session_state.messages.append({"role": "assistant", "content": action.content})
+        break
 

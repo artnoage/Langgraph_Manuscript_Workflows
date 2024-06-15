@@ -77,8 +77,9 @@ def remove_up_to_first_newline(text):
     # Return the part after the first newline
     return parts[1]
 
-
-def get_folder_structure(path, target_folders):
+def get_folder_structure():
+    current_dir = os.getcwd()
+    target_folders = ["files/pdfs", "files/markdowns"]
     folder_structure = {}
     for target_folder in target_folders:
         folder_path = os.path.join(path, target_folder)
