@@ -104,12 +104,12 @@ class ProofRemovalToolClass():
             self.remover_model = remover_model
         self.description = "This tool takes a text in a form of a string and removes the proof section from the text."
     
-    def remove_proof(self, text_name: str) -> str:
+    def remove_proof(self, main_text_filename: str) -> str:
         """This tool takes a text in a form of a string and removes the proof section from the text."""
         input = {
-            "main_text_filename": HumanMessage(content=text_name),
+            "main_text_filename": HumanMessage(content=main_text_filename),
             "report": HumanMessage(content=""),
-            "file": []
+            "file": [""]
         }    
         proof_remover_app =ProofRemovingWorkflow()
         proof_remover_app = proof_remover_app.create_workflow(stamper_model=self.stamper_model, remover_model=self.remover_model)

@@ -17,8 +17,7 @@ import sys
 from dotenv import load_dotenv
 
 load_dotenv()
-llm0= ChatNVIDIA(model="meta/llama3-70b-instruct")
-llm1= ChatGroq(model="llama3-70b-8192",temperature=0)
+
 
 class MetaState(TypedDict):
     manager_history : Annotated[list[BaseMessage], operator.add]

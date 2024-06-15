@@ -1,0 +1,177 @@
+# Estimation optimale du gradient du semi-groupe de la chaleur sur le groupe de Heisenberg
+
+Hong-Quan Li
+
+# Abstract
+
+SerB 611, Institut fur Angewandte Mathematik, Universitat Bonn, Poppelsdorfer Allee 82, D-53115 Bonn, Germany
+
+Requ le 6 juillet 2005 ; accepte le 21 fevrier 2006
+
+Disponible sur Internet le 18 avril 2006
+
+Communique par G. Pisier
+
+## Resume
+
+## 1 Introduction
+
+Sur \(\mathbb{R}^{n}\), notons \(\nabla\) le gradient, et \(e^{t\,\Delta}\) (\(t>0\)) le semi-groupe de la chaleur. On voit que \(\nabla\) et \(e^{t\,\Delta}\) commutent, i.e.
+
+En general, cette propriete ne reste plus valable dans le cadre des varietes riemanniennes completes, \((M,\,g_{M})\). Cependant, si la courbure de Ricci sur \(M\), \(\mathrm{Ric}(M)\), est minoree par \(k\) (\(k\in\mathbb{R}\)), alors D. Bakry a montre dans [4] que :Lorsque la courbure de Ricci sur \(M\) est minoree, \(M\) est stochastiquement complete, i.e. \(e^{t\Delta}1=1\) pour tout \(t>0\). Les estimations de type (1.2) ou bien sous une forme affaiblie (ou plus forte) ont beaucoup d'applications, par exemple, dans l'etude des inegalites de Poincare et de Sobolev logarithmique pour le semi-groupe de la chaleur, dans l'etude du critere \(\varGamma_{2}\) et aussi dans l'etude des transformees de Riesz, voir par exemple [1-3,7] ainsi que leurs references. 
+
+Recemment, von Renesse et Sturm ont montre que dans le cadre des varietes riemanniennes completes, l'estimation (1.3) avec \(k\in\mathbb{R}\) implique que \(\mathrm{Ric}(M)\geqslant k\), voir [24]. Pour d'autres resultats equivalents a l'estimation (1.1), voir par exemple [1,24] ainsi que leurs references. 
+
+Et dans [17] (voir aussi [18]), on a montre que les estimations (1.3) ou bien (1.2) ne restent plus valables sur les varietes coniques. Plus precisement, sur le cone \(C(S_{\vartheta})\) avec \(\vartheta>2\pi\), qui est une variete riemannienne a courbure sectionnelle nulle mais pas complete, il existe une fonction lisse a support compact definie sur \(C(S_{\vartheta})\), \(f_{o}\), telle que.Rappelons, voir par exemple [12, p. 98], que 
+Et le sous-Laplacien sur 
+Notons 
+Par une methode probabiliste, Driver et Melcher ont montre que 
+Ils ont montre aussi que leur methode ne marche pas pour le cas ou 
+De plus, Melcher a donne dans [23] quelques familles des fonctions sur lesquelles l'estimation precedente avec  est satisfaite.
+On remarque aussi que Lust-Piquard et Villani ont montre dans [21] les estimations 
+Le but de cet article est de donner une reponse positive a la question ouverte de [9]. Autrement dit, on a :
+**Theoreme 1.1**.:**Corollaire 1.2**.: _Soit \(C_{1}>1\) comme dans le Theoreme 1.1. Alors, pour tout \(t>0\) et toute \(f\in C_{o}^{\infty}(\mathbb{H}^{1})\), on \(a:\)_
+
+L'idee de la demonstration du Theoreme 1.1 est d'utiliser l'inegalite de Poincare et la formule de representation qu'on rappelle dans la Section 2 (les lecteurs attentifs trouveront qu'en fait, la propriete du doublement du volume localement et la formule de representation localement sont suffisantes).
+
+### Quelques remarques sur notre methodeEn general, dans le cadre des varietes riemanniennes completes a courbure de Ricci minoree, les estimations (1.2) n'offrent des informations precises que pour \(t\to 0^{+}\), et elles deviennent tres faibles lorsque \(t\to+\infty\). Dans certains cas, la methode de cet article nous permet d'obtenir des estimations optimales de type (1.2) lorsque \(t\to+\infty\).
+
+Pour mieux comprendre les avantages de notre methode (qui consiste a utiliser directement des estimations du noyau de la chaleur et de son gradient, plutot que la formule de Bochner-Lichnerowicz, comme [4]), considerons une variete riemannienne compacte, sans bord et de dimension \(n\), \(N\).
+
+Notons \(p_{t}\) le noyau de la chaleur sur \(N\), \(\lambda_{1}>0\) la premiere valeur propre non nulle du Laplacien et \(|N|\) son volume.pour tout $g\in N$, $f\in C^{\infty}(N)$ et $1\leqslant w<+\infty$. 
+
+D'autre part, soit $\upsilon_{1}$ une fonction propre normalisee associee a $\lambda_{1}$, alors pour tout $1\leqslant w<+\infty$, lorsque $t\gg 1$, on a :Dans le cadre des varietes riemanniennes compactes, sans bord, on a
+Et on remarque que lorsque \(t\to+\infty\)
+2. Dans [21,23], les estimations (1.4) avec \(1<w<+\infty\) ont ete obtenues dans le cadre des groupes nilpotents
+3. On remarque que dans [2], une estimation de typea ete obtenue dans le cadre des groupes de Lie a croissance polynomiale de volume et aussi dans d'autres situations, par l'inegalite de Poincare ainsi que les estimations du noyau de la chaleur et de son gradient. Ce serait interessant de savoir si une petite modification de leur methode nous permet de reobtenir les estimations (1.4) avec \(1<w<+\infty\) dans le cadre des groupes nilpotents.
+
+### Notations
+
+Dans la suite, on note \(o=(0,0)\), l'origine de \(\mathbb{H}^{1}\), \(d\) la distance de Carnot-Caratheodory et \(p_{h}\) (\(h>0\)) le noyau de la chaleur sur \(\mathbb{H}^{1}\), et \(g=(x,t)\in\mathbb{R}^{2}\times\mathbb{R}\) designera un point de \(\mathbb{H}^{1}\). Et par convention, on note
+
+\[d(g)=d(g,o),\qquad p(g)=p_{1}(g,o).\]
+
+Si \(E\) est un ensemble mesurable, alors on note \(|E|\) son volume et \(\chi_{E}\) sa fonction caracteristique.
+
+Dans toute la suite, \(C\), \(C_{*}\), \(C^{*}\), etc. designeront des constantes universelles qui dependent peut-etre des proprietes de \(\mathbb{H}^{1}\). Celles-ci pourront changer d'une ligne a une autre.
+
+## 2 Rappel sur l'inegalite de Poincare et la formule de representation
+
+Il y a beaucoup de travaux sur l'inegalite de Poincare et la representation integrale d'une fonction en termes de son gradient, voir par exemple [19,22] et leurs references.On remarque aussi que sur \(\mathbb{H}^{1}\), l'inegalite de Poincare (2.1) et la formule de representation (2.2) sont equivalentes, voir [19] (ou bien voir [10,11] pour des resultats un peu faibles mais suffisants pour montrer notre resultat).
+
+## 3. Quelques resultats sur \(\mathbb{H}^{1}\)
+
+### Rappel sur la structure sous-riemannienne de \(\mathbb{H}^{1}\)
+
+On rappelle dans cette partie l'expression explicite de la distance de Carnot-Caratheodory et de la geodesique minimale entre l'origine \(o\) et \((x,t)\in\mathbb{H}^{1}\). Presque tous les resultats de cette partie proviennent de [5, pp. 635-644] et [12].
+
+Dans la suite, pour simplifier les notations, on suppose que
+
+\[x=(x_{1},x_{2})\neq(0,0).\]\[\gamma(s)=\big{(}x_{1}(s),x_{2}(s),t(s)\big{)}:[0,1]\to\mathbb{H}^{1},\]
+
+Estimations optimales du noyau de la chaleur et de son gradient
+
+**Lemme 3.1**.: _Il existe une constante \(L_{1}>1\) telle que pour tout \((x,t)\in\mathbb{H}^{1}\), on a :_
+
+**Lemme 3.2**.: _Il existe une constante \(L_{2}>1\) telle que :_**Lemme 3.1.** 
+**Lemme 3.2.**le noyau de la chaleur en temps \(h=1\) sur le groupe de Heisenberg de dimension reelle 5, \(\mathbb{H}^{2}\)
+
+## 4 Preuve du Theoreme 1.1
+
+ Dans la suite, \(V(r)=|B(o,r)|\) (\(r>0\)). On rappelle que
+
+Par l'invariance a gauche de \(\nabla\) et de \(p_{h}\) ainsi que la dilatation sur \(\mathbb{H}^{1}\), on remarque que pour montrer le Theoreme 1.1, il suffit de montrer qu'il existe une constante \(C>1\) telle que 
+
+Dans toute la suite, pour simplifier les notations, on pose
+
+**L'idee principale de la preuve de (4.2).** On explique brievement l'idee principale de la preuve de (4.2) :
+
+Comme \(\mathbb{H}^{1}\) est stochastiquement complete, on aAutrement dit, pour demontrer l'estimation (4.2), il suffit de trouver une fonction \(K\) definie sur \(\mathbb{H}^{1}\times\mathbb{H}^{1}\) qui satisfait les deux conditions suivantes :
+
+\[|f(g)-f_{o}|\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla f(g^{\prime})|K(g,g^{\prime})\,dg^{\prime},\quad\forall g\in\mathbb{H}^{1}, \ f\in C_{o}^{\infty}\big{(}\mathbb{H}^{1}\big{)}, \tag{4.3}\]
+
+\[\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|K(g,g^{\prime})\,dg\leqslant Cp(g^{\prime}),\quad\forall g^{\prime}\in\mathbb{H}^{1}. \tag{4.4}La condition (4.3) nous conduit naturellement a utiliser l'inegalite de Poincare (localement) et la formule de representation (localement). La difficulte se trouve a remplir la condition (4.4) : on doit choisir \(K\) a partir de (4.3) le mieux possible, et doit utiliser les estimations optimales du noyau de la chaleur et de son gradient ainsi que la structure sous-riemannienne de \(\mathbb{H}^{1}\). On verra aussi que la difficulte pour controler \(K(g,g^{\prime})\) se trouve dans le cas ou \(d(g,g^{\prime})\ll 1\) avec \(d(g)\to+\infty\).Estimation de $J_{2}$on peut supposer dans toute la suite
+
+Notons γ la geodesique minimale (unique) d'origine a g=(x,t), qui est definie par (3.4) et (3.5).
+
+On doit dire au lecteur que le choix de N(g) et {g(i)=γ(1-id^{-7/2}(g))}_{0≤i≤d(g)N(g)} defini dans la Section 4.2.2 n'est pas unique mais tres delicat, ca depend non seulement des estimations optimales du noyau de la chaleur et de son gradient et aussi de la structure sous-riemannienne de ℍ¹ (plus precisment, on aura besoin des resultats analogues aux Lemmes 4.2 et 4.3 de cet article).
+
+On constate que#### 4.2.1 Estimation de \(J_{21}\)Rappelons que
+
+\[{\rm A}_{\infty}=e^{1000}(L_{1}+L_{2})^{8},\]
+
+ou les deux constantes \(L_{1}\), \(L_{2}>1\) proviennent de (3.8) et (3.9) respectivement.
+
+Rappelons aussi que
+
+\[J_{22}=\int\limits_{\Sigma}d(g)p(g)\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N (g)\big{)}\big{)}\big{|}\,dg,\]
+
+ou
+
+\[\Sigma=\big{\{}\mathbb{R}^{2}\times\mathbb{R}\setminus\big{\{}(0,0,t);t\in \mathbb{R}\big{\}};d(g)>{\rm A}_{\infty}\big{\}},\]
+
+\[N(g)=\big{[}100d^{3/2}(g)\ln d(g)\big{]}+1,\quad g\big{(}N(g)\big{)}=\gamma \big{(}1-N(g)d^{-7/2}(g)\big{)},\]
+
+et \(\gamma\) designe la geodesique minimale (unique) d'origine a \(g=(x,t)\), qui est definie par (3.4)-(3.6).
+
+La difficulte de la preuve du Theoreme 1.1 se trouve a montrer qu'il existe une constante \(C>0\) telle que pour toute \(f\in C^{\infty}_{o}(\mathbb{H}^{1})\), on a
+
+Dans la suite, pour simplifier les notations, on note
+
+\[g=(x,t)\in\Sigma,\] 
+\[s(i)=1-id^{-7/2}(g),\quad\text{\rm pour }0\leqslant i\leqslant d (g)N(g),\] 
+\[g(i)=\big{(}x(i),t(i)\big{)}=\big{(}x_{1}(i),x_{2}(i),t(i)\big{)} =\gamma\big{(}s(i)\big{)}.\]Avant de continuer la preuve de (4.5), on doit dire au lecteur que l'etape crucial pour demontrer (4.5) (et donc le Theoreme 1.1) se trouve a obtenir l'estimation (4.6) et que le choix de \(\{g(i)\}_{0\leqslant i\leqslant g(N)}\) et \(d^{-5/2}(g)\) dans l'estimation (4.6) n'est pas unique mais tres delicat (il depend des estimations optimales du noyau de la chaleur et de son gradient ainsi que la structure sous-riemannienne de \(\mathbb{H}^{1}\)).
+
+Notons \(\chi\) la fonction caracteristique,**Proposition 4.1**.: _Il existe une constante \(C>0\) telle qu'on a_
+
+\[J_{22}^{*}\leqslant Cp(g^{\prime}),\quad\forall d(g^{\prime})>{\rm A}_{\infty}-1 00\frac{\ln{\rm A}_{\infty}}{{\rm A}_{\infty}}-5{\rm A}_{\infty}^{-5/2}. \tag{4.7}
+
+Rappelons queet que \(\mu^{-1}\) designe la fonction reciproque de \(\mu\),
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{\sin^{2}\varphi}:]-\pi,\pi[\to \mathbb{R}.\]
+
+**Lemma 4.2**.: _Soit \(L_{1}>1\) comme dans (3.8) et soit \((g=(x,t),\,g^{\prime})\in\Sigma\times\mathbb{H}^{1}\) satisfaisant_
+
+\[d\big{(}g^{\prime},g(i)\big{)}<4d^{-5/2}(g)\quad\text{pour un certain }0\leqslant i \leqslant N(g^{\prime})+1,\]
+
+_alors_
+
+\[p(g)\leqslant 400L_{1}^{2}p(g^{\prime})e^{-i/(5d^{3/2}(g^{\prime}))}\bigg{(} \frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^{1/2}. \tag{4.11}
+
+**Lemme 4.3**.: _Il existe une constante \(C>0\) telle que pour tout \(g^{\prime}\in\mathbb{H}^{1}\) et tout \(0\leqslant i\leqslant N(g^{\prime})+1\), on a_
+
+On admet les deux lemmes pour l'instant et on continue avec la demonstration de la Proposition 4.1.De plus, par (4.9), on a
+
+ Et pour terminer la preuve du Lemme 4.2, il nous reste a montrer que
+
+**Preuve du Lemme 4.3.** Par (4.9), on peut supposer queldkf 
+
+Rappelons queet que est un \(C^{1}\)-diffeomorphisme. Notons 
+
+Posons 
+
+Pour 
+
+et 
+
+ou (voir la definition de \(s(i)\), (3.3) et (3.4))
+
+Et on a besoin des deux resultats suivants dont la preuve sera donnee plus tard :Les deux resultats precedents nous disent que \(\Theta_{i}\) est aussi injective sur \(\Omega_{g^{\prime}}\), et 
+
+\(\Phi_{i}\) _est injective sur \(\psi^{-1}(\Omega_{g^{\prime}})\)._ Soient
+
+\[\psi^{-1}(g_{*})=(x_{*},\theta_{*}),\,\psi^{-1}(g^{*})=(x^{*},\theta^{*})\in \psi^{-1}(\Omega_{g^{\prime}}),\]Puisque 
+et la fonction \(\tau(h)=h-ih^{-5/2}\) est strictement croissante.
+
+On a donc montre que \(\Phi_{i}\) est injective sur \(\psi^{-1}(\Omega_{g^{\prime}})\).
+
+_Preuve de (4.17)._\[R_{1}=s(i)R_{1}^{*},\qquad R_{2}=\theta\,R_{2}^{*}.\]_Or, la premiere ligne de \(R_{**}\) peut s'ecrire comme_
+
+Calcul de \(R_{1}\). Puisque la premiere colonne de \(R_{1}^{*}\) peut s'ecrire commeou on a noteOn calcule maintenant \(dx_{1}(i)/ds(i)\) et \(dx_{2}(i)/ds(i)\)._Calcul de \(R_{2}\)_.## 5 Quelques problemes ouverts
+
+Pour terminer cet article, on donne quelques questions interessantes.J'espere que le lecteur peut suivre la methode de la preuve du Theoreme 1.1.
+ Dans le cadre des varietes riemanniennes completes, non compacte,  M, ce serait tres interessant de trouver une condition suffisante ou (et) necessaire.
+ Sur les varietes coniques,  C(N), a cause de la singularite conique, on trouve qu'ils ont beaucoup de proprietes speciales par rapport aux varietes riemanniennes completes a courbure de Ricci minoree.
+## RemerciementsL'auteur est soutenu par le DFG (SFB 611). Je tiens a remercier T. Coulhon et L. Saloff-Coste pour des discutions et de nombreuses suggestions, F. Lust-Piquard et M. Villani pour m'avoir communique [21]. Je voudrais remercier aussi le refere pour m'avoir indique une faute dans la version originaire de cet article et des suggestions.
+
+## ReferencesNone of the text provided appears to be part of a proof, so I will return the entire text, which consists only of references and no theorem or lemma statements.
