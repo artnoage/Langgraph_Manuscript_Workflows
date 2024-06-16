@@ -41,76 +41,74 @@ This project continues to evolve, aiming to significantly aid academic researche
     cd Langgraph_Manuscript_Workflows
     ```
 
-### Creating the virtual environment with python venv:
+### Creating the virtual environment when you want to use python venv:
 
 3.  
     ```sh
     python -m venv Langgraph_Manuscript_Workflows 
     ```
 
-### Creating the virtual environment with conda virtual environment:
-    
- 4. 
+### Creating the virtual environment when you want to use conda virtual environment:
+4. 
     ```sh
     conda create -n Langgraph_Manuscript_Workflows python=3.8
     ```
 
-### Activating the virtual environment python when you are in windows:
-
-4. 
+### Activating the python virtual environment when you are in windows:
+5. 
     ```sh
     source Langgraph_Manuscript_Workflows/scripts/activate
     ```
-### Activating the virtual enviroment python linux (probably mac too):
-
+### Activating the python virtual enviroment when you are in linux (probably mac too):
 6.
-```sh
-source Langgraph_Manuscript_Workflows/bin/activate
-```   
+    ```sh
+    source Langgraph_Manuscript_Workflows/bin/activate
+    ```   
 ### Activating the virtual environment conda regardless of platform:
 
-7
-```sh
-conda activate Langgraph_Manuscript_Workflows
-```
-### Installing the required dependencies python windows:
+7.
+    ```sh
+    conda activate Langgraph_Manuscript_Workflows
+    ```
+### Installing the required dependencies python in windows:
 
 8.  
-```sh
-pip install -r requirements_win.txt
-```  
-### Intsalling the required dependencies python linux (probably mac too):
+    ```sh
+    pip install -r requirements_win.txt
+    ```  
+### Intsalling the required dependencies python in linux (probably mac too):
+
 9. 
-```sh
-pip install -r requirements_linux.txt
-```
+    ```sh
+    pip install -r requirements_linux.txt
+    ```
 ### Intalling the required dependencies conda:
 10. 
-```sh
-pip install -r requirements_conda.txt
-```
+    ```sh
+    pip install -r requirements_conda.txt
+    ```
 
 ### Creating the .env file:
 11. 
-```sh
-touch .env
-```
-### Gettomg an openAI api key:
+    ```sh
+    touch .env
+    ```
+### Getting an openAI api key:
 12.
-```sh
-If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key"
-```
+    ```sh
+    If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key" 
+    ```
 ### Getting a Nvidia Api key:
 13. 
-```sh
-If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
- ```
+    ```sh
+    If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
+    ```
 
 
 # Running the project:
 You have three options to work with the various mini-workflows in the project. 
-One is through the jupyter notebook called playground.ipnyb and the other through 
-the fronent that uses streamlit for the user interface. 
+One is through the jupyter notebook called playground.ipnyb, one through the terminal with metaworkflow file
+and the last through  the fronent that uses streamlit for the user interface. 
 
 In the playground you can find details for what is happening under the hood for each workflow. 
 Evenmore you have a better control of which llms you are using. I suggest this for the first time.
