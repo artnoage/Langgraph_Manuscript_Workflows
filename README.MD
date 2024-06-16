@@ -27,77 +27,87 @@ This project leverages large language model (LLM) agents within LangGraph to dev
 This project continues to evolve, aiming to significantly aid academic researchers by automating and improving various manuscript processing tasks.
 
 
-## Installation
+# Installation:
 
-To install the project, you can use the following commands. If you are using windows you should  first 
-install a bash shell and download git. 
-
-1. Clone the repository:
+### Clone the repository:
+1. 
     ```sh
     git clone https://github.com/artnoage/Langgraph_Manuscript_Workflows.git
     ```
-2. Navigate to the project directory:
+
+### Navigate to the project's direcotry:
+2. 
     ```sh
     cd Langgraph_Manuscript_Workflows
     ```
-3. Create a virtual environment. Use the first command for python enviroment and the second for conda enviroment:
+
+### Creating the virtual environment with python venv:
+
+3.  
     ```sh
     python -m venv Langgraph_Manuscript_Workflows 
     ```
 
-    ```
+### Creating the virtual environment with conda virtual environment:
+    
+ 4. 
+    ```sh
     conda create -n Langgraph_Manuscript_Workflows python=3.8
     ```
-4. Activate the virtual environment. Use the first command for python enviroment in windows the second command for python enviroment in linux and the third for conda enviroment:
+
+### Activating the virtual environment python when you are in windows:
+
+4. 
     ```sh
     source Langgraph_Manuscript_Workflows/scripts/activate
     ```
-    ```sh
-    source Langgraph_Manuscript_Workflows/bin/activate
-    ```   
-    ```sh
-    conda activate Langgraph_Manuscript_Workflows
-    ```
-5. Install the required dependencies. Use the first command for python enviroment and the second for conda enviroment:
-    ```sh
-    pip install -r requirements.txt
-    ```  
-    ```sh
-    pip install -r requirements_conda.txt
-    ```
-6. Create an enviroment file:
-    ```sh
-    touch .env
-    ```
+### Activating the virtual enviroment python linux (probably mac too):
 
-7. Getting an OpenAi Api key:
-    ```sh
-    If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key"
-    ```
-8. Getting a Nvidia Api key:
-    ```sh
-    If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
-    ```
-9. Try the playground.ipnyb notebook:
-    ```sh   
-    Use google colab or VScode with Jupyter extension.
-    ``` 
+6.
+```sh
+source Langgraph_Manuscript_Workflows/bin/activate
+```   
+### Activating the virtual environment conda regardless of platform:
 
-10. Use the orchetrated workflow by running main.py:
-    ```sh   
-    python main.py
-    ``` 
+7
+```sh
+conda activate Langgraph_Manuscript_Workflows
+```
+### Installing the required dependencies python windows:
 
-11. To strart the frontend use: 
-    ```sh
-    streamlit run streamlit_app.py 
-    ```
+8.  
+```sh
+pip install -r requirements_win.txt
+```  
+### Intsalling the required dependencies python linux (probably mac too):
+9. 
+```sh
+pip install -r requirements_linux.txt
+```
+### Intalling the required dependencies conda:
+10. 
+```sh
+pip install -r requirements_conda.txt
+```
+
+### Creating the .env file:
+11. 
+```sh
+touch .env
+```
+### Gettomg an openAI api key:
+12.
+```sh
+If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key"
+```
+### Getting a Nvidia Api key:
+13. 
+```sh
+If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
+ ```
 
 
-
-
-## Running
-
+# Running the project:
 You have three options to work with the various mini-workflows in the project. 
 One is through the jupyter notebook called playground.ipnyb and the other through 
 the fronent that uses streamlit for the user interface. 
@@ -105,13 +115,32 @@ the fronent that uses streamlit for the user interface.
 In the playground you can find details for what is happening under the hood for each workflow. 
 Evenmore you have a better control of which llms you are using. I suggest this for the first time.
 
-> ### WARNING
-> **Streamlit is a bit difficult with calcellation signals. Same holds for LLM Apis. It will be difficult or impossible
-> to cancel a tool call when it is running. For this reason, I recommend using small files for testing. Also the tools have printouts which I didnt manage to forward somehow in streamlit. When I get levels in using it, I will try to improve.**
+## First method by trying the workflows independently:
+```sh   
+Use google colab or VScode with Jupyter extension.
+``` 
+## Second method by using terminal:
+```sh   
+python metaworkflow.py
+``` 
+## Third method by using streamlit:
+```sh
+streamlit run streamlit_app.py 
+```
+ ### WARNING
+ **Streamlit is a bit difficult with calcellation signals. Same holds for LLM Apis. It will be difficult or impossible
+ to cancel a tool call when it is running. For this reason, I recommend using small files for testing. Also the tools have printouts which I didnt manage to forward somehow in streamlit. When I get levels in using it, I will try to improve.**
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Contributions are welcome! One can contribute significantly without any knowledge of coding. You
+just go to the prompts file and change the system prompts until the corresponding workflow behaves better 
+than you find it. The term prompt engineering is annoying but when it comes to the currest state of LLMs
+it makes sense.
+If you are experienced with streamlit, maybe you can make me suggestions how I can stream the printouts I get from
+my tools. I dont have experience in front end and this seems ultra hard to me.
+
+You could also create different workflows that you think you are relevant to manipulating academinc manuscripts.
 
 ## Shoulders of Giants
 

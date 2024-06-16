@@ -11,7 +11,7 @@ from simple_tools import *
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
 import os
-
+import time
 def invoke(state,container):   
     
     supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
@@ -33,13 +33,12 @@ def invoke(state,container):
                         tool_call = action.tool_calls[-1]
                         st.write(tool_call["name"],tool_call["args"])
                         Invocation=ToolInvocation(tool=tool_call["name"], tool_input=tool_call["args"])
-                        st.write(Invocation)
                         try:
-                            response = tool_executor.invoke(action)
+                            response = tool_executor.invoke(Invocation)
                         except Exception as e:
-                            response = str(e)
+                            response = str(e)                   
                         st.write(response)
-                        response=ToolMessage(response, tool_call_id=tool_call["id"])
+                        response=ToolMessage(content=response, tool_call_id=tool_call["id"])
                         st.session_state.chat_history.append(response)
                         st.session_state.messages.append({"role": "tool", "content": response.content})
         if "tool_calls" not in action.additional_kwargs:
@@ -54,9 +53,9 @@ def invoke(state,container):
 
 
 def main():
-    st.set_page_config(page_title="Chat with Bot that broke academia! HERE HERE", layout="wide")
+    st.set_page_config(page_title="Chat with bot that broke academia! HERE HERE", layout="wide")
      # Streamlit page configuration
-    st.title("Chat with Bot that broke academia! HERE HERE")
+    st.markdown("<h1 style='text-align: center;margin-left: -550px;'>Chat with the Bot that broke Academia!!</h1>", unsafe_allow_html=True)
     ready = True
     global st_file
     st_file=None
@@ -81,14 +80,15 @@ def main():
         st.session_state.awaiting_response = False
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
+    if "disable_input" not in st.session_state:
+        st.session_state.disable_input = False
         
     # Create a sidebar widget to display the folder structure
-    left_sidebar, main_content, right_sidebar = st.columns([0.15,0.5, 0.35],gap="large")
+    left_sidebar, main_content, right_sidebar = st.columns([0.15,0.45, 0.40],gap="large")
     
 # Left sidebar
     with left_sidebar:
-        st.header("Folder Structure")
-        left_container = st.container(height=500)
+        left_container = st.container(height=600)
         with left_container:
             selected_type = st.selectbox("Select a type", ["PDF", "Markdown"], index=None)
             pdf_files = list_files(pdfs)
@@ -121,7 +121,7 @@ def main():
 
             
     with right_sidebar:
-        right_container = st.container(height=800)
+        right_container = st.container(height=1000)
         with right_container:
             if not openai_api_key:
                 openai_api_key = "You dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file"
@@ -149,29 +149,34 @@ def main():
             chat_container = st.container(height=1000)
             with chat_container:
                 for message in st.session_state.messages:
-                    st.write(message)
                     if message["role"] == "tool":
                         with st.chat_message(message["role"],avatar=":material/build:"):
                             st.write(message["content"])    
                     else:
                         with st.chat_message(message["role"]):
                             st.write(message["content"])                    
-            prompt=st.chat_input()
-            if prompt and st.session_state.awaiting_response is False:
-                st.session_state.messages.append({"role": "user", "content": prompt})
-                st.session_state.chat_history.append(HumanMessage(content=prompt))
-                st.session_state.awaiting_response = True
-                with chat_container:
-                    with st.chat_message("user"):
+            
+
+            # Display the input widget with the disabled condition
+            prompt = st.chat_input("Enter your querry", disabled=st.session_state.disable_input)
+            if st.session_state.awaiting_response is False:
+                if prompt:
+                    st.session_state.messages.append({"role": "user", "content": prompt})
+                    st.session_state.chat_history.append(HumanMessage(content=prompt))
+                    st.session_state.awaiting_response = True
+                    with chat_container:
+                        with st.chat_message("user"):
                             st.write(prompt)
 
             # Generate a new response if last message is not from assistant
             if st.session_state.messages[-1]["role"] == "user" and st.session_state.awaiting_response:
+                st.session_state.disable_input = True
                 with chat_container:
                     with st.chat_message("assistant"):
                         with st.spinner("Thinking..."):
                             invoke(st.session_state,chat_container)
-                st.session_state.awaiting_response = False
+                            st.session_state.awaiting_response = False
+                            st.session_state.disable_input = False
                 st.rerun()
     else:
         st.stop()

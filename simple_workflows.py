@@ -232,7 +232,7 @@ class ProofRemovingWorkflow:
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
         main_text_filename=state["main_text_filename"].content
         main_text_filename=get_filename_without_extension(main_text_filename)
-        with open(f"files/markdowns/{ main_text_filename}.mmd") as f:
+        with open(f"files/markdowns/{ main_text_filename}.mmd", "r",encoding='utf-8') as f:
             text = f.read()    
 
         listed_text = text_splitter.split_text(text)
@@ -252,7 +252,7 @@ class ProofRemovingWorkflow:
         for i in tqdm(range(len(listed_text))):
             result=self.remover.invoke(input={"text":listed_text[i]}).content
             finalwithoutproofs = finalwithoutproofs + result
-        with open(f"files/markdowns/{main_text_filename}_without_proofs.mmd","w") as f:
+        with open(f"files/markdowns/{main_text_filename}_without_proofs.mmd","w",encoding='utf-8') as f:
             f.write(finalwithoutproofs)
         report= "The proofs were remove and the resulted file is named " + main_text_filename + "_without_proofs"
         print(report)
