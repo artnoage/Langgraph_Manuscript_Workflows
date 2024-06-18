@@ -1,0 +1,774 @@
+Here is the translation of the text into Russian:
+
+'# Оптимальная оценка градиента半группы热ового ядра на группе Хейзенберга
+
+Хунг-Куан Ли
+
+# Аннотация
+
+SerB 611, Институт прикладной математики, Университет Бонна, Poppelsdorfer Allee 82, D-53115 Бонн, Германия
+
+Получено 6 июля 2005 г.; принято 21 февраля 2006 г.
+
+Доступно в Интернете с 18 апреля 2006 г.
+
+Сообщено Г. Пизье
+
+## Резюме
+
+Используя неравенство Пуанкаре и формулу представления, мы показываем, что на группе Хейзенберга размерности 3, \(\mathbb{H}^{1}\), существует константа \(C>0\), такая что :
+
+\[\left|\nabla e^{t\,\Delta}f\right|(g)\leqslant Ce^{t\,\Delta}\big{(}|\nabla f| \big{)}(g),\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f\in C_{o}^{\infty}\big{(} \mathbb{H}^{1}\big{)}.\]
+
+Это результат отвечает на открытый вопрос [B.K. Driver, T. Melcher, Hypoelliptic heat kernel inequalities on the Heisenberg group, J. Funct. Anal. 221 (2005) 340-365]. Кроме того, основной результат [B.K. Driver, T. Melcher, Hypoelliptic heat kernel inequalities on the Heisenberg group, J. Funct. Anal. 221 (2005) 340-365] может быть рассмотрен как immediate следствие предыдущего неравенства. 2006 Elsevier Inc. Все права защищены.
+
+## 1 Введение
+
+На \(\mathbb{R}^{n}\) обозначим \(\nabla\) градиент и \(e^{t\,\Delta}\) (\(t>0\)) полу-группу ядра тепла. Мы видим, что \(\nabla\) и \(e^{t\,\Delta}\) коммутируют, т. е.
+
+\[\nabla e^{t\Delta}f(g)=e^{t\Delta}(\nabla f)(g),\quad\forall g\in\mathbb{R}^{n},\ t>0,\ f\in C_{o}^{\infty}\big(\mathbb{R}^{n}\big).\]
+
+В общем случае это свойство не сохраняется в рамках римановых многообразий, \((M,\,g_{M})\). Однако, если кривизна Риччи на \(M\), \(\mathrm{Ric}(M)\), минорирована числом \(k\) (\(k\in\mathbb{R}\)), то Д. Бакри показал в [4], что :
+
+\[\big{|}\nabla e^{t\Delta}f(g)\big{|}\leqslant e^{-kt}e^{t\Delta}\big{(}|\nabla f|\big{)}(g),\quad\forall g\in M,\ t>0,\ f\in C_{o}^{\infty}(M).\]Когда кривизна Риччи на \(M\) имеет нижнюю границу, \(M\) является стохастически полной, т.е. \(e^{t\Delta}1=1\) для любого \(t>0\). Immediate consequence of (1.1) is that для любого \(1\leqslant w<+\infty\) we have
+
+\[\big{|}\nabla e^{t\Delta}f(g)\big{|}\leqslant e^{-kt}\big{[}e^{t\Delta}\big{(}|\nabla f|^{w}\big{)}(g)\big{]}^{1/w},\quad\forall g\in M,\ t>0,\ f\in C_{o}^{\infty}(M),\]
+
+or, more weakly,
+
+\[\big{\|}\nabla e^{t\Delta}f\big{\|}_{L^{\infty}}\leqslant e^{-kt}\|\nabla f\|_{L^{ \infty}},\quad\forall t>0,\ f\in C_{o}^{\infty}(M).\]
+
+Estimates of type (1.2) or in a weaker form (or stronger) have many applications, for example, in the study of Poincaré and Sobolev logarithmic inequalities for the heat semigroup, in the study of the criterion \(\varGamma_{2}\) and also in the study of Riesz transforms, see for example [1-3,7] and their references.
+
+Recently, von Renesse and Sturm have shown that in the framework of complete Riemannian manifolds, the estimate (1.3) with \(k\in\mathbb{R}\) implies that \(\mathrm{Ric}(M)\geqslant k\), see [24]. For other results equivalent to the estimate (1.1), see for example [1,24] and their references.
+
+And in [17] (see also [18]), it has been shown that the estimates (1.3) or (1.2) are no longer valid on conic manifolds. More precisely, on the cone \(C(S_{\vartheta})\) with \(\vartheta>2\pi\), which is a Riemannian manifold with zero sectional curvature but not complete, there exists a smooth function with compact support defined on \(C(S_{\vartheta})\), \(f_{o}\), such that \(\|\nabla e^{t\Delta}f_{o}\|_{L^{\infty}}=+\infty\) for any \(t>0\).
+
+In [9], Driver and Melcher studied estimates of type (1.2) in the framework of the 3-dimensional Heisenberg group, \(\mathbb{H}^{1}\), which can be considered as a manifold equipped with a degenerate Laplacian.Напомним, см., например, [12, с. 98], что $\mathbb{H}^{1}=\mathbb{R}^{2}\times\mathbb{R}$ - это стратифицированная группа Ли для закона 
+
+$$(x_{1},x_{2},t)\cdot(x_{1}^{\prime},x_{2}^{\prime},t^{\prime})=\big{(}x_{1}+x_{1}^{\prime},x_{2}+x_{2}^{\prime},t_{1}+t_{1}^{\prime}+2(x_{1}^{\prime}x_{2}-x_{1}x_{2}^{\prime})\big{)}.$$
+
+И суб-Лапласиан на $\mathbb{H}^{1}$ записывается как
+
+$$\Delta=\mathrm{X}_{1}^{2}+\mathrm{X}_{2}^{2},$$
+
+где два левых инвариантных поля векторов на $\mathbb{H}^{1}$, $\mathrm{X}_{1}$ и $\mathrm{X}_{2}$, определены как 
+
+$$\mathrm{X}_{1}=\frac{\partial}{\partial x_{1}}+2x_{2}\frac{\partial}{\partial t},\qquad\mathrm{X}_{2}=\frac{\partial}{\partial x_{2}}-2x_{1}\frac{\partial}{\partial t}.$$
+
+Обозначим $\nabla=(\mathrm{X}_{1},\mathrm{X}_{2})$ градиент, и $e^{t\Delta}$ ($t>0$) полугруппу теплового ядра на $\mathbb{H}^{1}$. 
+
+С помощью метода вероятности Драйвер и Мелчер показали, что для любого $1<w<+\infty$ существует константа $C_{w}>0$ (и, кроме того, необходимо иметь $C_{w}>1$) такая, что :
+
+$$\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant C_{w}\big{[}e^{t\Delta}\big{(}| \nabla f|^{w}\big{)}(g)\big{]}^{1/w},\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f \in C_{o}^{\infty}\big{(}\mathbb{H}^{1}\big{)}. \tag{1.4}$$
+
+Они также показали, что их метод не работает для случая, когда $w=1$, который остается открытым. Кроме того, Мелчер дал в [23] некоторые семейства функций, на которых оценка предыдущая с $w=1$ удовлетворяется.
+
+Заметим также, что Люст-Пикард и Виллани показали в [21] оценки (1.4) (с $1<w<+\infty$) аналитическим методом. Более точно, они использовали классические оценки ядра теплового ядра и его градиента.
+
+Целью данной статьи является дать положительный ответ на открытый вопрос [9]. Иными словами, мы имеем :
+
+**Теорема 1.1**.: _На $\mathbb{H}^{1}$ существует константа $C_{1}>0$ такая, что_ :Here is the translation:
+
+\[\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant C_{1}e^{t\Delta}\big{(}|\nabla f| \big{)}(g),\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f\in C_{o}^{\infty}\big{(} \mathbb{H}^{1}\big{)}.\]
+
+Благодаря Теореме 1.1, мы сразу получаем логарифмическую неравенство Соболева для半группы теплового ядра следующим образом:
+
+**Следствие 1.2**.: _Пусть \(C_{1}>1\) как в Теореме 1.1. Тогда для любого \(t>0\) и любого \(f\in C_{o}^{\infty}(\mathbb{H}^{1})\) выполнено:_
+
+\[e^{t\Delta}\big{(}f^{2}\log f^{2}\big{)}(g)-e^{t\Delta}\big{(}f^{2}\big{)}(g) \log e^{t\Delta}\big{(}f^{2}\big{)}(g)\leqslant C_{1}^{2}t e^{t\Delta}\big{(}|\nabla f|^{2}\big{)}(g),\quad\forall g\in\mathbb{H}^{1},\]
+
+_а также_
+
+\[e^{t\Delta}\big{(}f^{2}\log f^{2}\big{)}(g)-e^{t\Delta}\big{(}f^{2}\big{)}(g) \log e^{t\Delta}\big{(}f^{2}\big{)}(g)\geqslant C_{1}^{2}t\frac{|\nabla e^{t \Delta}f^{2}|^{2}(g)}{e^{t\Delta}f^{2}(g)},\quad\forall g\in\mathbb{H}^{1}.\]
+
+Чтобы доказать это следствие, достаточно slightly modificar доказательство части (i) \(\Rightarrow\) (ii) Теоремы 5.4.7 из [1, с. 85-86].
+
+Идея доказательства Теоремы 1.1 заключается в использовании неравенства Пуанкаре и формулы представления, которые мы вспомним в Разделе 2 (внимательные читатели найдут, что на самом деле локальная собственность двойного объема и локальная формула представления являются достаточными). Эта идея происходит из наблюдения в рамках евклидовых пространств и очень легко понять. Однако, доказательство Теоремы 1.1 является сравнительно сложным: мы должны использовать субриеманову структуру \(\mathbb{H}^{1}\) (т.е. явное выражение расстояния Карно-Каратеодори и геодезической) а также оптимальные оценки ядра теплового ядра и его градиента, которые мы вспомним или даём в Разделе 3.
+
+### Некоторые замечания о нашей методе'1. В общем случае, в рамках полных riemannовых многообразий с положительной нижней оценкой кривизны Риччи, оценки (1.2) дают точную информацию только при \(t\to 0^{+}\) и становятся очень слабыми при \(t\to+\infty\). В некоторых случаях метод, предложенный в этой статье, позволяет получить оптимальные оценки типа (1.2) при \(t\to+\infty\).
+
+Чтобы лучше понять преимущества нашего метода (который заключается в использовании прямых оценок ядра тепла и его градиента, а не формулы Бохнера-Лихнеровича, как [4]), рассмотрим компактное riemannово многообразие без края и размерности \(n\), \(N\).
+
+Обозначим \(p_{t}\) ядром тепла на \(N\), \(\lambda_{1}>0\) первой ненулевой собственной значением лапласиана и \(|N|\) его объемом. Тогда для \(t\gg 1\) мы имеем, с одной стороны: 'Here is the translation of the text into Russian:
+
+\[\left|\nabla e^{t\Delta}f(g)\right| =\left|\nabla\int\limits_{N}p_{t}(g,g^{\prime})\left(f(g^{\prime}) -\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*})\right)d\mu(g^{\prime})\right|\] 
+\[\leqslant\int\limits_{N}\left|\nabla p_{t}(g,g^{\prime})\right| \cdot\left|f(g^{\prime})-\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*}) \right|d\mu(g^{\prime})\] 
+\[\leqslant C_{1}e^{-\lambda_{1}t}\int\limits_{N}\left|f(g^{\prime} )-\frac{1}{|N|}\int\limits_{N}f(g_{*})\,d\mu(g_{*})\right|d\mu(g^{\prime})\] 
+\[\quad\text{тогда что }\left|\nabla p_{t}(g,g^{\prime}) \right|\leqslant C_{1}e^{-\lambda_{1}t}\text{ для любого }t\gg 1\text{ и }g,g^{\prime}\in N\] 
+\[\leqslant C_{2}e^{-\lambda_{1}t}\,\text{дiam}(N)\int\limits_{N} \left|\nabla f\right|(g^{\prime})\,d\mu(g^{\prime})\] 
+\[\quad\text{по неравенству Пуанкаре}\] 
+\[\leqslant Ce^{-\lambda_{1}t}\,\text{дiam}(N)|N|\int\limits_{N}p_{ t}(g,g^{\prime})|\nabla f|(g^{\prime})\,d\mu(g^{\prime})\] 
+\[\quad\text{тогда что }p_{t}(g,g^{\prime})\geqslant 2^{-1}|N|^{-1}\text{ для любого }t\gg 1\text{ и }g,g^{\prime}\in N\] 
+\[\leqslant Ce^{-\lambda_{1}t}\,\text{дiam}(N)|N|\left[e^{t\Delta} \left(|\nabla f|^{w}\right)(g)\right]^{1/w},\]
+
+для любого \(g\in N\), \(f\in C^{\infty}(N)\) и \(1\leqslant w<+\infty\).
+
+С другой стороны, пусть \(\upsilon_{1}\) - нормированная собственный функция, связанная с \(\lambda_{1}\), то для любого \(1\leqslant w<+\infty\), когда \(t\gg 1\), имеет место:
+
+\[\sup\limits_{g\in N}\frac{|\nabla e^{t\Delta}\upsilon_{1}(g)|}{[e^{t\Delta}(| \nabla\upsilon_{1}|^{w})(g)]^{1/w}} =\sup\limits_{g\in N}\frac{e^{-\lambda_{1}t}|\nabla\upsilon_{1}|(g)}{ \left[\int_{N}p_{t}(g,g^{\prime})|\nabla\upsilon_{1}|^{w}(g^{\prime})\,d\mu(g^{ \prime})\right]^{1/w}}\] 
+\[>e^{-\lambda_{1}t}\frac{\|\nabla\upsilon_{1}\|_{L^{\infty}}}{\| \nabla\upsilon_{1}\|_{L^{w}}}\left[\frac{2}{|N|}\right]^{-1/w},\]
+
+поскольку \(p_{t}(g,g^{\prime})\leqslant 2|N|^{-1}\) для любого \(t\gg 1\) и \(g,g^{\prime}\in N\).Иначе говоря, в рамках компактных римановых многообразий без края, мы имеем
+
+\[\sup\limits_{g\in N,f\in C^{\infty}(N)}\frac{|\nabla e^{t\Delta}f(g)|}{[e^{t \Delta}(|\nabla f|^{w})(g)]^{1/w}}\sim e^{-\lambda_{1}t}.\]И мы отмечаем, что когда \(t\to+\infty\), фактор \(e^{-\lambda_{1}t}\) убывает гораздо быстрее, чем \(e^{-\max(0,k_{o})t}\) с \(k_{o}=\sup\{k\in\mathbb{R};\operatorname{Ric}(N)\geqslant k\}\), напоминая, что теорема Лихнеровича говорит, что \(\lambda_{1}\geqslant\frac{n}{n-1}k_{o}\) для \(k_{o}>0\).
+
+2. В [21,23] оценки (1.4) с \(1<w<+\infty\) были получены в рамках нильпотентных групп методом вероятности и методом анализа соответственно. Однако в их доказательствах (независимых) они обо verwendet special'nye свойства системы Hormander векторных полей инвариантных слева на группах Ли. Наша метода позволяет также дать простое и независимое доказательство их результата. Для получения их результата suffit использовать свойство удвоения объема, локальную неравенство Пуанкаре, локальную формулу представления и использовать классические верхние и нижние оценки ядра теплового и его градиента в рамках нильпотентных групп (см., например, [25, Теорема IV.4.2, с. 61]). Преимущество этой методы в том, что мы не используем никаких特殊ных свойств нильпотентной группы, и мы можем адаптировать эту методику в других ситуациях, например, в рамках компактных римановых многообразий с \(C^{1}\)-геометрией ограниченной в смысле [6] (хотя и получили бы оценку намного более слабую, чем ту, полученную Bakry).
+
+3. Мы отмечаем, что в [2] оценка типа...Неравенство
+
+\[\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant C_{w}\big{[}e^{t\Delta}\big{(}| \nabla f|^{w}\big{)}(g)\big{]}^{1/w},\quad\forall g\in\mathbb{H}^{1},\ t>0,\ f\in C_{o}^{\infty},\ 1\leqslant w<+\infty,\]
+
+было получено в рамках групп Ли с полиномиальным ростом объема и в других ситуациях, с помощью неравенства Пуанкаре, а также оценок ядра теплового_kernel и его градиента. Будет интересно узнать, можно ли с помощью небольшой модификации их метода получить оценки (1.4) с \(1<w<+\infty\) в рамках нильтпотентных групп.
+
+### Обозначения
+
+В дальнейшем мы будем обозначать \(o=(0,0)\) началом \(\mathbb{H}^{1}\), \(d\) расстоянием Карно-Каратеодори и \(p_{h}\) (\(h>0\)) ядром теплового kernel на \(\mathbb{H}^{1}\), и \(g=(x,t)\in\mathbb{R}^{2}\times\mathbb{R}\) будет обозначать точку на \(\mathbb{H}^{1}\). А по конвенции мы будем обозначать
+
+\[d(g)=d(g,o),\qquad p(g)=p_{1}(g,o).\]
+
+Если \(E\) - это измеримое множество, то мы будем обозначать \(|E|\) его объем и \(\chi_{E}\) его характеристическую функцию.
+
+В дальнейшем \(C\), \(C_{*}\), \(C^{*}\) и т.д. будут обозначать универсальные константы, которые могут зависеть от свойств \(\mathbb{H}^{1}\). Они могут изменяться от строки к строке.
+
+## 2 Реформа неравенства Пуанкаре и формула представления
+
+Существует много работ над неравенством Пуанкаре и интегральным представлением функции в терминах ее градиента, см., например, [19,22] и их ссылки. В частности, существует константа \(C>0\), такая что для любой \(f\in C_{o}^{\infty}(\mathbb{H}^{1})\), для любого \(g\in\mathbb{H}^{1}\) и для любого \(r>0\), имеет место:Here is the translation:
+
+\[\int\limits_{B(g,r)}\big{|}f(g^{\prime})-f_{r}(g)\big{|}\,dg^{\prime}\leqslant Cr \int\limits_{B(g,r)}\big{|}\nabla f(g^{\prime})\big{|}\,dg^{\prime}, \tag{2.1}\]\[\big{|}f(g^{\prime})-f_{r}(g)\big{|}\leqslant C\int\limits_{B(g,r)}\big{|}\nabla f (g_{s})\big{|}\frac{d(g^{\prime},g_{s})}{|B(g^{\prime},d(g^{\prime},g_{s}))|}\, dg_{*},\quad\forall g^{\prime}\in B(g,r), \tag{2.2}\]
+
+или
+
+\[f_{r}(g)=\big{|}B(g,r)\big{|}^{-1}\int\limits_{B(g,r)}f(g^{\prime})\,dg^{\prime}.\]
+
+Также отмечаем, что на $\mathbb{H}^{1}$ nerавенство Пуанкаре (2.1) и формула представления (2.2) эквивалентны, см. [19] (или см. [10, 11] для немного слабее результатов, но достаточных для доказательства нашего результата).
+
+## 3. Некоторые результаты на $\mathbb{H}^{1}$
+
+### Напоминание о субриемановой структуре $\mathbb{H}^{1}$
+
+В этой части мы напоминаем explicitное выражение для расстояния Карно-Каратеодори и firmy геодезической между началом $o$ и $(x, t) \in \mathbb{H}^{1}$. Почти все результаты этой части берутся из [5, pp. 635-644] и [12].
+
+В дальнейшем, для упрощения обозначений, мы предполагаем, что
+
+\[x=(x_{1},x_{2})\neq(0,0).\]
+
+Пусть
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{2\sin^{2}\varphi}:]-\pi,\pi[\to \mathbb{R}. \tag{3.1}\]
+
+Тогда
+
+\[\psi(x,\varphi)=\big{(}x,\mu(\varphi)\|x\|^{2}\big{)}:\big{\{}(x,\varphi)\in \mathbb{R}^{2}\times]-\pi,\pi[;\ x\neq(0,0)\big{\}}\to\big{\{}(x,t)\in\mathbb{ H}^{1};\ x\neq(0,0)\big{\}} \tag{3.2}\]
+
+есть $C^{1}$-диффеоморфизм.
+
+Обозначим $\mu^{-1}$ и $\psi^{-1}$ как функцию, обратную к $\mu$ и $\psi$ соответственно, тогда
+
+\[d^{2}(x,t)=\bigg{(}\frac{\theta}{\sin\theta}\bigg{)}^{2}\|x\|^{2}\quad\text{ где }\theta=\mu^{-1}\bigg{(}\frac{t}{\|x\|^{2}}\bigg{)} \tag{3.3}\]
+
+(см. (1.40) и (1.30) из [5], и мы поставили $a=\tau=1$ и заменяем $2\theta$ на $\theta$ в (1.30)), и геодезическая минимаксимальная между началом и $(x, t)$,Here is the translation of the text into Russian:
+
+$\[\gamma(s)=\big{(}x_{1}(s),x_{2}(s),t(s)\big{)}:[0,1]\to\mathbb{H}^{1},\]
+
+написано в виде (достаточно поставить $a=\tau=1$ и заменить $2\theta$ на $\theta$ в Теореме 1.21 из [5])
+
+\[x(s)=\left(\begin{array}{c}x_{1}(s)\\ x_{2}(s)\end{array}\right)=\frac{\sin s\theta}{\sin\theta}\left(\begin{array}{ cc}\cos(s-1)\theta&\sin(s-1)\theta\\ -\sin(s-1)\theta&\cos(s-1)\theta\end{array}\right)\times\left(\begin{array}{c} x_{1}\\ x_{2}\end{array}\right), \tag{3.4}\]
+
+\[t(s)=t-(1-s)\frac{\theta}{\sin^{2}\theta}\|x\|^{2}+\frac{1}{2} \frac{\sin 2\theta-\sin 2s\theta}{\sin^{2}\theta}\|x\|^{2}\]
+
+\[= \frac{2s\theta-\sin 2s\theta}{2\sin^{2}\theta}\|x\|^{2}= \frac{2s\theta-\sin 2s\theta}{2\sin^{2}s\theta}\|x(s)\|^{2}, \tag{3.5}\]
+
+то есть, мы имеем
+
+\[\mu^{-1}\bigg{(}\frac{t(s)}{\|x(s)\|^{2}}\bigg{)}=s\mu^{-1}\bigg{(}\frac{t}{\| x\|^{2}}\bigg{)},\quad\forall 0\leqslant s\leqslant 1. \tag{3.6}\]
+
+### Оптимальные оценки ядра тепла и его градиента
+
+Согласно [12,14] или [20], мы имеем explicitную формулу для $p_{h}$ :
+
+\[p_{h}(x,t)=\frac{1}{2(4\pi h)^{2}}\int\limits_{\mathbb{R}}\exp\bigg{(}\frac{ \lambda}{4h}\big{(}tu-\|x\|^{2}\coth\lambda\big{)}\bigg{)}\frac{\lambda}{\sinh \lambda}\,d\lambda. \tag{3.7}\]
+
+Чтобы доказать Теорему 1.1, нам потребуются оптимальные оценки $p(x,t)$ и $|\nabla p(x,t)|$ :
+
+**Лемма 3.1**.: _Существует константа $L_{1}>1$ такая, что для любого $(x,t)\in\mathbb{H}^{1}$ выполнено :_
+
+\[L_{1}^{-1}e^{-d^{2}(x,t)/4}\big{(}1+\|x\|d(x,t)\big{)}^{-1/2}\leqslant p(x,t) \leqslant L_{1}e^{-d^{2}(x,t)/4}\big{(}1+\|x\|d(x,t)\big{)}^{-1/2}. \tag{3.8}\]
+
+**Лемма 3.2**.: _Существует константа $L_{2}>1$ такая, что :_
+
+\[\big{|}\nabla p(x,t)\big{|}\leqslant L_{2}d(x,t)p(x,t),\quad\forall(x,t)\in \mathbb{H}^{1}. \tag{3.9}\]Here is the translation:
+
+'**Доказательство Леммы 3.1.** Оценка (3.8) является непосредственным следствием эксплицитного выражения карнот-каратеходриевой距離 (3.3) и Теорем 1.1, 1.3 и Замечания 1.5 из [13] (см. также [5,12] для частичных результатов).
+
+**Доказательство Леммы 3.2.** Обратим внимание, что
+
+\[\big{|}\nabla p(x,t)\big{|}^{2}=|\mathrm{X}_{1}p|^{2}(x,t)+|\mathrm{X}_{2}p|^{ 2}(x,t),\]
+
+и
+
+\[\mathrm{X}_{1}p(x,t)=\frac{1}{4(4\pi)^{2}}\int\limits_{\mathbb{R}}\lambda(-x_{ 1}\coth\lambda+x_{2}t)\exp\bigg{(}\frac{\lambda}{4}\big{(}tu-\|x\|^{2}\coth \lambda\big{)}\bigg{)}\frac{\lambda}{\sinh\lambda}\,d\lambda,\]
+
+\[\mathrm{X}_{2}p(x,t)=-\frac{1}{4(4\pi)^{2}}\int\limits_{\mathbb{R}}\lambda(x _{2}\coth\lambda+x_{1}t)\exp\bigg{(}\frac{\lambda}{4}\big{(}tu-\|x\|^{2}\coth \lambda\big{)}\bigg{)}\frac{\lambda}{\sinh\lambda}\,d\lambda.\] Пусть
+
+\[W_{1}=\int\limits_{\mathbb{R}}\lambda\exp\biggl{(}\frac{\lambda}{4}\bigl{(}t \,t-\|x\|^{2}\coth\lambda\bigr{)}\biggr{)}\frac{\lambda}{\sinh\lambda}\,d\lambda,\] \[W_{2}=\int\limits_{\mathbb{R}}\cosh\lambda\exp\biggl{(}\frac{ \lambda}{4}\bigl{(}t\,t-\|x\|^{2}\coth\lambda\bigr{)}\biggr{)}\biggl{(}\frac{ \lambda}{\sinh\lambda}\biggr{)}^{2}d\lambda.\]
+
+Тогда
+
+\[\bigl{|}\nabla p(x,t)\bigr{|}\leqslant\frac{1}{4(4\pi)^{2}}\bigl{(}|x_{1}|+|x_ {2}|\bigr{)}\bigl{(}|W_{1}|+|W_{2}|\bigr{)}.\]
+
+Так как \(|x_{1}|+|x_{2}|\leqslant 2\|x\|\leqslant 2d(x,t)\) (см. (3.3)), по (3.8), для завершения доказательства (3.9), нам остается показать, что существует константа \(C>0\), такая что для любого \((x\neq(0,0),t)\in\mathbb{H}^{1}\) мы имеем :
+
+\[|W_{1}| \leqslant Ce^{-\frac{d^{2}(x,t)}{4}}\bigl{(}1+\|x\|d(x,t)\bigr{)}^{-1/2}, \tag{3.10}\] \[|W_{2}| \leqslant C\frac{d(x,t)}{\|x\|}e^{-\frac{d^{2}(x,t)}{4}}\bigl{(}1+ \|x\|d(x,t)\bigr{)}^{-1/2}. \tag{3.11}\]'Here is the translation:
+
+«При сравнении интегральных выражений для \(W_{1}\) (соответственно \(W_{2}\)) с выражениями для \(p\) (соответственно \(p_{*}(\|\mathbf{x}\|=\sqrt{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}+x_{4}^{2}},t)=p_{*1}(x _{1},x_{2},x_{3},x_{4},t)\), ядро теплового ядра в момент времени \(h=1\) на группе Гейзенберга размерности 5, \(\mathbb{H}^{2}\)), мы нашли, что в интеграле есть только разница в факторе, аналитической функцией на комплексной плоскости, \((2\pi)^{-2}\lambda\) (соответственно \((2\pi)^{-3}\cosh\lambda\)). Мы также наблюдаем, что оценка \(W_{1}\) аналогична оценке \(p\), полученной в Теореме 2.17 [5], а оценка \(W_{2}\) слабее, чем оценка \(p_{*1}\), полученная в Теореме 4.6 [5]. Поэтому Suffit репHITE слово в слово доказательство Теоремы 2.17 (соответственно Теоремы 4.6 при \(n=2\)) [5] для доказательства (3.10) (соответственно (3.11)).
+
+## 4 Доказательство Теоремы 1.1
+
+В дальнейшем, \(V(r)=|B(o,r)|\) (\(r>0\)). Мы напоминаем, что
+
+\[\bigl{|}B(g,r)\bigr{|}=V(r)\sim r^{4},\quad\forall g\in\mathbb{H}^{1},\ r>0. \tag{4.1}\]
+
+По инвариантности слева \(\nabla\) и \(p_{h}\), а также дилатации на \(\mathbb{H}^{1}\), мы обращаем внимание, что для доказательства Теоремы 1.1, достаточно доказать, что существует постоянная \(C>1\), такая, что (см. также Лемму 2.3 и Положение 2.6 [9] для подробного объяснения) :
+
+\[\bigl{|}\nabla e^{\Delta}f\bigr{|}(o)\leqslant Ce^{\Delta}\bigl{(}|\nabla f| \bigr{)}(o),\quad\forall f\in C_{o}^{\infty}. \tag{4.2}\]Во всем дальнейшем, для упрощения обозначений, мы полагаем
+
+\[f_{o}=\frac{1}{|B(o,1)|}\int\limits_{B(o,1)}f(g)\,dg,\qquad\text{A}_{\infty}=e^{1000}(L_{1}+L_{2})^{8},\]
+
+где \(L_{1}\), \(L_{2}>1\) берутся из (3.8) и (3.9) соответственно.
+
+**Основная идея доказательства (4.2).** Мы кратко объясняем основную идею доказательства (4.2) :
+
+Так как \(\mathbb{H}^{1}\) является стохастически полным, мы имеем »\[|\nabla e^{\Delta}f|(o)=\left|\int\limits_{\mathbb{H}^{1}}\nabla p (g^{-1})(f(g)-f_{o})\,dg\right|\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\cdot|f(g)-f_{o}|\,dg.\]
+
+Формально записываем
+
+\[|\nabla e^{\Delta}f|(o) \leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\cdot|f(g)-f_{o}|\,dg\] \[\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|\left[\int\limits_{\mathbb{H}^{1}}|\nabla f(g^{\prime})|K(g,g^{\prime})\,dg^{\prime}\right]\,dg\] \[=\int\limits_{\mathbb{H}^{1}}|\nabla f(g^{\prime})| \left[\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})| K(g,g^{\prime})\,dg\right]\,dg^{\prime}\] \[\leqslant C\int\limits_{\mathbb{H}^{1}}p(g^{\prime})|\nabla f(g^{\prime})|\,dg^{\prime}.\]
+
+Иначе говоря, чтобы доказать оценку (4.2), достаточно найти функцию \(K\), определённую на \(\mathbb{H}^{1}\times\mathbb{H}^{1}\), которая удовлетворяет двум следующим условиям:
+
+\[|f(g)-f_{o}|\leqslant\int\limits_{\mathbb{H}^{1}}|\nabla f(g^{\prime})|K(g,g^{\prime})\,dg^{\prime},\quad\forall g\in\mathbb{H}^{1}, \ f\in C_{o}^{\infty}\big{(}\mathbb{H}^{1}\big{)}, \tag{4.3}\]
+
+\[\int\limits_{\mathbb{H}^{1}}|\nabla p(g^{-1})|K(g,g^{\prime})\,dg\leqslant Cp(g^{\prime}),\quad\forall g^{\prime}\in\mathbb{H}^{1}. \qquad\Box \tag{4.4}\]Условие (4.3) естественным образом ведет нас к использованию неравенства Пуанкаре (локально) и формулы представления (локально). Трудность состоит в том, чтобы выполнить условие (4.4): надо выбрать $K$ оптимальным образом из (4.3) и использовать оптимальные оценки ядра тепла и его градиента, а также субриманову структуру $\mathbb{H}^{1}$. Мы также увидим, что трудность в контроле $K(g,g^{\prime})$ заключается в случае, когда $d(g,g^{\prime})\ll 1$ при $d(g)\to+\infty$.
+
+**Доказательство (4.2).** Пусть
+
+\[J_{1} =\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)\leqslant A_{\infty}\}}d(g) p(g)\cdot\big{|}f(g)-f_{o}\big{|}\,dg,\] \[J_{2} =\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)>A_{\infty}\}}d(g)p(g) \cdot\big{|}f(g)-f_{o}\big{|}\,dg.\]
+
+Так как
+
+\[\big{|}\nabla p\big{(}g^{-1}\big{)}\big{|}\leqslant L_{2}d\big{(}g^{-1}\big{)} p\big{(}g^{-1}\big{)}=L_{2}d(g)p(g),\]
+
+то
+
+\[\big{|}\nabla e^{\Delta}f\big{|}(o)\leqslant L_{2}(J_{1}+J_{2}).\]
+
+Так как
+
+\[e^{\Delta}\big{(}|\nabla f|\big{)}(o)=\int\limits_{\mathbb{H}^{1}}p\big{(}g^{- 1}\big{)}|\nabla f|(g)\,dg=\int\limits_{\mathbb{H}^{1}}p(g)|\nabla f|(g)\,dg,\]
+
+чтобы доказать (4.2), нам остается показать, что существует некоторая постоянная $C>0$, не зависящая от $f$, такая что
+
+\[J_{1}+J_{2}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)|\nabla f|(g)\,dg.\qquad\Box\]
+
+### Оценка $J_{1}$
+
+Мы видим, что
+
+\[\big{|}f(g)-f_{o}\big{|}\leqslant\big{|}f_{1}(g)-f_{o}\big{|}+\big{|}f(g)-f_{1 }(g)\big{|}.\]
+
+Формула представления (см. (2.2)) говорит нам, что
+
+\[J_{11*}=\big{|}f(g)-f_{1}(g)\big{|} \leqslant C_{1}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime}) \big{|}\frac{d(g,g^{\prime})}{|B(g,d(g,g^{\prime}))|}\,dg^{\prime}\] \[=C_{1}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime})\big{|}\frac{ d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg^{\prime},\quad\text{ по (4.1).}\]
+
+Кроме того,Here is the translation of the text into Russian:
+
+\[J_{12*}=\big{|}f_{o}-f_{1}(g)\big{|}\leqslant\big{|}f_{o}-f_{A_{\infty}+2}(o) \big{|}+\big{|}f_{1}(g)-f_{A_{\infty}+2}(o)\big{|}.\]
+
+Используя неравенство Пуанкаре (см. (2.1)), мы получаем
+
+\[\big{|}f_{o}-f_{\mathrm{A}_{\infty}+2}(o)\big{|} =\frac{1}{|B(o,1)|}\bigg{|}\int\limits_{B(o,1)}\big{(}f(g^{\prime} )-f_{\mathrm{A}_{\infty}+2}(o)\big{)}\,dg^{\prime}\bigg{|}\]
+\[\leqslant\frac{1}{|B(o,1)|}\int\limits_{B(o,\mathrm{A}_{\infty}+2) }\big{|}f(g^{\prime})-f_{\mathrm{A}_{\infty}+2}(o)\big{|}\,dg^{\prime}\]
+\[\leqslant C(\mathrm{A}_{\infty})\int\limits_{B(o,\mathrm{A}_{ \infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime},\]
+
+и аналогично,
+
+\[\big{|}f_{1}(g)-f_{\mathrm{A}_{\infty}+2}(o)\big{|}\leqslant C(\mathrm{A}_{ \infty})\int\limits_{B(o,\mathrm{A}_{\infty}+2)}|\nabla f|(g^{\prime})\,dg^{ \prime}.\]
+
+По верхним оценкам \(p\), (3.8), мы получаем
+
+\[J_{1} \leqslant C^{\prime}(\mathrm{A}_{\infty})\int\limits_{B(o, \mathrm{A}_{\infty}+1)}\bigg{[}\int\limits_{B(g,1)}\big{|}\nabla f(g^{\prime} )\big{|}\frac{d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg^{\prime}+ \int\limits_{B(o,\mathrm{A}_{\infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime} \bigg{]}dg\]
+\[\leqslant C_{*}(\mathrm{A}_{\infty})\int\limits_{B(o,\mathrm{A}_{ \infty}+2)}|\nabla f|(g^{\prime})\bigg{[}1+\int\limits_{B(g^{\prime},1)}\frac{ d(g^{\prime},g)}{|B(g^{\prime},d(g^{\prime},g))|}\,dg\bigg{]}dg^{\prime}\]
+\[\leqslant C(\mathrm{A}_{\infty})\int\limits_{B(o,\mathrm{A}_{ \infty}+2)}|\nabla f|(g^{\prime})\,dg^{\prime}\quad\text{по (\ref{eq:C_*})}\]
+\[\leqslant C^{*}(\mathrm{A}_{\infty})\int\limits_{B(o,\mathrm{A}_{ \infty}+2)}p(g^{\prime})|\nabla f|(g^{\prime})\,dg^{\prime}\quad\text{по (\ref{eq:C_*})}\]
+\[\leqslant C^{*}(\mathrm{A}_{\infty})\int\limits_{\mathbb{H}^{1}}p (g^{\prime})|\nabla f|(g^{\prime})\,dg^{\prime}.\]
+
+### Оценка \(J_{2}\)
+
+Так как
+
+\[J_{2}=\int\limits_{\{g=(x,t)\in\mathbb{H}^{1};d(g)>\mathrm{A}_{\infty},x\neq(0,0)\}}d(g)\,p(g)\big{|}f(g)-f_{o}\big{|}\,dg,\]'Всюду в дальнейшем можно предположить,
+
+\[г=(x,t)\in\Sigma=\left\{\mathbb{R}^{2}\times\mathbb{R}\setminus\left\{(0,0, t);t\in\mathbb{R}\right\}; d(g)>\mathrm{A}_{\infty}\right\}.\]Обозначим $\gamma$ минимальную геодезическую (уникальную) кривую с началом в $g=(x,t)$, которая определена уравнениями (3.4) и (3.5).
+
+Пусть
+
+\[N(g)=\left[100d^{3/2}(g)\ln d(g)\right]+1,\]
+
+где $[h]$ ($h\in\mathbb{R}$) обозначает целую часть $h$, и пусть
+
+\[g\left(N(g)\right)=\gamma\left(1-N(g)d^{-7/2}(g)\right).\]
+
+Надо отметить читателю, что выбор $N(g)$ и $\{g(i)=\gamma(1-id^{-7/2}(g))\}_{0\leqslant i\leqslant d(g)N(g)}$, определенный в разделе 4.2.2, не является уникальным, но очень тонким, он зависит не только от оптимальных оценок ядра тепла и его градиента, но и от субриemannовой структуры $\mathbb{H}^{1}$ (более确енно, потребуются результаты, аналогичные Леммам 4.2 и 4.3 этой статьи).
+
+Тогда
+
+Используя неравенство Пуанкаре (см. (2.1)) и оценку объема шаров в $\mathbb{H}^{1}$ (см. (4.1)), получаем
+
+\[\left|f_{2d^{-5/2}(g)}\left(g\left(N(g)\right)\right)-f_{o}\right| \leqslant\left|f_{o}-f_{d(g(N(g))+4d^{-5/2}(g)}(o)\right|\] \[\leqslant Cd^{11}(g)\int\limits_{B(o,d(g)-90\frac{\ln d(g)}{d(g)})} \left|\nabla f(g^{\prime})\right| dg^{\prime}.\]
+
+Следовательно,
+
+\[\left|f(g)-f_{o}\right|\leqslant Cd^{11}(g)\int\limits_{B\left(o,d(g)-90 \frac{\ln d(g)}{d(g)})\right)} \left|\nabla f(g^{\prime})\right| dg^{\prime}+\left|f(g)-f_{2d^{-5/2}(g)}\left(g\left(N(g)\right)\right)\right|.\]
+
+Пусть
+
+\[J_{21}=\int\limits_{\{g\in\mathbb{H}^{1};\,d(g)>\text{A}_{\infty}\}}d^{12}(g)\, p(g)\left[\int\limits_{B(o,d(g)-90\frac{\ln d(g)}{d(g)})} \left|\nabla f(g^{\prime})\right| dg^{\prime}\right] dg,\]
+
+\[J_{22}=\int\limits_{\Sigma}d(g)\,p(g)\left|f(g)-f_{2d^{-5/2}(g)}\left(g\left(N(g)\right)\right)\right| dg.\]
+
+Мы отмечаем, чтоHere is the translation of the text into Russian:
+
+\[J_{2}\leqslant C(J_{21}+J_{22}).\]
+
+Чтобы завершить доказательство Теоремы 1.1, достаточно показать, что существует константа \(C>0\), такая что для любой функции \(f\in C_{o}^{\infty}(\mathbb{H}^{1})\) выполнено
+
+\[J_{21}+J_{22}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)|\nabla f(g)|\,dg.\]
+
+#### 4.2.1 Оценка \(J_{21}\)
+
+Простым расчетом мыobservируем, что
+
+\[\bigg{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times\mathbb{H}^{1};d(g)> \mathrm{A}_{\infty},d(g^{\prime})<d(g)-90\frac{\ln d(g)}{d(g)}\bigg{\}}\] \[\quad\subset\Big{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times\mathbb{H}^{1};d(g)>\mathrm{A}_{\infty},d(g^{\prime})\leqslant\mathrm{A}_{\infty}-1\Big{\}}\] \[\quad\quad\cup\bigg{\{}(g,g^{\prime})\in\mathbb{H}^{1}\times\mathbb{H}^{1};d(g^{\prime})>\mathrm{A}_{\infty}-1,d(g)>d(g^{\prime})+46\frac{\ln d(g^{\prime})}{d(g^{\prime})}\bigg{\}}.\]
+
+Таким образом, используя верхние оценки \(p(g)\) (см. (3.8)), мы имеем
+
+\[J_{21} \leqslant C\int\limits_{d(g^{\prime})\leqslant\mathrm{A}_{\infty}-1} |\nabla f(g^{\prime})|\,dg^{\prime}\int\limits_{d(g)>\mathrm{A}_{\infty}}d^{12}(g)e^{-d^{2(g)}/4}\,dg\] \[\quad+C\int\limits_{d(g^{\prime})>\mathrm{A}_{\infty}-1}|\nabla f(g^{\prime})|\int\limits_{d(g)>d(g^{\prime})+46\frac{\ln d(g^{\prime})}{d(g^{\prime})}}d^{12}(g)e^{-d^{2}(g)/4}\,dg\bigg{]}dg^{\prime}.\]
+
+С помощью оценки объема шаров в \(\mathbb{H}^{1}\) (см. (4.1)), мы имеем
+
+\[\int\limits_{d(g)>\mathrm{A}_{\infty}}d^{12}(g)e^{-d^{2}(g)/4}\,dg\leqslant CA_{\infty}^{14}e^{-\mathrm{A}_{\infty}^{2}/4}\leqslant C\big{(}1+\mathrm{A}_{\infty}^{2}\big{)}^{-1/2}e^{-(\mathrm{A}_{\infty}-1)^{2}/4},\]
+
+и когда \(d(g^{\prime})>\mathrm{A}_{\infty}-1\), мы имеем
+
+\[\int\limits_{d(g)>d(g^{\prime})+46\frac{\ln d(g^{\prime})}{d(g^{\prime})}}d^{12}(g)e^{-\frac{d^{2}(g)}{4}}\,dg\leqslant Cd^{-1}(g^{\prime})e^{-\frac{d^{2}(g^{\prime})}{4}}.\]
+
+Следовательно, нижние оценки \(p\) (см. (3.8)) говорят нам, что\[Дж_{21}\leqslant C\int\limits_{\mathbb{H}^{1}}\big{|}\nabla f(g^{\prime})\big{|} \,p(g^{\prime})\,dg^{\prime}.\]
+
+#### Оценка \(Дж_{22}\)
+
+Напомним, что
+
+\[{\rm A}_{\infty}=e^{1000}(L_{1}+L_{2})^{8},\]
+
+где две постоянные \(L_{1}\), \(L_{2}>1\) берутся из (3.8) и (3.9) соответственно.
+
+Напомним также, что
+
+\[Дж_{22}=\int\limits_{\Sigma}d(g)p(g)\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N (g)\big{)}\big{)}\big{|}\,dg,\]
+
+где
+
+\[\Sigma=\big{\{}\mathbb{R}^{2}\times\mathbb{R}\setminus\big{\{}(0,0,t);t\in \mathbb{R}\big{\}};d(g)>{\rm A}_{\infty}\big{\}},\]
+
+\[N(g)=\big{[}100d^{3/2}(g)\ln d(g)\big{]}+1,\quad g\big{(}N(g)\big{)}=\gamma \big{(}1-N(g)d^{-7/2}(g)\big{)},\]
+
+и \(\gamma\) обозначает минимальную геодезическую (единственную) из точки \(g=(x,t)\), которая определена равенствами (3.4)-(3.6).
+
+Трудность доказательства Теоремы 1.1 состоит в том, чтобы показать, что существует константа \(C>0\) такая, что для любой \(f\in C^{\infty}_{o}(\mathbb{H}^{1})\) выполнено
+
+\[Дж_{22}\leqslant C\int\limits_{\mathbb{H}^{1}}p(g)\big{|}\nabla f(g)\big{|}\,dg. \tag{4.5}\]
+
+В дальнейшем, чтобы упростить обозначения, обозначим
+
+\[g=(x,t)\in\Sigma,\] \[s(i)=1-id^{-7/2}(g),\quad\text{\rm для }0\leqslant i\leqslant d (g)N(g),\] \[g(i)=\big{(}x(i),t(i)\big{)}=\big{(}x_{1}(i),x_{2}(i),t(i)\big{)} =\gamma\big{(}s(i)\big{)}.\]
+
+И заметим, что
+
+\[d\big{(}g(i),g(j)\big{)}=|i-j|d^{-5/2}(g),\quad\forall 0\leqslant i,j\leqslant d (g)N(g).\]
+
+Теперь оценим
+
+\[Дж_{22*}=\big{|}f(g)-f_{2d^{-5/2}(g)}\big{(}g\big{(}N(g)\big{)}\big{|}.\]
+
+Заметим, что
+
+\[Дж_{22*}\leqslant\sum_{i=0}^{N(g)-1}\big{|}f\big{(}g(i)\big{)}-f\big{(}g(i+1) \big{)}\big{|}+\big{|}f\big{(}g\big{(}N(g)\big{)}\big{)}-f_{2d^{-5/2}(g)} \big{(}g\big{(}N(g)\big{)}\big{|}.\]По формуле представления (см. (2.2)), мы имеем\[\big{|}f\big{(}g(N(g))\big{)}-f_{2d^{-5/2}(g)}\big{(}g(N(g))\big{)}\big{|}\] \[\qquad\leqslant C\int\limits_{B(g(N(g)),4d^{-5/2}(g))}\big{|}\nabla f(g^{\prime})\big{|}\frac{d(g(N(g)),g^{\prime})}{|B(g(N(g)),d(g(N(g)),g^{\prime}))|}\,dg^{\prime},\]
+
+и
+
+\[\big{|}f(g(i))-f(g(i+1))\big{|}\] \[\qquad\leqslant\big{|}f(g(i))-f_{2d^{-5/2}(g)}(g(i))\big{|}+\big{|}f(g(i+1))-f_{2d^{-5/2}(g)}(g(i))\big{|}\] \[\qquad\leqslant C\int\limits_{B(g(i),4d^{-5/2}(g))}\big{|}\nabla f(g^{\prime})\big{|}\frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{\prime}))|}\,dg^{\prime}\] \[\qquad+C\int\limits_{B(g(i+1),4d^{-5/2}(g))}\big{|}\nabla f(g^{\prime})\big{|}\frac{d(g(i+1),g^{\prime})}{|B(g(i+1),d(g(i+1),g^{\prime}))|}\,dg^{\prime}.\]
+
+Therefore,
+
+\[J_{22*}\leqslant C\sum\limits_{i=0}^{N(g)}\int\limits_{B(g(i),4d^{-5/2}(g))} \big{|}\nabla f(g^{\prime})\big{|}\frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{\prime}))|}\,dg^{\prime}, \tag{4.6}\]
+
+и
+
+\[J_{22}\leqslant C\int\limits_{\Sigma}d(g)p(g)\sum\limits_{i=0}^{N(g)}\!\! \bigg{[}\int\limits_{B(g(i),4d^{-5/2}(g))}\big{|}\nabla f(g^{\prime})\big{|} \frac{d(g(i),g^{\prime})}{|B(g(i),d(g(i),g^{\prime}))|}\,dg^{\prime}\bigg{]}dg.\]
+
+Прежде чем продолжить доказательство (4.5), мы должны предупредить читателя, что ключевым шагом в доказательстве (4.5) (и, соответственно, Теоремы 1.1) является получение оценки (4.6), и что выбор набора \(\{g(i)\}_{0\leqslant i\leqslant N(g)}\) и \(d^{-5/2}(g)\) в оценке (4.6) не уникален, но очень 섬нителен (он зависит от оптимальных оценок ядра теплового потока и его градиента, а также от подриеманской структуры \(\mathbb{H}^{1}\)).
+
+Обозначим через \(\chi\) характеристическую функцию,'Here is the translation of the text into Russian:
+
+\[
+К=К(g,g')=d(g)\sum_{i=0}^{N(g)}\frac{d(g',g(i))}{|B(g(i),d(g',g(i)))|}\chi\left\{(g,g')\in\Sigma\times\mathbb{H}^{1};d(g',g(i))<\frac{4}{d^{5/2}(g)}\right\},
+\]
+
+\[
+Дж_{22}^*=\int\limits_{\Sigma}p(g)\,К\,dg.
+\]
+
+Тогда, используя теорему Фубини, мы получаем
+
+\[
+Дж_{22}\leqslant C\int\limits_{d(g')>\Delta_{\infty}-100(\ln\Delta_{\infty})/\Delta_{\infty}-5\Delta_{\infty}^{-5/2}}\big{|}\nabla f(g')\big{|}Дж_{22}^*\,dg'.
+\]
+
+Таким образом, для доказательства (4.5), остается доказать следующий результат:
+
+**Предложение 4.1**. _Существует постоянная $C>0$, такая что_
+
+\[
+Дж_{22}^*\leqslant Cp(g'),\quad\forall d(g')>{\rm A}_{\infty}-100\frac{\ln{\rm A}_{\infty}}{{\rm A}_{\infty}}-5{\rm A}_{\infty}^{-5/2}. \tag{4.7}
+\]
+
+**Доказательство.**: Обратим внимание, что
+
+\[
+К\neq 0 \Rightarrow d\big{(}g',g(i)\big{)}<\frac{4}{d^{5/2}(g)}\quad\text{ для некоторого }0\leqslant i\leqslant N(g)+1 \tag{4.8}
+\]
+
+\[
+\Rightarrow \frac{d(g')+4/d^{5/2}(g)}{1-200(\ln d(g))/d^{2}(g)} \geqslant d(g)=\frac{d(g(i))}{s(i)}\geqslant d(g')-\frac{4}{d^{5/2}(g)}
+\]
+
+\[
+\Rightarrow \frac{d(g')/d(g)+4/d^{7/2}(g)}{1-200(\ln d(g))/d^{2}(g)} \geqslant 1\geqslant\frac{d(g')}{d(g)}-\frac{4}{d^{7/2}(g)}.
+\]
+
+В частности, мы имеем
+
+\[
+N(g')-1\leqslant N(g)\leqslant N(g')+1,\quad\text{и}\quad \frac{2}{\sqrt{5}}d(g)\leqslant d(g')\leqslant\frac{\sqrt{5}}{2}d(g). \tag{4.9}
+\]
+
+Используя (4.1), мы получаем
+
+\[
+К\leqslant 2d(g')\sum_{i=0}^{N(g')+1}\frac{d(g',g(i))}{|B(g',d(g',g(i)))|}\chi\left\{(g,g')\in\Sigma\times \mathbb{H}^{1};d\big{(}g',g(i)\big{)}<\frac{4}{d^{5/2}(g)}\right\}.
+\]
+
+Следовательно,
+
+\[
+Дж_{22}^*\leqslant 2d(g')\sum_{i=0}^{N(g')+1}\int\limits_{\{g\in\Sigma;d(g',g(i))<4d^{-5/2}(g)\}}p(g)\frac{d(g',g(i))}{|B(g',d(g',g(i)))|}\,dg. \tag{4.10}
+\]
+
+Напомним, что'Here is the translation of the text into Russian:
+
+\[
+s(j) = 1 - jd^{-7/2}(g), \quad 0 \leqslant j \leqslant d(g)N(g),
+\]
+
+и пусть $\mu^{-1}$ обозначает обратную функцию от $\mu$,
+
+\[
+\mu(\varphi) = \frac{2\varphi - \sin 2\varphi}{\sin^2 \varphi}:]-\pi,\pi[\to \mathbb{R}.
+\]
+
+И нам нужно двух следующих лемм, доказательство которых будет дано в конце этой секции.
+
+**Лемма 4.2**.: _Пусть $L_{1}>1$ как в (3.8) и пусть $(g=(x,t),\,g')\in\Sigma\times\mathbb{H}^{1}$ удовлетворяет_
+
+\[d\big{(}g',g(i)\big{)}<4d^{-5/2}(g)\quad\text{для некоторого }0\leqslant i \leqslant N(g')+1,\]
+
+_тогда_
+
+\[p(g) \leqslant 400L_{1}^{2}p(g')e^{-i/(5d^{3/2}(g'))}\bigg{(} \frac{\sin s(i)\mu^{-1}(t/\|x\|^2)}{\sin\mu^{-1}(t/\|x\|^2)}\bigg{)}^{1/2}. \tag{4.11}\]
+
+**Лемма 4.3**.: _Существует константа $C>0$ такая, что для любого $g'\in\mathbb{H}^{1}$ и cualquier $0\leqslant i \leqslant N(g')+1$, мы имеем_
+
+\[\int\limits_{\{g=(x,t)\in\Sigma;d(g',g(i))<\frac{4}{d^{3/2}(g)}\}} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^2)}{\sin\mu^{-1}(t/\|x\|^2)}\bigg{)}^{1/2}\frac{d(g',g(i))}{|B(g',d(g',g(i)))|}\,dg\]
+
+\[\leqslant Cd^{-5/2}(g'). \tag{4.12}\]
+
+Мы предполагаем две леммы на данный момент и продолжаем с доказательством пропозиции 4.1.
+
+_Окончание доказательства пропозиции 4.1._ По (4.10)-(4.12), мы имеем
+
+\[J_{22}^{*}\leqslant Cd^{-3/2}(g')p(g')\sum\limits_{i=0}^{N(g')+1}e^{-\frac{i}{5}d^{-3/2}(g')}\leqslant Cp(g')\!\! \left[1+\int\limits_{0}^{+\infty}e^{-h/5}\,dh\right]\!=6Cp(g').\]
+
+Откуда пропозиция 4.1.
+
+**Доказательство леммы 4.2**.: По верхним и нижним оценкам $p$ (см. (3.8)), мы имеем
+
+\[p(g)=p\big{(}g(i)\big{)}\frac{p(g)}{p(g(i))}\leqslant L_{1}^{2}p\big{(}g(i) \big{)}e^{\frac{d^{2}(g(i))-d^{2}(g)}{4}}\bigg{(}\frac{1+\|x(s(i))\|d(g(s(i))) }{1+\|x\|d(g)}\bigg{)}^{1/2}.\]
+
+И по определению $g(i)$ и (3.5), мы имеем\[d\big{(}g(i)\big{)}\leqslant d(g),\qquad\big{\|}x\big{(}s(i)\big{)}\big{\|}= \frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\|x\|,\]
+
+и
+
+\[e^{\frac{d^{2}(g(i))-d^{2}(g)}{4}}=e^{-\frac{d^{2}(g)}{4}(1-s(i)^{2})}<e^{- \frac{i}{4}d^{-3/2}(g)}<e^{-\frac{i}{5}d^{-3/2}(g^{\prime})},\quad\text{по (\ref{eq:p1})}.\]
+
+Кроме того, по (4.9), мы имеем
+
+\[1\geqslant s(i)\geqslant\frac{1}{2},\quad\text{когда }0\leqslant i\leqslant N (g^{\prime})+1<2N(g),\]
+
+таким образом,
+
+\[p(g)\leqslant 100L_{1}^{2}p\big{(}g(i)\big{)}e^{-\frac{i}{3}d^{-3/2}(g^{\prime})} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)} ^{1/2}.\]
+
+И, наконец, для завершения доказательства Леммы 4.2, мы должны показать, что
+
+\[p\big{(}g(i)\big{)}\leqslant 4p(g^{\prime}).\]
+
+На самом деле, мы будем доказывать, что
+
+\[\bigg{|}\frac{p(g(i))}{p(g^{\prime})}-1\bigg{|}\leqslant 1. \tag{4.13}\]
+
+_Доказательство_ (4.13). Мы замечаем, что
+
+\[\bigg{|}\frac{p(g(i))}{p(g^{\prime})}-1\bigg{|}=\frac{d(g^{\prime},g(i))}{p(g^{ \prime})}\big{|}\nabla p(g_{*})\big{|}\quad\text{с }g_{*}\in B\big{(}g^{ \prime},4d^{-5/2}(g)\big{)}.\]
+
+Однако, по оценкам для $p$ и $|\nabla p|$ (см. (3.8) и (3.9)), мы имеем
+
+\[\frac{1}{p(g^{\prime})}\leqslant L_{1}\big{(}1+d^{2}(g^{\prime})\big{)}^{ \frac{1}{2}}e^{\frac{d^{2}(g^{\prime})}{4}}\leqslant 2L_{1}d(g^{\prime})e^{ \frac{d^{2}(g^{\prime})}{4}},\]
+
+\[\big{|}\nabla p(g_{*})\big{|} \leqslant L_{2}d(g_{*})p(g_{*})\leqslant L_{1}L_{2}\big{(}d(g^{ \prime})+4d^{-5/2}(g)\big{)}e^{-\frac{(d(g^{\prime})-4d^{-5/2}(g))^{2}}{4}}\] \[\leqslant 4L_{1}L_{2}d(g^{\prime})e^{-\frac{d^{2}(g^{\prime})}{4}},\]
+
+по (4.9) и тому, что $d(g)>1000$.
+
+Кроме того, (4.9) и то, что $g\in\Sigma$, говорят нам, что
+
+\[d\big{(}g^{\prime},g(i)\big{)}<4d^{-5/2}(g)<5d^{-2}(g)\mathrm{A}_{\infty}^{-1/ 2}<\big{(}8L_{1}^{2}L_{2}\big{)}^{-1}d^{-2}(g^{\prime}).\]
+
+Таким образом, мы получаем (4.13). 
+
+**Доказательство Леммы 4.3.** По (4.9), мы можемHere is the translation:
+
+\[\mu(\varphi)=\frac{2\varphi-\sin 2\varphi}{2\sin^{2}\varphi}:\,]-\pi,\pi[\,\to\mathbb{R},\]
+
+и что
+
+\[\psi(x,\varphi)=\big{(}x,\mu(\varphi)\|x\|^{2}\big{)}:\,\big{\{}(x,\varphi)\in \mathbb{R}^{2}\times\,]-\pi,\pi[;\, x\neq(0,0)\big{\}}\to\big{\{}(x,t)\in\mathbb{ H}^{1};x\neq 0\big{\}}\]
+
+является $C^{1}$-диффеоморфизмом. Обозначим $D\psi(x,\theta)$ якобианом матрицы $\psi$ в точке $(x,\theta)$;_then мы имеем \[\det D\psi\left(x,\theta\right)=\frac{2\sin\theta-2\theta\cos\theta}{\sin^{3}\theta} \|x\|^{2}.\]
+
+Пусть
+
+\[\Omega_{g^{\prime}}=\left\{g=\left(x,t\right)\in\mathbb{H}^{1};x\neq\left(0,0 \right),d(g)>\frac{1}{2}d(g^{\prime})\right\}.\]
+
+Для $0\leqslant i\leqslant N(g^{\prime})+1$ определим
+
+\[\Theta_{i}\left(g\right)=g(i):\Omega_{g^{\prime}}\rightarrow\mathbb{H}^{1}\setminus\left\{\left(0,0,t\right)\in\mathbb{H}^{1};t\in\mathbb{R}\right\},\]
+
+и
+
+\[\Phi_{i}:\psi^{-1}(\Omega_{g^{\prime}}) \rightarrow \left(\mathbb{R}^{2}\setminus\left\{\left(0,0\right) \right\}\right)\times\,]-\pi,\pi[,\\] \[(x,\theta)=\psi^{-1}\big{(}g=(x,t)\big{)} \mapsto\psi^{-1}\big{(}g(i)\big{)}=\big{(}x(i),s(i)\theta\big{)},\]
+
+где (см. определение $s(i)$, (3.3) и (3.4))
+
+\[s(i)=s(i)(g)=1-\frac{i}{d^{7/2}(g)}\quad\text{с }d(g)=\frac{\theta}{\sin\theta}\|x\|,\ \theta=\mu^{-1}\bigg{(}\frac{t}{\|x\|^{2}}\bigg{)}, \tag{4.14}\]
+
+\[x_{1}(i)=\frac{\sin s(i)\theta}{\sin\theta}\big{(}x_{1}\cos\big{(}s(i)-1\big{)}\theta+x_{2}\sin\big{(}s(i)-1\big{)}\theta\big{)}, \tag{4.15}\]
+
+\[x_{2}(i)=\frac{\sin s(i)\theta}{\sin\theta}\big{(}-x_{1}\sin\big{(}s(i)-1 \big{)}\theta+x_{2}\cos\big{(}s(i)-1\big{)}\theta\big{)}. \tag{4.16}\]
+
+Обратим внимание, что $\Phi_{i}$ и $\Theta_{i}$ являются функциями класса $C^{1}$, и что
+
+\[\Theta_{i}=\psi\circ\Phi_{i}\circ\psi^{-1}.\]
+
+И мы cần двух следующих результатов, доказательство которых будет дано позже:1. \(\Phi_{i}\) является инъективной на \(\psi^{-1}(\Omega_{g^{\prime}})\) ;
+2. abbiamo \[\det D\Phi_{i}\big{(}(x,\theta)\big{)}=\bigg{(}\frac{\sin s(i)\theta}{\sin \theta}\bigg{)}^{2}\bigg{[}1+\frac{5}{2}id^{-7/2}(g)\bigg{]}.\] (4.17)
+
+Два предыдущих результата говорят нам, что \(\Theta_{i}\) также инъективна на \(\Omega_{g^{\prime}}\), и для любого \(g=\psi\left(x,\theta\right)\in\Omega_{g^{\prime}}\), abbiamo
+
+\[\det D\Theta_{i}\left(g\right) =\det D\psi\left(x(i),s(i)\theta\right)\cdot\det D\Phi_{i}(x, \theta)\cdot\big{[}\det D\psi\left(x,\theta\right)\big{]}^{-1}\] \[=\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{4}\bigg{[} \frac{\sin\theta-\theta\cos\theta}{\sin^{3}\theta}\bigg{]}^{-1}\frac{\sin s(i)\theta-s(i)\theta\cos s(i)\theta}{\sin^{3}s(i)\theta} \bigg{[}1+\frac{5}{2}\frac{i}{d^{7/2}(g)}\bigg{]}\neq 0,\] dolayısıyla, отличая два случая, \(|\theta|=\mu^{-1}(|t|/\|x\|^{2})\leqslant\pi/2\) и \(\pi/2<|\theta|<\pi\), легко видим, что
+
+\[\bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^ {1/2}\big{[}\det D\Theta_{i}(g)\big{]}^{-1}\leqslant 1000.\]
+
+Следовательно, по глобальному теореме об逆имости, формуле замены переменных и (4.9), abbiamo
+
+\[\int\limits_{[g=(x,t)\in\Sigma;d(g^{\prime},g(i))<4d^{-5/2}(g)]} \bigg{(}\frac{\sin s(i)\mu^{-1}(t/\|x\|^{2})}{\sin\mu^{-1}(t/\|x\|^{2})}\bigg{)}^ {1/2}\frac{d(g^{\prime},g(i))}{|B(g^{\prime},d(g^{\prime},g(i)))|}\,dg\] \[\leqslant 1000\int\limits_{g(i)\in B(g^{\prime},10d^{-5/2}(g^{ \prime}))}\frac{d(g^{\prime},g(i))}{|B(g^{\prime},d(g^{\prime},g(i)))|}\,dg(i)\] \[<Cd^{-5/2}(g^{\prime}),\]
+
+благодаря свойству удвоения объема или (4.1).
+
+\(\Phi_{i}\) _является инъективной на \(\psi^{-1}(\Omega_{g^{\prime}})\)._ Пусть
+
+\[\psi^{-1}(g_{*})=(x_{*},\theta_{*}),\,\psi^{-1}(g^{*})=(x^{*},\theta^{*})\in \psi^{-1}(\Omega_{g^{\prime}}),\]удовлетворяющиеHere is the translation of the text into Russian:
+
+\[\left(x_*(i),s_*(i)\theta_*\right) = \Phi_i(x_*,\theta_*) = \Phi_i(x^*,\theta^*) = \left(x^*(i),s^*(i)\theta^*\right).\]
+
+Поскольку
+
+\[d\left(\psi\left(x_*(i),s_*(i)\theta_*\right)\right) = s_*(i)d(g_*) = \left(1-\frac{i}{d^{7/2}(g_*)}\right)d(g_*)\]
+
+\[= d\left(\psi\left(x^*(i),s^*(i)\theta^*\right)\right) = s^*(i)d(g^*) = \left(1-\frac{i}{d^{7/2}(g^*)}\right)d(g^*),\]
+
+и функция $\tau(h)=h-ih^{-5/2}$ является строго возрастающей, то $d(g_*)=d(g^*)$. Следовательно, $s_*(i)=s^*(i)$ и $\theta_*=\theta^*$. И (3.4)_implie que $x_*=x^*$.
+
+Таким образом, мы показали, что $\Phi_i$ является инъективной на $\psi^{-1}(\Omega_{g'})$.
+
+Доказательство (4.17). В дальнейшем, для упрощения обозначений, мы полагаем
+
+\[K_1=\cos\left(s(i)-1\right)\theta,\qquad K_2=\sin\left(s(i)-1\right)\theta.\]
+
+Тогда, по определению $\Phi_i$ (см. (4.14)-(4.16)), мы имеем explicitWire выражение $D\Phi_i(x,\theta)$ в виде suivant \[\left(\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin\theta}K_1+\frac{\partial s(i)}{\partial x_1}\frac{dx_1(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_2+\frac{\partial s(i)}{\partial x_2}\frac{dx_1(i)}{ds(i)}&\frac{\partial s(i)}{\partial\theta}\frac{dx_1(i)}{ds(i)}+\frac{dx_1(i)}{d\theta}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_2+\frac{\partial s(i)}{\partial x_1}\frac{dx_2(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_1+\frac{\partial s(i)}{\partial x_2}\frac{dx_2(i)}{ds(i)}&\frac{\partial s(i)}{\partial\theta}\frac{dx_2(i)}{ds(i)}+\frac{dx_2(i)}{d\theta}\\ \theta\frac{\partial s(i)}{\partial x_1}&\theta\frac{\partial s(i)}{\partial x_2}&s(i)+\theta\frac{\partial s(i)}{\partial\theta}\end{array}\right)\]
+
+где смысл $dx_1(i)/ds(i)$, $dx_1(i)/d\theta$, $dx_2(i)/ds(i)$, $dx_2(i)/d\theta$ является очевидным.
+
+Пусть\[R_{1}^{*}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}+\frac{\partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)}&\frac {\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{2}}\frac{ dx_{1}(i)}{ds(i)}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{1}} \frac{dx_{2}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{\partial s (i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}\end{array}\right|,\] \[R_{2}^{*}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}&\frac{\sin s(i)\theta}{\sin\theta}K_{2}&\frac{dx_{1}(i)}{d\theta} \\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}&\frac{\sin s(i)\theta}{\sin\theta}K_{1 }&\frac{dx_{2}(i)}{d\theta}\\ \frac{\partial s(i)}{\partial x_{1}}&\frac{\partial s(i)}{\partial x_{2}}& \frac{\partial s(i)}{\partial\theta}\end{array}\right|,\] \[R_{1}=s(i)R_{1}^{*},\qquad R_{2}=\theta\,R_{2}^{*}.\]
+
+Так как
+
+\[\left(\theta\,\frac{\partial s(i)}{\partial x_{1}},\theta\,\frac{\partial s(i )}{\partial x_{2}},s(i)+\theta\,\frac{\partial s(i)}{\partial\theta}\right)= \left(0,0,s(i)\right)+\theta\left(\frac{\partial s(i)}{\partial x_{1}},\frac{ \partial s(i)}{\partial x_{2}},\frac{\partial s(i)}{\partial\theta}\right),\]
+
+можно записать
+
+\[\det D\Phi_{i}(x,\theta)=s(i)R_{1}^{*}+\theta\,R_{**},\]
+
+где мы обозначили $R_{**}$.Here is the translation:
+
+\[R_{**}=\left|\begin{array}{ccc}\frac{\sin s(i)\theta}{\sin \theta}K_{1}+\frac{\partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)}& \frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{2}} \frac{dx_{1}(i)}{ds(i)}&\frac{\partial s(i)}{\partial\theta}\frac{dx_{1}(i)} {ds(i)}+\frac{dx_{1}(i)}{d\theta}\\ -\frac{\sin s(i)\theta}{\sin\theta}K_{2}+\frac{\partial s(i)}{\partial x_{1}} \frac{dx_{2}(i)}{ds(i)}&\frac{\sin s(i)\theta}{\sin\theta}K_{1}+\frac{ \partial s(i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}&\frac{\partial s(i)}{ \partial\theta}\frac{dx_{2}(i)}{ds(i)}+\frac{dx_{2}(i)}{d\theta}\\ \frac{\partial s(i)}{\partial x_{1}}&\frac{\partial s(i)}{\partial x_{2}}& \frac{\partial s(i)}{\partial\theta}\end{array}\right|.\]
+
+Или, erste строка \(R_{**}\) может быть записана как
+
+\[\left(\frac{\sin s(i)\theta}{\sin\theta}K_{1},\,\frac{\sin s(i)\theta}{\sin \theta}K_{2},\frac{dx_{1}(i)}{d\theta}\right)+\frac{dx_{1}(i)}{ds(i)}\left( \frac{\partial s(i)}{\partial x_{1}},\,\frac{\partial s(i)}{\partial x_{2}}, \,\frac{\partial s(i)}{\partial\theta}\right),\]
+
+а вторая строка \(R_{**}\) может быть записана как
+
+\[\left(-\frac{\sin s(i)\theta}{\sin\theta}K_{2},\,\frac{\sin s(i)\theta}{\sin \theta}K_{1},\,\frac{dx_{2}(i)}{d\theta}\right)+\frac{dx_{2}(i)}{ds(i)}\left( \frac{\partial s(i)}{\partial x_{1}},\,\frac{\partial s(i)}{\partial x_{2}}, \,\frac{\partial s(i)}{\partial\theta}\right),\]
+
+мы имеем \(R_{**}=R_{2}^{*}\), поэтому
+
+\[\det D\Phi_{i}(x,\theta)=R_{1}+R_{2}. \tag{4.18}\]
+
+_Расчет \(R_{1}\)._ Поскольку первая колонка \(R_{1}^{*}\) может быть записана как
+
+\[\frac{\sin s(i)\theta}{\sin\theta}\left(\begin{array}{c}K_{1}\\ -K_{2}\end{array}\right)+\frac{\partial s(i)}{\partial x_{1}}\left(\begin{array} []{c}dx_{1}(i)/ds(i)\\ dx_{2}(i)/ds(i)\end{array}\right),\]
+
+а вторая колонка \(R_{1}^{*}\) может быть записана как\[\frac{\sin s(i)\theta}{\sin\theta}\left(\begin{array}{c}К_2\\ К_1\end{array}\right)+\frac{\partial s(i)}{\partial x_{2}}\left(\begin{array} []{c}dx_{1}(i)/ds(i)\\ dx_{2}(i)/ds(i)\end{array}\right),\]
+
+на
+
+\[\begin{split} R_{1}^{*}=&\left(\frac{\sin s(i)\theta}{\sin\theta} \right)^{2}\left|\begin{array}{cc}К_1&К_2\\ -К_2&К_1\end{array}\right|\\ &+\frac{\sin s(i)\theta}{\sin\theta}\left\{\begin{array}{cc} \frac{\partial s(i)}{\partial x_{2}}\left|\begin{array}{cc}К_1&dx_{1}(i)/ ds(i)\\ -К_2&dx_{2}(i)/ds(i)\end{array}\right|+\frac{\partial s(i)}{\partial x_{1}} \left|\begin{array}{cc}dx_{1}(i)/ds(i)&К_2\\ dx_{2}(i)/ds(i)&К_1\end{array}\right|\right\}\\ =&\left(\frac{\sin s(i)\theta}{\sin\theta}\right)^{2}+\frac{\sin s(i)\theta}{ \sin\theta}\big{(}К_1R_{11}^{*}+К_2R_{12}^{*}\big{)},\end{split}\]
+
+где мы обозначили
+
+\[R_{11}^{*}=\frac{\partial s(i)}{\partial x_{2}}\frac{dx_{2}(i)}{ds(i)}+\frac{ \partial s(i)}{\partial x_{1}}\frac{dx_{1}(i)}{ds(i)},\qquad R_{12}^{*}=\frac{ \partial s(i)}{\partial x_{2}}\frac{dx_{1}(i)}{ds(i)}-\frac{\partial s(i)}{ \partial x_{1}}\frac{dx_{2}(i)}{ds(i)}. \tag{4.19}\]
+
+Нам остается рассчитать $\partial s(i)/\partial x_{1}$, $\partial s(i)/\partial x_{2}$, $dx_{1}(i)/ds(i)$ и $dx_{2}(i)/ds(i)$.
+
+В дальнейшем, чтобы упростить обозначения, мы положим
+
+\[s^{\prime}(i)=\frac{d}{d(d(g))}s(i)=\frac{7}{2}i{d^{-9/2}(g)}.\]
+
+Начнем с расчета $\partial s(i)/\partial x_{1}$ и $\partial s(i)/\partial x_{2}$. Поскольку (см. (3.3))
+
+\[d^{2}(g)=\left(\frac{\theta}{\sin\theta}\right)^{2}\big{(}x_{1}^{2}+x_{2}^{2} \big{)},\]
+
+мы имеем
+
+\[\frac{\partial s(i)}{\partial x_{1}}=s^{\prime}(i)\frac{1}{2d(g)}\frac{\partial d^{2}(g)}{\partial x_{1}}=s^{\prime}(i)\frac{1}{d(g)}\left(\frac{\theta}{\sin\theta}\right)^{2}x_{1}, \tag{4.20}\]Here is the translation of the text into Russian:
+
+\[\frac{\partial s(i)}{\partial x_{2}}=s^{\prime}(i)\frac{1}{2d(g)}\frac{ \partial d^{2}(g)}{\partial x_{2}}=s^{\prime}(i)\frac{1}{d(g)}\left(\frac{ \theta}{\sin\theta}\right)^{2}x_{2}. \tag{4.21}
+
+Теперь мы вычисляем $dx_{1}(i)/ds(i)$ и $dx_{2}(i)/ds(i)$. По (4.15), (4.16) и элементарным формулам, связанным с тригонометрическими функциями, мы можем записать\[x_{1}(i)=\frac{1}{2\sin\theta}\big{\{}x_{1}\big{[}\sin\theta+\sin\big{(}2s(i)-1 \big{)}\theta\big{]}+x_{2}\big{[}\cos\theta-\cos\big{(}2s(i)-1\big{)}\theta \big{]}\big{\}}, \tag{4.22}\]
+
+\[x_{2}(i)=\frac{1}{2\sin\theta}\big{\{}-x_{1}\big{[}\cos\theta-\cos\big{(}2s(i)- 1\big{)}\theta\big{]}+x_{2}\big{[}\sin\theta+\sin\big{(}2s(i)-1\big{)}\theta \big{]}\big{\}}. \tag{4.23}\]
+
+Таким образом,
+
+\[\frac{dx_{1}(i)}{ds(i)}=\frac{\theta}{\sin\theta}\big{[}x_{1}\cos \big{(}2s(i)-1\big{)}\theta+x_{2}\sin\big{(}2s(i)-1\big{)}\theta\big{]}, \tag{4.24}\] \[\frac{dx_{2}(i)}{ds(i)}=\frac{\theta}{\sin\theta}\big{[}-x_{1}\sin \big{(}2s(i)-1\big{)}\theta+x_{2}\cos\big{(}2s(i)-1\big{)}\theta\big{]}. \tag{4.25}\]
+
+По (4.19)-(4.21), (4.24) и (4.25), мы сначала устанавливаем, что
+
+\[R^{*}_{11}=s^{\prime}(i)\frac{1}{d(g)}\bigg{(}\frac{\theta}{\sin \theta}\bigg{)}^{3}\|x\|^{2}\cos\big{(}2s(i)-1\big{)}\theta,\] \[R^{*}_{12}=s^{\prime}(i)\frac{1}{d(g)}\bigg{(}\frac{\theta}{\sin \theta}\bigg{)}^{3}\|x\|^{2}\sin\big{(}2s(i)-1\big{)}\theta,\]
+
+затем, используя факт, что $d^{2}(g)=(\frac{\theta}{\sin\theta})^{2}\|x\|^{2}$ (см. (3.3)), что
+
+\[R^{*}_{11}=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos\big{(}2s(i)-1\big{)}\theta,\]
+
+\[R^{*}_{12}=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\sin\big{(}2s(i)-1\big{)}\theta.\]
+
+Таким образом,
+
+\[K_{1}R^{*}_{11}+K_{2}R^{*}_{12}\] \[=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\big{[}\cos\big{(}s(i) -1\big{)}\theta\cos\big{(}2s(i)-1\big{)}\theta+\sin\big{(}s(i)-1\big{)}\theta \sin\big{(}2s(i)-1\big{)}\theta\big{]}\] \[=s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos s(i)\theta.\]
+
+Следовательно,\[R_{1}=s(i)\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{2}+s(i)\frac{ \sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)\frac{\theta}{\sin\theta}\cos s(i)\theta. \tag{4.26}\]
+
+_Расчет \(R_{2}\)_. Пусть
+
+\[R^{*}_{21}=\bigg{(}\frac{\sin s(i)\theta}{\sin\theta}\bigg{)}^{2}\frac{ \partial s(i)}{\partial\theta},\]\[R_{22}^{*} =\frac{\sin s(i)\theta}{\sin\theta}\left\{\frac{dx_{1}(i)}{d\theta} \biggl{[}-K_{2}\frac{\partial s(i)}{\partial x_{2}}-K_{1}\frac{\partial s(i)}{ \partial x_{1}}\biggr{]}-\frac{dx_{2}(i)}{d\theta}\biggl{[}K_{1}\frac{\partial s (i)}{\partial x_{2}}-K_{2}\frac{\partial s(i)}{\partial x_{1}}\biggr{]}\right\}\] \[=\frac{\sin s(i)\theta}{\sin\theta}\left\{K_{2}\biggl{[}\frac{dx_{2 }(i)}{d\theta}\frac{\partial s(i)}{\partial x_{1}}-\frac{dx_{1}(i)}{d\theta} \frac{\partial s(i)}{\partial x_{2}}\biggr{]}-K_{1}\biggl{[}\frac{dx_{1}(i)}{d \theta}\frac{\partial s(i)}{\partial x_{1}}+\frac{dx_{2}(i)}{d\theta}\frac{ \partial s(i)}{\partial x_{2}}\biggr{]}\right\}.\]
+
+Разлагаем по третьей колонке \(R_{2}^{*}\) и получаем, что \(R_{2}^{*}=R_{21}^{*}+R_{22}^{*}\), следовательно, \(R_{2}=\theta\,R_{21}^{*}+\theta\,R_{22}^{*}\).
+
+Помня, что \(d(g)=\frac{\theta}{\sin\theta}\|x\|\), получаем
+
+\[\frac{\partial s(i)}{\partial\theta}=s^{\prime}(i)\frac{\partial d(g)}{ \partial\theta}=s^{\prime}(i)\frac{\sin\theta-\theta\cos\theta}{\sin^{2}\theta} \|x\|=s^{\prime}(i)d(g)\frac{1}{\theta}\frac{\sin\theta-\theta\cos\theta}{\sin \theta},\]
+
+следовательно,
+
+\[R_{21}^{*}=\biggl{(}\frac{\sin s(i)\theta}{\sin\theta}\biggr{)}^{2}s^{\prime}( i)d(g)\frac{1}{\theta}\frac{\sin\theta-\theta\cos\theta}{\sin\theta}.\]
+
+Чтобы рассчитать \(R_{22}^{*}\), нам потребуется явное выражение \(\frac{dx_{1}(i)}{d\theta}\) и \(\frac{dx_{2}(i)}{d\theta}\). Обозначим'\[U_{1}=\frac{d}{d\theta}\frac{\sin\theta+\sin(2s(i)-1)\theta}{2 \sin\theta}=\frac{2s(i)\sin\theta\cos(2s(i)-1)\theta-\sin 2s(i)\theta}{2 \sin^{2}\theta},\] \[U_{2}=\frac{d}{d\theta}\frac{\cos\theta-\cos(2s(i)-1)\theta}{2 \sin\theta}=\frac{-1+2s(i)\sin\theta\sin(2s(i)-1)\theta+\cos 2s(i)\theta}{2 \sin^{2}\theta}.\]
+
+Тогда, по (4.22) и (4.23),
+
+\[\frac{dx_{1}(i)}{d\theta}=x_{1}U_{1}+x_{2}U_{2},\qquad\frac{dx_{2}(i)}{d\theta }=-x_{1}U_{2}+x_{2}U_{1}.\]
+
+Используя (4.20) и (4.21), мы находим, что
+
+\[R_{22}^{*} =\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)\frac{1}{d(g)} \biggl{(}\frac{\theta}{\sin\theta}\biggr{)}^{2}\|x\|^{2}(-K_{2}U_{2}-K_{1}U_{1})\] \[=-\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)(K_{1}U_{1} +K_{2}U_{2})\quad\text{поstackoverflow (\ref{eq:R22})}\] \[=-\frac{\sin s(i)\theta}{\sin\theta}s^{\prime}(i)d(g)\frac{s(i) \sin\theta\cos s(i)\theta-\cos\theta\sin s(i)\theta}{\sin^{2}\theta},\]
+
+где мы трижды использовали элементарные формулы, связывающие тригонометрические функции в последней равенстве.
+
+因此, мы имеем
+
+\[R_{2}=\theta\,R_{21}^{*}+\theta\,R_{22}^{*}=s^{\prime}(i)d(g)\left\{\left( \frac{\sin s(i)\theta}{\sin\theta}\right)^{2}-\theta\,\frac{\sin s(i)\theta}{ \sin\theta}\frac{s(i)\cos s(i)\theta}{\sin\theta}\right\}. \tag{4.27}\]
+
+По (4.18), (4.26) и (4.27), мы получаем (4.17).
+
+## 5 Некоторые открытые проблемы
+
+Чтобы завершить эту статью, мы даем несколько интересных вопросов.Here is the translation of the text into Russian:
+
+'1. Надеюсь, что читатель может دنبالить метод доказательства теоремы 1.1 и получить аналогичный результат для груп Гейзенберга реальной размерности ≥ 5, а также для классических конусов, C(Sₓ) с 0 < φ < 2π.
+2. В рамках полных, некомпактных римановых многообразий M было бы очень интересно найти достаточное или (и) необходимое условие, чтобы существовала константа C > 0, удовлетворяющая \[\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant Ce^{t\Delta}\big{(}|\nabla f|\big{)} (g),\quad\forall g\in M,\ t>0,\ f\in C_{o}^{\infty}(M).\] В частности, нас интересуют оценки ядра теплового потока и его градиента, полученные из таких неравенств.
+3. На конических многообразиях, C(N), из-за конусообразной сингулярности, мы находим, что они имеют много особых свойств по сравнению с полными римановыми многообразиями с ограниченной нижней кривизной Риччи, см., например, [8, 15-17] или [18]. Когда первая ненулевая собственная valeur лапласиана на N, λ₁ ≥ dim N, было бы очень интересно знать, для каких 1 ≤ w < +∞ следующие оценки выполнены: \[\big{|}\nabla e^{t\Delta}f\big{|}(g)\leqslant C_{w}\big{[}e^{t\Delta}\big{(}|\nabla f|^{w}\big{)}(g)\big{]}^{1/w},\quad\forall g\in C(N),\ t>0,\ f\in C_{o}^{\infty}.\] Замечаем, что в этой ситуации кривизна Риччи на C(N) может быть не ограничена. И мы также记„M, что для λ₁ < dim N эти оценки не действительны (см. [17] или [18]).
+4. В изучении формулы представления было бы очень интересно знать, является ли условие (H2) в [19], т. е. предполагая, что объем шаров растет хотя бы линейно, необходимым. В любом случае, это условие слабое.
+
+## Благодарности'Автор поддерживается DFG (SFB 611). Я хотел бы поблагодарить Т. Кулон и Л. Салофф-Коста за дискуссии и многочисленные предложения, Ф. Люст-Пикара и М. Виллани за передачу мне [21]. Я также хотел бы поблагодарить рецензента за указание на ошибку в оригинальной версии этой статьи и за предложения.
+
+## Список литературы
+
+* [1] К. Ан, С. Блашер, Д. Шафа, П. Фугар, И. Жентил, Ф. Мальрю, К. Роберто, Ж. Шеффер, О логарифмических неравенствах Соболева, в: Панорама и синтез, т. 10, Французское математическое общество, Париж, 2000.
+* [2] П. Ошер, Т. Кулон, Х.Т. Дуонг, С. Хофман, Трансформация Риса на многообразиях и регулярность ядра тепла, Анн. wizard. Высш. Норм. Шк. (4) 37 (2004) 911-957.
+* [3] Д. Бакри, Трансформация Риса для симметричных полугрупп. II. Исследование при условии \(\varGamma_{2}\geqslant 0\), в: Семинар по теории вероятностей, XIX, 1983/84, в: Лекции по математике, т. 1123,(Springer, Берлин, 1985, стр. 145-174.
+* [4] Д. Бакри, Критерий не-экспоненциальности для некоторых диффузий на полной римановой многообразии, С.Р. Акад. Наук Париж Сер. I Матем. 303 (1986) 23-26.*[5] Р. Билс, Б. Гаво, П.К. Грэйнэр, Теория Гамильтона-Якоби и ядро теплопроводности на группах Гейзенберга, Дж. Матем. Пюр. Апл. (9) 79 (2000) 633-689.
+* [6] Дж. Чигер, М. Громов, М. Тейлор, Скорость распространения теплопроводности, оценки ядра для функций оператора Лапласа и геометрия полных римановых многообразий, Дж. Дифференц. Геом. 17 (1982) 15-53.
+* [7] Т. Кулон, Х.-Т. Дуонг, Трансформация Рисса и связанные с ней неравенства на некомпактных римановых многообразиях, Комм. Пюр. Апл. Матем. 56 (2003) 1728-1751.
+* [8] Т. Кулон, Х.-К. Ли, Нижние оценки ядра теплопроводности на конических многообразиях и трансформации Рисса, Арх. Матем. 83 (2004) 229-242.
+* [9] Б.К. Драйвер, Т. Мелчер, Неравенства гипоэллиптического ядра теплопроводности на группе Гейзенберга, Дж. Функц. Анал. 221 (2005) 340-365.
+* [10] Б. Франки, Г. Лю, Р.Л. Уидэн, Формулы представления и весовые неравенства Пуанкаре для векторных полей Хормандера, Анн. Инст. Фурье (Гренобль) 45 (1995) 577-604.
+* [11] Б. Франки, Г. Лю, Р.Л. Уидэн, Связь между неравенствами типа Пуанкаре и формулами представления в пространствах однородного типа, Инт. Матем. Рес. Нат. (1996) 1-14.
+* [12] Б. Гаво, Принцип наименьшей действия, распространение теплопроводности и подэллиптические оценки на некоторых	nilпотентных группах, Акта Матем. 139 (1977) 95-153.
+* [13] Х. Хубер, Д. Мюллер, Асимптотики для некоторых ядер Грина на группе Гейзенберга и граница Мартина, Матем. Анн. 283 (1989) 97-119.
+* [14] А. Хуланики, Распределение энергии в броуновском движении в гауссовом поле и аналитическая-гипоэллиптичность некоторых подэллиптических операторов на группе Гейзенберга, Студия Матем. 56 (1976) 165-173.
+* [15] Х.-К. Ли, Трансформация Рисса на конических многообразиях, Дж. Функц. Анал. 168 (1999) 145-238.
+* [16] Х.-К. Ли, Оценки ядра теплопроводности на конических многообразиях и их приложения, Булл. Сай. Матем. 124 (2000) 365-384.
+* [17] Х.-К. Ли, Об продолжении Холдера полу-группы теплопроводности на конических многообразиях, К.Р. Матем. Акад. Наук. Париж 337 (2003) 283-286.
+* [18] Х.-К. Ли, Об продолжении Холдера полу-группы теплопроводности на конических многообразиях, submitted.
+* [19] Г. З. Лю, Р.Л. Уидэн, Оптимальная формула представления для векторных полей Карно-Каратеодори, Булл. Лонд. Матем. О-ва 30 (1998) 578-584.
+* [20] Ф. Люст-Пикар, Простой вычислительный ядро теплопроводности на группах Гейзенберга, Коллокв. Матем

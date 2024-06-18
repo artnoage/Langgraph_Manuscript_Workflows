@@ -42,9 +42,10 @@ def invoke(state,container):
                     except Exception as e:
                         response = str(e)                   
                     st.write(response)
+                    st.session_state.messages.append({"role": "tool", "content": str(response)})
                     response=ToolMessage(content=response, tool_call_id=tool_call["id"])
                     st.session_state.chat_history.append(response)
-                    st.session_state.messages.append({"role": "tool", "content": str(response)})
+                    
         if "tool_calls" not in action.additional_kwargs:
             with container:
                 with st.chat_message(message["role"]):
@@ -139,7 +140,7 @@ def main():
             elif st_file and selected_type=="PDF":
                 pdf_viewer(st_file)                                                        
             elif st_file and selected_type=="Markdown":
-                with open(st_file, "r") as file:
+                with open(st_file, "r", encoding="utf-8") as file:
                     markdown_content = file.read()
                 st.markdown(markdown_content)
            
@@ -178,8 +179,8 @@ def main():
                 with chat_container:
                     with st.chat_message("assistant"):
                         with st.spinner("Thinking..."):
-                            invoke(st.session_state,chat_container)
                             st.session_state.awaiting_response = False
+                            invoke(st.session_state,chat_container)
                             st.session_state.disable_input = False
                 st.rerun()
     else:
