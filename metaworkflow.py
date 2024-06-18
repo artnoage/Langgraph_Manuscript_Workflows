@@ -11,7 +11,10 @@ from simple_tools import *
 from workflows_as_tools import *
 import streamlit as st
 from dotenv import load_dotenv
+import os
 
+
+load_dotenv()
 
 class MetaState(TypedDict):
     manager_history: Annotated[list[BaseMessage], operator.add]

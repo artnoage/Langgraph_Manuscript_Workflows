@@ -13,8 +13,7 @@ from langchain_text_splitters import CharacterTextSplitter
 from sentence_transformers import util
 from langchain_openai import OpenAIEmbeddings
 import torch
-openai_api_key = os.getenv('OPENAI_API_KEY')
-nvidia_api_key = os.getenv('NVIDIA_API_KEY')
+
 
 class ArxivState(TypedDict):
     receptionist_retriever_history : Annotated[list[BaseMessage], operator.add]

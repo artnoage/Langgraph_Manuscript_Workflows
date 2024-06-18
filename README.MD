@@ -108,7 +108,7 @@ OPENAI_API_KEY="your_key"
 ```
 
 #### NVIDIA API Key
-If you don't have an NVIDIA_API_KEY, get one from [NVIDIA](https://org.ngc.nvidia.com/setup) and add it to the `.env` file:
+If you don't have an NVIDIA_API_KEY, get one and some free credits from [NVIDIA](https://build.nvidia.com/explore/discover#llama3-70b) and add it to the `.env` file:
 ```env
 NVIDIA_API_KEY="your_key"
 ```
