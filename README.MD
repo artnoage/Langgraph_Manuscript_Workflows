@@ -90,16 +90,15 @@ pip install -r requirements_conda.txt
 
 ### Creating the `.env` File
 
-#### Windows
+#### 
 ```sh
-type NUL > .env
+python create_env.py
 ```
 
-#### macOS/Linux
+### editing the `.env` File by running the command twice
 ```sh
-touch .env
+python create_env.py
 ```
-
 ### Setting Up API Keys
 
 #### OpenAI API Key
