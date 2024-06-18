@@ -316,6 +316,55 @@ class TranslationWorkflow:
         return workflow
 
 
+class CitationWorkflow:
+    def __init__(self, citation_extractor_model=None):
+        if citation_extractor_model==None:
+            self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_extractor_model = citation_extractor_model
+        self.citation_extractor =citation_extracto_template | self.citation_extractor_model
+        
+    def run_translator(self, state):
+        keywords_and_summary_filename = state["keywords_and_summary_filename"].content
+        target_language = state["target_language"].content
+        main_text_filename = state["main_text_filename"].content
+        main_text_filename=get_filename_without_extension(main_text_filename)
+        keywords_and_summary_filename=get_filename_without_extension(keywords_and_summary_filename)
+
+        text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+        with open(f"files/markdowns/{main_text_filename}.mmd","r", encoding='utf-8') as f:
+                text = f.read()
+        try:
+            with open(f"files/markdowns/{keywords_and_summary_filename}.mmd","r", encoding='utf-8') as f:
+                keyword_and_summary = f.read()
+        except FileNotFoundError:
+            print("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
+            keyword_and_summary = " "
+
+        if "_without_proofs" in main_text_filename:
+            main_text_filename = main_text_filename.replace("_without_proofs", "")
+
+        listed_text = text_splitter.split_text(text)
+        translation = ""
+
+        print(f"Translation of {main_text_filename} in progress")
+        
+        for i in tqdm(range(len(listed_text))):
+            translation = translation + self.translator.invoke({"language": target_language, "keyword_and_summary": keyword_and_summary, "page": listed_text[i]}).content
+
+        with open(f"files/markdowns/{main_text_filename}_{target_language}.mmd", "w", encoding="utf-8") as f:
+            f.write(translation)
+
+        return {"report": HumanMessage(content="Translation completed")}
+
+    def create_workflow(self):
+        workflow = StateGraph(TranslatorState)
+        workflow.set_entry_point("translator")
+        workflow.add_node("translator", self.run_translator)
+        workflow.add_edge("translator", END)
+        return workflow
+
+
 class KeywordAndSummaryWorkflow:
     def __init__(self, keyword_and_summary_maker_model=None):
         if keyword_and_summary_maker_model==None:

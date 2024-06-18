@@ -178,7 +178,8 @@ def main():
                 st.session_state.disable_input = True
                 with chat_container:
                     with st.chat_message("assistant"):
-                        with st.spinner("Thinking..."):
+                        with st.spinner("Thinking..., please wait to finish before using side bars....bug to be fixed soon"):
+                        
                             st.session_state.awaiting_response = False
                             invoke(st.session_state,chat_container)
                             st.session_state.disable_input = False
