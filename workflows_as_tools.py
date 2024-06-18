@@ -167,8 +167,7 @@ class TranslationToolClass:
             "main_text_filename": HumanMessage(content=main_text_filename),
             "report": HumanMessage(content=""),
         }
-        translation_app=TranslationWorkflow(streaming=self.streaming, streamcon=self.streamcon,
-                                            translator_model=self.translator_model)
+        translation_app=TranslationWorkflow(translator_model=self.translator_model)
         translation_app=translation_app.create_workflow()
         translation_app=translation_app.compile()
         state = translation_app.invoke(input)

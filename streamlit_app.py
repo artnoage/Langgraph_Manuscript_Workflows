@@ -28,21 +28,23 @@ def invoke(state,container):
         if "tool_calls" in action.additional_kwargs:
             with container:
                 with st.chat_message(message["role"],avatar=":material/build:"):
-                        st.write("I am currently using the following tool: "+ action.tool_calls[-1]["name"])
-                        st.write("Please be patient, some of the tools take time. Check your terminal for progress.")
-                        st.session_state.chat_history.append(action)
-                        st.session_state.messages.append({"role": "assistant", "content": "I am currently using the following tool: " + action.tool_calls[-1]["name"]})
-                        tool_call = action.tool_calls[-1]
-                        st.write(tool_call["name"],tool_call["args"])
-                        Invocation=ToolInvocation(tool=tool_call["name"], tool_input=tool_call["args"])
-                        try:
-                            response = tool_executor.invoke(Invocation)
-                        except Exception as e:
-                            response = str(e)                   
-                        st.write(response)
-                        response=ToolMessage(content=response, tool_call_id=tool_call["id"])
-                        st.session_state.chat_history.append(response)
-                        st.session_state.messages.append({"role": "tool", "content": response.content})
+                    st.write("I am currently applying: "+ action.tool_calls[-1]["name"])
+                    st.write("Please be patient, some of the tools take time. Check your terminal for progress.")
+                    st.session_state.messages.append({"role": "tool", "content":"Please be patient, some of the tools take time. Check your terminal for progress."})
+                    st.session_state.chat_history.append(action)
+                    st.session_state.messages.append({"role": "tool", "content": "I am currently using the following tool: " + action.tool_calls[-1]["name"]})
+                    tool_call = action.tool_calls[-1]
+                    st.write(tool_call["name"],tool_call["args"])
+                    st.session_state.messages.append({"role": "tool", "content": str(tool_call["name"]) + str(tool_call["args"])})
+                    Invocation=ToolInvocation(tool=tool_call["name"], tool_input=tool_call["args"])
+                    try:
+                        response = tool_executor.invoke(Invocation)
+                    except Exception as e:
+                        response = str(e)                   
+                    st.write(response)
+                    response=ToolMessage(content=response, tool_call_id=tool_call["id"])
+                    st.session_state.chat_history.append(response)
+                    st.session_state.messages.append({"role": "tool", "content": str(response)})
         if "tool_calls" not in action.additional_kwargs:
             with container:
                 with st.chat_message(message["role"]):
@@ -86,11 +88,11 @@ def main():
         st.session_state.disable_input = False
         
     # Create a sidebar widget to display the folder structure
-    left_sidebar, main_content, right_sidebar = st.columns([0.15,0.45, 0.40],gap="large")
+    left_sidebar, main_content, right_sidebar = st.columns([0.2,0.45, 0.35],gap="large")
     
 # Left sidebar
     with left_sidebar:
-        left_container = st.container(height=600)
+        left_container = st.container(height=400)
         with left_container:
             selected_type = st.selectbox("Select a type", ["PDF", "Markdown"], index=None)
             pdf_files = list_files(pdfs)
@@ -123,7 +125,7 @@ def main():
 
             
     with right_sidebar:
-        right_container = st.container(height=1000)
+        right_container = st.container(height=700)
         with right_container:
             if not openai_api_key:
                 openai_api_key = "You dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file"
@@ -148,7 +150,7 @@ def main():
     if ready:
         with main_content:
             # Chat history container with scrollbar
-            chat_container = st.container(height=1000)
+            chat_container = st.container(height=700)
             with chat_container:
                 for message in st.session_state.messages:
                     if message["role"] == "tool":
@@ -171,7 +173,7 @@ def main():
                             st.write(prompt)
 
             # Generate a new response if last message is not from assistant
-            if st.session_state.messages[-1]["role"] == "user" and st.session_state.awaiting_response:
+            if  st.session_state.awaiting_response:
                 st.session_state.disable_input = True
                 with chat_container:
                     with st.chat_message("assistant"):
