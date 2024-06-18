@@ -24,7 +24,14 @@ Before you begin, ensure you have the following installed:
 
 - **Keyword Extraction and Topic Summarization**: This workflow extracts keywords and summarizes the content of an article, page by page. There is potential for improvement by performing multiple passes over the paper.
 
+- **Citation_Extraction**: This workflow extracts citations from a  paper. You can provide a context file (like summary) and a type of citations (Full citations, most important, etc etc)
+
 - **Context-Based Translation**: This workflow has been particularly successful. It uses the summarization from the previous step to translate the article into different languages. Context-based translation ensures that the terminology is appropriate for the specific academic community.
+
+
+## Extra features
+
+- **Folder awareness**: The manager is aware of the conents of the two folders (pdfs/markdowns) and can guide you to open the right files. Also minimizing the possibility of using the tools wrong
 
 ## Upcoming Features
 

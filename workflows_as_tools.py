@@ -30,6 +30,11 @@ class ProofRemovalInput(BaseModel):
 class KeywordSummaryInput(BaseModel):
     main_text_filename: str = Field(description="The main text file to be summarized")
 
+class CitationExtractorInput(BaseModel):
+    main_text_filename: str = Field(description="The main text file to be summarized")
+    extraction_type : str = Field(description="The type of extraction") 
+    auxilary_text_filename: str = Field(description="The auxilary file with keywords and summary")
+
 class ArxivRetrievalToolClass:
     def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
         if retriever_model==None:
@@ -161,16 +166,32 @@ class TranslationToolClass:
         a choice of language, and the filename of a text to be translated. Then it translates it to the 
         target language and saves the result as a file on the disk. It returns a report of the process.
         """
-        input = {
-            "keywords_and_summary_filename": HumanMessage(content=keywords_and_summary_filename),
+        input = {"keywords_and_summary_filename": HumanMessage(content=keywords_and_summary_filename),
             "target_language": HumanMessage(content=target_language),
             "main_text_filename": HumanMessage(content=main_text_filename),
-            "report": HumanMessage(content=""),
-        }
+            "report": HumanMessage(content="")}
         translation_app=TranslationWorkflow(translator_model=self.translator_model)
         translation_app=translation_app.create_workflow()
         translation_app=translation_app.compile()
         state = translation_app.invoke(input)
+        return state["report"].content
+
+class CitationExtractionToolClass:
+    def __init__(self, citation_extractor_model=None):
+        if citation_extractor_model==None:
+            self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_extractor_model = citation_extractor_model
+        self.description="""This tool takes three strings that correspond to the filename of a text_file from which we want to extract the citations,
+            a type of extraction (all of them, the most important etc etc), and the filename of a text that can be used as a context for better extraction. 
+            it extracts the citations and  saves the result as a file on the disk. It returns a report of the process."""
+    def extract_citations(self, main_text_filename: str, extraction_type: str, auxilary_text_filename: str) -> str:
+        input = {"main_text_filename": HumanMessage(content=main_text_filename),"extraction_type": HumanMessage(content=extraction_type),
+        "auxilary_text_filename": HumanMessage(content=auxilary_text_filename),"report": HumanMessage(content="")}
+        citation_extraction_app=CitationExtractionWorkflow(citation_extractor_model=self.citation_extractor_model)
+        citation_extraction_app=citation_extraction_app.create_workflow()
+        citation_extraction_app=citation_extraction_app.compile()
+        state = citation_extraction_app.invoke(input)
         return state["report"].content
     
 def create_tools():    

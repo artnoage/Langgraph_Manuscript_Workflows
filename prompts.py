@@ -126,6 +126,9 @@ and several bad texts from another source. The good text has numerical citations
 but we need to format the citations in the way they are formated in the bad texts.  Your goal is to reproduce the GOOD text, 
 as faithfull as possible but with citation format that matches the one from the bad texts. """
 
+citation_extractor_system_template= """You are a mighty scholar, you receive a page from a scientific paper and the summary of the whole paper.
+Your task is to return citations in the form of a list. """
+
 
 supervisor_prompt_template= ChatPromptTemplate.from_messages([("system",supervisor_system_template),MessagesPlaceholder(variable_name="manager_history")])
 
@@ -133,6 +136,15 @@ proof_remover_prompt_template= ChatPromptTemplate.from_messages([("system",proof
                                                           ("user", "{text}"),
                                                           ("assistant", "Thanks for the text. Any final comments before I do the process."),
                                                           ("user", "Please answer only with the requested text dont and anything else to your respond.")])
+
+citation_extractor_prompt_template= ChatPromptTemplate.from_messages([("system",citation_extractor_system_template),
+                                                          ("user", "Can you extract citations for me?"),
+                                                          ("assistant", "Sure. Do you want all the citations, the most important or do you want me to follow some other criterai"),
+                                                          ("user", "Good question. {extraction_type}"),
+                                                        ("assistant", "Got it. Do you have any auxilary files like summaries that I could use"),
+                                                        ("user", "{auxilary_text}"),
+                                                        ("assistant", "Got it. Can you gime the main text now?"),
+                                                        ("user", "Sure, here you are:/n {main_text}")])	
 
 
 proof_stamper_prompt_template= ChatPromptTemplate.from_messages(

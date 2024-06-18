@@ -43,7 +43,14 @@ class TranslatorState(TypedDict):
     target_language: BaseMessage
     main_text_filename: BaseMessage
     report:BaseMessage
+
+class CitationExtractorState(TypedDict):
+    main_text_filename: BaseMessage
+    extraction_type : BaseMessage
+    auxilary_text_filename: BaseMessage
+    report:BaseMessage
     
+
 
 class ArxivRetrievalWorkflow:
     def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
@@ -316,52 +323,51 @@ class TranslationWorkflow:
         return workflow
 
 
-class CitationWorkflow:
+class CitationExtractionWorkflow:
     def __init__(self, citation_extractor_model=None):
         if citation_extractor_model==None:
             self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.citation_extractor_model = citation_extractor_model
-        self.citation_extractor =citation_extracto_template | self.citation_extractor_model
+        self.citation_extractor =citation_extractor_prompt_template | self.citation_extractor_model
         
-    def run_translator(self, state):
-        keywords_and_summary_filename = state["keywords_and_summary_filename"].content
-        target_language = state["target_language"].content
+    def run_citation_extractor(self, state):
         main_text_filename = state["main_text_filename"].content
+        extraction_type = state["extraction_type"].content
+        auxilary_text_filename=state["auxilary_text_filename"].content  
         main_text_filename=get_filename_without_extension(main_text_filename)
-        keywords_and_summary_filename=get_filename_without_extension(keywords_and_summary_filename)
+        auxilary_text_filename=get_filename_without_extension(auxilary_text_filename)
 
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
         with open(f"files/markdowns/{main_text_filename}.mmd","r", encoding='utf-8') as f:
                 text = f.read()
+
         try:
-            with open(f"files/markdowns/{keywords_and_summary_filename}.mmd","r", encoding='utf-8') as f:
-                keyword_and_summary = f.read()
+            with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
+                axulary_text = f.read()
         except FileNotFoundError:
-            print("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
-            keyword_and_summary = " "
-
-        if "_without_proofs" in main_text_filename:
-            main_text_filename = main_text_filename.replace("_without_proofs", "")
-
+            print("File not found: Auxilary file not provided or wrong filename. I proceed without context.")
+            auxilary_text = "No"
+        
+        
         listed_text = text_splitter.split_text(text)
-        translation = ""
+        citations = ""
 
-        print(f"Translation of {main_text_filename} in progress")
+        print(f"Extracting citations from {main_text_filename} in progress")
         
         for i in tqdm(range(len(listed_text))):
-            translation = translation + self.translator.invoke({"language": target_language, "keyword_and_summary": keyword_and_summary, "page": listed_text[i]}).content
+            citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxilary_text": axulary_text}).content
 
-        with open(f"files/markdowns/{main_text_filename}_{target_language}.mmd", "w", encoding="utf-8") as f:
-            f.write(translation)
+        with open(f"files/markdowns/{main_text_filename}_{citations}.mmd", "w", encoding="utf-8") as f:
+            f.write(citations)
 
-        return {"report": HumanMessage(content="Translation completed")}
+        return {"report": HumanMessage(content="citation_extraction completed")}
 
     def create_workflow(self):
-        workflow = StateGraph(TranslatorState)
-        workflow.set_entry_point("translator")
-        workflow.add_node("translator", self.run_translator)
-        workflow.add_edge("translator", END)
+        workflow = StateGraph(CitationExtractorState)
+        workflow.set_entry_point("citation_extractor")
+        workflow.add_node("citation_extractor", self.run_citation_extractor)
+        workflow.add_edge("citation_extractor", END)
         return workflow
 
 
