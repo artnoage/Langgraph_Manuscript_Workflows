@@ -1,8 +1,16 @@
-# Academic Manuscript Processing
+# Academic Breaker
 
 ## Overview
 
-This project leverages large language model (LLM) agents within LangGraph to develop workflows for processing academic manuscripts. Users can execute these workflows individually through the provided Jupyter notebook (currently the more reliable option) or orchestrate the entire process via a robust LLM accessed through a Streamlit interface. The ultimate aim is to create an app that simplifies some of the more tedious aspects of academic research for researchers. For instance, a tangible goal would be to summarize the state of the art and the historical development of a chosen topic, providing a comprehensive survey.
+This project leverages large language model (LLM) agents within LangGraph to develop workflows for processing academic manuscripts. Users can execute these workflows individually through the provided Jupyter notebook (currently the more reliable option) or orchestrate the entire process via a robust LLM accessed through a Streamlit interface. The ultimate aim is to create an app that simplifies some of the more tedious aspects of academic research for researchers. For instance, a tangible goal would be to summarize the state of the art and the historical development of a chosen topic, providing a comprehensive survey. A longer-term goal will be to add the ability for the workflow to explain mathematical proofs and even categorize them.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Git
+- Python 3.8 or later
+- pip (Python package installer)
 
 ## Current Workflows
 
@@ -26,130 +34,126 @@ This project leverages large language model (LLM) agents within LangGraph to dev
 
 This project continues to evolve, aiming to significantly aid academic researchers by automating and improving various manuscript processing tasks.
 
+## Installation
 
-# Installation:
+### Clone the Repository
+```sh
+git clone https://github.com/artnoage/Langgraph_Manuscript_Workflows.git
+cd Langgraph_Manuscript_Workflows
+```
 
-### Clone the repository:
-1. 
+### Creating the Virtual Environment
+
+#### Using Python `venv`
+```sh
+python -m venv Langgraph_Manuscript_Workflows
+```
+
+#### Using Conda
+```sh
+conda create -n Langgraph_Manuscript_Workflows python=3.8
+```
+
+### Activating the Virtual Environment
+
+#### Python `venv`
+- **Windows**
     ```sh
-    git clone https://github.com/artnoage/Langgraph_Manuscript_Workflows.git
+    .\Langgraph_Manuscript_Workflows\Scripts\activate
     ```
-
-### Navigate to the project's direcotry:
-2. 
-    ```sh
-    cd Langgraph_Manuscript_Workflows
-    ```
-
-### Creating the virtual environment when you want to use python venv:
-
-3.  
-    ```sh
-    python -m venv Langgraph_Manuscript_Workflows 
-    ```
-
-### Creating the virtual environment when you want to use conda virtual environment:
-4. 
-    ```sh
-    conda create -n Langgraph_Manuscript_Workflows python=3.8
-    ```
-
-### Activating the python virtual environment when you are in windows:
-5. 
-    ```sh
-    source Langgraph_Manuscript_Workflows/scripts/activate
-    ```
-### Activating the python virtual enviroment when you are in linux (probably mac too):
-6.
+- **macOS/Linux**
     ```sh
     source Langgraph_Manuscript_Workflows/bin/activate
-    ```   
-### Activating the virtual environment conda regardless of platform:
-
-7.
-    ```sh
-    conda activate Langgraph_Manuscript_Workflows
     ```
-### Installing the required dependencies python in windows:
 
-8.  
+#### Conda (all platforms)
+```sh
+conda activate Langgraph_Manuscript_Workflows
+```
+
+### Installing the Required Dependencies
+
+#### Python `venv`
+- **Windows**
     ```sh
     pip install -r requirements_win.txt
-    ```  
-### Intsalling the required dependencies python in linux (probably mac too):
-
-9. 
+    ```
+- **macOS/Linux**
     ```sh
     pip install -r requirements_linux.txt
     ```
-### Intalling the required dependencies conda:
-10. 
-    ```sh
-    pip install -r requirements_conda.txt
-    ```
 
-### Creating the .env file:
-11. 
-    ```sh
-    touch .env
-    ```
-### Getting an openAI api key:
-12.
-    ```sh
-    If you dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file like this: OPENAI_API_KEY = "your key" 
-    ```
-### Getting a Nvidia Api key:
-13. 
-    ```sh
-    If you dont have an NVIDIA_API_KEY, get one from here: https://org.ngc.nvidia.com/setup, get your free credits here: https://build.nvidia.com/explore/discover. Put the key in the .env file like this: NVIDIA_API_KEY = "your key"
-    ```
-
-
-# Running the project:
-You have three options to work with the various mini-workflows in the project. 
-One is through the jupyter notebook called playground.ipnyb, one through the terminal with metaworkflow file
-and the last through  the fronent that uses streamlit for the user interface. 
-
-In the playground you can find details for what is happening under the hood for each workflow. 
-Evenmore you have a better control of which llms you are using. I suggest this for the first time.
-
-## First method by trying the workflows independently:
-```sh   
-Use google colab or VScode with Jupyter extension.
-``` 
-## Second method by using terminal:
-```sh   
-python metaworkflow.py
-``` 
-## Third method by using streamlit:
+#### Conda (all platforms)
 ```sh
-streamlit run streamlit_app.py 
+pip install -r requirements_conda.txt
 ```
- ### WARNING
- **Streamlit is a bit difficult with calcellation signals. Same holds for LLM Apis. It will be difficult or impossible
- to cancel a tool call when it is running. For this reason, I recommend using small files for testing. Also the tools have printouts which I didnt manage to forward somehow in streamlit. When I get levels in using it, I will try to improve.**
+
+### Creating the `.env` File
+
+#### Windows
+```sh
+type NUL > .env
+```
+
+#### macOS/Linux
+```sh
+touch .env
+```
+
+### Setting Up API Keys
+
+#### OpenAI API Key
+If you don't have an OPENAI_API_KEY, get one from [OpenAI](https://platform.openai.com/account/api-keys) and add it to the `.env` file:
+```env
+OPENAI_API_KEY="your_key"
+```
+
+#### NVIDIA API Key
+If you don't have an NVIDIA_API_KEY, get one from [NVIDIA](https://org.ngc.nvidia.com/setup) and add it to the `.env` file:
+```env
+NVIDIA_API_KEY="your_key"
+```
+
+## Usage
+
+### Running the Project
+
+You have three options to work with the various mini-workflows in the project:
+
+1. **Jupyter Notebook**: Use `playground.ipynb` to run the workflows independently. This option provides more control over the LLMs used and gives insight into the inner workings of each workflow. Recommended for first-time users.
+
+2. **Terminal**: Run the `metaworkflow.py` file:
+   ```sh
+   python metaworkflow.py
+   ```
+
+3. **Streamlit UI**: Run the Streamlit app:
+   ```sh
+   streamlit run streamlit_app.py
+   ```
+
+### Warning
+
+**Streamlit and LLM APIs can have difficulty canceling tool calls while they are running.** For this reason, it is recommended to use small files for testing. Additionally, the tool printouts are not currently forwarded to the Streamlit interface.
 
 ## Contributing
 
-Contributions are welcome! One can contribute significantly without any knowledge of coding. You
-just go to the prompts file and change the system prompts until the corresponding workflow behaves better 
-than you find it. The term prompt engineering is annoying but when it comes to the currest state of LLMs
-it makes sense.
-If you are experienced with streamlit, maybe you can make me suggestions how I can stream the printouts I get from
-my tools. I dont have experience in front end and this seems ultra hard to me.
+Contributions are welcome! You can contribute significantly without any coding knowledge by modifying the system prompts in the `prompts.py` file until the corresponding workflow behaves better. This process is known as "prompt engineering."
 
-You could also create different workflows that you think you are relevant to manipulating academinc manuscripts.
+If you have experience with Streamlit, you can suggest ways to stream the printouts from the tools to the Streamlit interface.
 
-## Shoulders of Giants
+You can also create different workflows that you think are relevant to manipulating academic manuscripts.
 
-I got the slide template by: Srikar Sharma Sadhu (https://tinyurl.com/3n2cfpda)
-For ocr I used nougat : https://github.com/facebookresearch/nougat
-I used alot of ChatGPT and Claude Opus 
+## Acknowledgments
 
-I would like also to thank:
-My girfried for being patient with me the whole month preparing this project for Nvidia competition.
-My friend Anna for participating in the promotional video. 
-Nikos Mouratidis and Kostas Kostopoulos for beta testing. 
+- Slide template: Srikar Sharma Sadhu (https://tinyurl.com/3n2cfpda)
+- OCR: Nougat from Meta (https://github.com/facebookresearch/nougat)
+- Assistance from ChatGPT and Claude Opus
+
+Special thanks to:
+- My girlfriend for her patience during the preparation of this project for the NVIDIA competition.
+- My friend Anna for participating in the promotional video.
+- Nikos Mouratidis and Kostas Kostopoulos for beta testing.
 
 ## License
 
