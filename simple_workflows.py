@@ -346,7 +346,7 @@ class CitationExtractionWorkflow:
 
         try:
             with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
-                axulary_text = f.read()
+                auxilary_text = f.read()
         except FileNotFoundError:
             print("File not found: Auxilary file not provided or wrong filename. I proceed without context.")
             auxilary_text = "No"
@@ -358,9 +358,9 @@ class CitationExtractionWorkflow:
         print(f"Extracting citations from {main_text_filename} in progress")
         
         for i in tqdm(range(len(listed_text))):
-            citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxilary_text": axulary_text}).content
+            citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxilary_text": auxilary_text}).content
 
-        with open(f"files/markdowns/{main_text_filename}_{citations}.mmd", "w", encoding="utf-8") as f:
+        with open(f"files/markdowns/{main_text_filename}_citations.mmd", "w", encoding="utf-8") as f:
             f.write(citations)
 
         return {"report": HumanMessage(content="citation_extraction completed")}
@@ -414,12 +414,12 @@ class KeywordAndSummaryWorkflow:
     
 
 class TakeAPeakWorkflow:
-    def __init__(self, keyword_and_summary_maker_model=None):
-        if keyword_and_summary_maker_model==None:
-            self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+    def __init__(self, take_a_peak_model=None):
+        if take_a_peak_model==None:
+            self.take_a_peak_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
-            self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
-        self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
+            self.take_a_peak_model= take_a_peak_model
+        self.take_a_peaker= keyword_and_summary_maker_template | self.take_a_peak_model
     
     def run_take_a_peaker(self, state):
          
@@ -428,7 +428,7 @@ class TakeAPeakWorkflow:
         markdown_path1=os.path.join(r"files\markdowns", f"{text_filename}.mmd")
         markdown_path2=os.path.join(r"files\markdowns", f"{text_filename}.md")
         pdf_path = os.path.join(r"files\pdfs", f"{text_filename}.pdf")
-        mupdf_path = os.path.join(r"files\temp", f"{text_filename}_temp.mmd")
+        mupdf_path = os.path.join(r"files\temps", f"{text_filename}_temp.mmd")
         if os.path.exists(markdown_path1):
             with open(f"files/markdowns/{text_filename}.mmd", 'r', encoding='utf-8') as f:
                 text = f.read()
@@ -438,7 +438,7 @@ class TakeAPeakWorkflow:
         elif os.path.exists(pdf_path):
             md_text = pymupdf4llm.to_markdown(pdf_path)
             pathlib.Path(mupdf_path).write_bytes(md_text.encode())
-            with open(f"files/temp/{text_filename}.mmd", 'r', encoding='utf-8') as f:
+            with open(f"files/temps/{text_filename}_temp.mmd", 'r', encoding='utf-8') as f:
                 text = f.read()
         else :
             return {"report":"There was an error with the filename"}
@@ -452,11 +452,11 @@ class TakeAPeakWorkflow:
             peak="Here is the text:/n"+text[0] 
         elif 4>len(text)>0:
             for i in tqdm(range(len(text))):
-                keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
+                keyword_and_summary = self.take_a_peaker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
             peak= "The text was too long here is the inital part of the text:/n"+ text[0] +"/n And here is the summary:/n" + keyword_and_summary 
         else:
             for i in tqdm(range(3)):
-                keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
+                keyword_and_summary = self.take_a_peaker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
             peak= "The text was too long here is the inital part of the text:/n"+ text[0] + "/n And here is the summary of the first three pages:" + keyword_and_summary    
         
         output_filename = f"files/temps/{text_filename}_takeapeak.mmd"
