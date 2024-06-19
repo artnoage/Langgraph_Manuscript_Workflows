@@ -50,7 +50,9 @@ class CitationExtractorState(TypedDict):
     auxilary_text_filename: BaseMessage
     report:BaseMessage
     
-
+class TakeAPeakState(TypedDict):
+    main_text_filename: BaseMessage
+    report:BaseMessage
 
 class ArxivRetrievalWorkflow:
     def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
@@ -410,3 +412,70 @@ class KeywordAndSummaryWorkflow:
         workflow.add_edge("summarizer", END)
         return workflow
     
+
+class TakeAPeakWorkflow:
+    def __init__(self, keyword_and_summary_maker_model=None):
+        if keyword_and_summary_maker_model==None:
+            self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
+        self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
+    
+    def run_take_a_peaker(self, state):
+         
+        text_filename = state["main_text_filename"].content
+        text_filename=get_filename_without_extension(text_filename)
+        markdown_path1=os.path.join(r"files\markdowns", f"{text_filename}.mmd")
+        markdown_path2=os.path.join(r"files\markdowns", f"{text_filename}.md")
+        pdf_path = os.path.join(r"files\pdfs", f"{text_filename}.pdf")
+        mupdf_path = os.path.join(r"files\temp", f"{text_filename}_temp.mmd")
+        if os.path.exists(markdown_path1):
+            with open(f"files/markdowns/{text_filename}.mmd", 'r', encoding='utf-8') as f:
+                text = f.read()
+        elif os.path.exists(markdown_path2):
+            with open(f"files/markdowns/{text_filename}.md", 'r', encoding='utf-8') as f:
+                text = f.read()
+        elif os.path.exists(pdf_path):
+            md_text = pymupdf4llm.to_markdown(pdf_path)
+            pathlib.Path(mupdf_path).write_bytes(md_text.encode())
+            with open(f"files/temp/{text_filename}.mmd", 'r', encoding='utf-8') as f:
+                text = f.read()
+        else :
+            return {"report":"There was an error with the filename"}
+        
+        
+        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        text = text_splitter.split_text(text)
+        peak = ""
+        keyword_and_summary=""
+        if len(text)==1:
+            peak="Here is the text:/n"+text[0] 
+        elif 4>len(text)>0:
+            for i in tqdm(range(len(text))):
+                keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
+            peak= "The text was too long here is the inital part of the text:/n"+ text[0] +"/n And here is the summary:/n" + keyword_and_summary 
+        else:
+            for i in tqdm(range(3)):
+                keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content 
+            peak= "The text was too long here is the inital part of the text:/n"+ text[0] + "/n And here is the summary of the first three pages:" + keyword_and_summary    
+        
+        output_filename = f"files/temps/{text_filename}_takeapeak.mmd"
+        with open(output_filename, 'w', encoding='utf-8') as file:
+            file.write(peak)
+        
+        if os.path.exists(mupdf_path):
+            os.remove(mupdf_path)
+            print(f"{mupdf_path} has been deleted.")
+        else:
+            print(f"{mupdf_path} does not exist.")
+        return {"report": peak}
+
+    def create_workflow(self):
+        """
+        Create a workflow that executes the keyword and summary extraction.
+        """
+        workflow = StateGraph(TakeAPeakState)
+        workflow.set_entry_point("take_a_peaker")
+        workflow.add_node("take_a_peaker", self.run_take_a_peaker)
+        workflow.add_edge("take_a_peaker", END)
+        return workflow

@@ -13,7 +13,7 @@ from langchain.pydantic_v1 import BaseModel, Field
 ### This file contains complex tools, which means that each tool is a workflow
 ### or a chain, the take two variables. One is the models that are used and the 
 ### other is to choose between streaming and printing.
-class TranslatorInput(BaseModel):
+class TranslationInput(BaseModel):
     keywords_and_summary_filename: str = Field(description="The auxilary file with keywords and summary"                                               )  
     target_language: str = Field(description="The target language")
     main_text_filename: str = Field(description="The main text file to be translated")
@@ -27,13 +27,16 @@ class OcrEnhancingInput(BaseModel):
 class ProofRemovalInput(BaseModel):
     main_text_filename: str = Field(description="The main text file to be translated")
 
-class KeywordSummaryInput(BaseModel):
+class KeywordSummaryCreationInput(BaseModel):
     main_text_filename: str = Field(description="The main text file to be summarized")
 
-class CitationExtractorInput(BaseModel):
+class CitationExtractionInput(BaseModel):
     main_text_filename: str = Field(description="The main text file to be summarized")
     extraction_type : str = Field(description="The type of extraction") 
     auxilary_text_filename: str = Field(description="The auxilary file with keywords and summary")
+class TakeAPeakInput(BaseModel):
+    main_text_filename: str = Field(description="The main text file to be skimmed")
+
 
 class ArxivRetrievalToolClass:
     def __init__(self, retriever_model=None, cleaner_model=None, receptionist_model=None):
@@ -194,6 +197,25 @@ class CitationExtractionToolClass:
         state = citation_extraction_app.invoke(input)
         return state["report"].content
     
+
+class TakeAPeakToolClass:
+    def __init__(self, take_a_peak_model=None):
+        if take_a_peak_model==None:
+            self.take_a_peak_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.take_a_peak_model = take_a_peak_model
+        self.description="""
+        This tool takes a string that corresponds to the filename of a text. 
+        It skimms it and returns with a quick report"""
+    def take_a_peak(self, main_text_filename: str) -> str:
+        input = {"main_text_filename": HumanMessage(content=main_text_filename),
+            "report": HumanMessage(content="")}
+        take_a_peak_app=TakeAPeakWorkflow(take_a_peak_model=self.take_a_peak_model)
+        take_a_peak_app=take_a_peak_app.create_workflow()
+        take_a_peak_app=take_a_peak_app.compile()
+        state = take_a_peak_app.invoke(input)
+        return state["report"].content
+    
 def create_tools():    
     
     TranslationTool=TranslationToolClass()
@@ -210,7 +232,11 @@ def create_tools():
 
     KeywordAndSummaryTool=KeywordAndSummaryToolClass()
     KeywordAndSummaryTool=StructuredTool(name="KeywordAndSummaryTool",func=KeywordAndSummaryTool.get_keyword_and_summary,
-                                         args_schema=KeywordSummaryInput)
+                                         args_schema=KeywordSummaryCreationInput)
+    CitationExtractionTool=CitationExtractionToolClass()
+    CitationExtractionTool=StructuredTool(name="CitationExtractionTool",func=CitationExtractionTool.extract_citations,
+                                         args_schema=CitationExtractionInput)
+    
     tools=[TranslationTool,ArxivRetrievalTool,OcrEnhancingTool,ProofRemoverTool,KeywordAndSummaryTool, pdf_to_markdown]
     return tools
 
