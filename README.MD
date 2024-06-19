@@ -33,6 +33,8 @@ Before you begin, ensure you have the following installed:
 
 - **Folder awareness**: The manager is aware of the conents of the two folders (pdfs/markdowns) and can guide you to open the right files. Also minimizing the possibility of using the tools wrong
 
+- **Take A Peak**: It looks inside a file for some quick information. Good for getting citations out of a file to push to the ArXiv retrieval
+
 ## Upcoming Features
 
 - **Survey Creation**: The LLM will identify the most relevant citations in a paper, retrieve related papers from arXiv or other sources, process each paper using the current workflows, and compile a comprehensive survey. This feature aims to streamline the creation of complex surveys.
