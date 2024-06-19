@@ -219,7 +219,7 @@ class TakeAPeakToolClass:
 def create_tools():    
     
     TranslationTool=TranslationToolClass()
-    TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslatorInput,
+    TranslationTool=StructuredTool(name="TranslationTool",func=TranslationTool.translate_file,args_schema=TranslationInput,
                            description=TranslationTool.description)
     ArxivRetrievalTool=ArxivRetrievalToolClass()
     ArxivRetrievalTool=StructuredTool(name="ArxivRetrievalTool",func=ArxivRetrievalTool.retrieve_bib,args_schema=ArxivRetrievalInput,
@@ -236,8 +236,11 @@ def create_tools():
     CitationExtractionTool=CitationExtractionToolClass()
     CitationExtractionTool=StructuredTool(name="CitationExtractionTool",func=CitationExtractionTool.extract_citations,
                                          args_schema=CitationExtractionInput)
-    
-    tools=[TranslationTool,ArxivRetrievalTool,OcrEnhancingTool,ProofRemoverTool,KeywordAndSummaryTool, pdf_to_markdown]
+    TakeAPeakTool=TakeAPeakToolClass()
+    TakeAPeakTool=StructuredTool(name="TakeAPeakTool", func=TakeAPeakTool.take_a_peak, args_schema=TakeAPeakInput)
+
+    tools=[TranslationTool,ArxivRetrievalTool,OcrEnhancingTool,ProofRemoverTool,KeywordAndSummaryTool, pdf_to_markdown, 
+           CitationExtractionTool, TakeAPeakTool]
     return tools
 
 

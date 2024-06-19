@@ -39,7 +39,7 @@ class KeywordSummaryState(TypedDict):
     report: BaseMessage
 
 class TranslatorState(TypedDict):
-    keywords_and_summary_filename: BaseMessage
+    auxilary_text_filename: BaseMessage
     target_language: BaseMessage
     main_text_filename: BaseMessage
     report:BaseMessage
@@ -189,10 +189,10 @@ class OcrEnchancingWorkflow():
         main_text_filename=get_filename_without_extension(main_text_filename)
         supporting_text_filename=state["supporting_text_filename"].content
         supporting_text_filename=get_filename_without_extension(supporting_text_filename)
-        with open(f"files/markdowns/{supporting_text_filename}.mmd") as f:
+        with open(f"files/markdowns/{supporting_text_filename}.mmd",encoding='utf-8') as f:
             supporting = f.read()
 
-        with open(f"files/markdowns/{main_text_filename}.mmd") as f:
+        with open(f"files/markdowns/{main_text_filename}.mmd",encoding='utf-8') as f:
             main = f.read()    
 
         supporting_splitted_list = text_splitter.split_text(supporting)
@@ -212,7 +212,7 @@ class OcrEnchancingWorkflow():
     
 
         reconstructed_text = ''.join(main_splitted_list)
-        with open(f"files/markdowns/{main_text_filename}_enhanced.mmd", 'w') as file:
+        with open(f"files/markdowns/{main_text_filename}_enhanced.mmd", 'w',encoding='utf-8') as file:
             file.write(reconstructed_text)
         return {"report":HumanMessage(content="Done!")}
     def create_workflow(self):
@@ -285,17 +285,17 @@ class TranslationWorkflow:
         self.translator = translator_prompt_template | self.translator_model
         
     def run_translator(self, state):
-        keywords_and_summary_filename = state["keywords_and_summary_filename"].content
+        auxilary_text_filename = state["auxilary_text_filename"].content
         target_language = state["target_language"].content
         main_text_filename = state["main_text_filename"].content
         main_text_filename=get_filename_without_extension(main_text_filename)
-        keywords_and_summary_filename=get_filename_without_extension(keywords_and_summary_filename)
+        auxilary_text_filename=get_filename_without_extension(auxilary_text_filename)
 
         text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
         with open(f"files/markdowns/{main_text_filename}.mmd","r", encoding='utf-8') as f:
                 text = f.read()
         try:
-            with open(f"files/markdowns/{keywords_and_summary_filename}.mmd","r", encoding='utf-8') as f:
+            with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
                 keyword_and_summary = f.read()
         except FileNotFoundError:
             print("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
@@ -400,7 +400,7 @@ class KeywordAndSummaryWorkflow:
         
         report = f"keyword_and_summary completed successfully and the resulted file is named {text_name}_keyword_and_summary"
         print(report)
-        return {"report": report}
+        return {"report": HumanMessage(content=report)}
 
     def create_workflow(self):
         """
