@@ -126,8 +126,18 @@ and several bad texts from another source. The good text has numerical citations
 but we need to format the citations in the way they are formated in the bad texts.  Your goal is to reproduce the GOOD text, 
 as faithfull as possible but with citation format that matches the one from the bad texts. """
 
-citation_extractor_system_template= """You are a mighty scholar, you receive a page from a scientific paper and the summary of the whole paper.
-Your task is to return citations in the form of a list. """
+citation_retriever_system_template = """You are a distinguished scholar tasked with identifying cited papers within a given page. 
+Determine if the given page is part of the bibliography section of a document. 
+If it is, accurately extract and return all the cited papers listed on this page. If it is not part of the bibliography section, 
+return 'Not a bibliography page.'"""
+
+
+
+citation_extractor_system_template= """You are a distinguished scholar tasked with extracting relevant citations from a scientific paper. 
+You will receive a summary of the whole paper, a specific type of citations to extract, and the full citation list. 
+Finally you will recieve a page from the text. Your objective is to check the page, find all the relevant citations based on the provided criteria
+and return their full dicription by checking the list. If no relevant citations are found, return 'No citations found.`"""
+
 
 
 supervisor_prompt_template= ChatPromptTemplate.from_messages([("system",supervisor_system_template),MessagesPlaceholder(variable_name="manager_history")])
@@ -137,14 +147,23 @@ proof_remover_prompt_template= ChatPromptTemplate.from_messages([("system",proof
                                                           ("assistant", "Thanks for the text. Any final comments before I do the process."),
                                                           ("user", "Please answer only with the requested text dont and anything else to your respond.")])
 
-citation_extractor_prompt_template= ChatPromptTemplate.from_messages([("system",citation_extractor_system_template),
-                                                          ("user", "Can you extract citations for me?"),
-                                                          ("assistant", "Sure. Do you want all the citations, the most important or do you want me to follow some other criterai"),
-                                                          ("user", "Good question. {extraction_type}"),
-                                                        ("assistant", "Got it. Do you have any auxilary files like summaries that I could use"),
-                                                        ("user", "{auxilary_text}"),
-                                                        ("assistant", "Got it. Can you gime the main text now?"),
-                                                        ("user", "Sure, here you are:/n {main_text}")])	
+citation_retriever_prompt_template = ChatPromptTemplate.from_messages([
+    ("system", citation_retriever_system_template),
+    ("user", "{main_text}")
+])
+
+citation_extractor_prompt_template = ChatPromptTemplate.from_messages([
+    ("system", citation_extractor_system_template),
+    ("user", "Can you extract citations for me?"),
+    ("assistant", "Sure. Do you want all the citations, the most important, or do you want me to follow some other criteria?"),
+    ("user", "Good question. I will follow the criteria: {extraction_type}"),
+    ("assistant", "Got it. Can you give me the auxiliary files like summaries that I could use?"),
+    ("user", "{auxiliary_text}"),
+    ("assistant", "Got it. Can you give me the full list with the citations?"),
+    ("user", "{list_of_citations}"),
+    ("assistant", "Got it. Can you give me the page of text now?"),
+    ("user", "Sure, here you are:\n{main_text}")
+])
 
 
 proof_stamper_prompt_template= ChatPromptTemplate.from_messages(

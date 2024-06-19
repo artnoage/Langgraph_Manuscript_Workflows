@@ -275,6 +275,44 @@ class ProofRemovingWorkflow:
         workflow.add_edge("proof_remover", END)
         return workflow
 
+class KeywordAndSummaryWorkflow:
+    def __init__(self, keyword_and_summary_maker_model=None):
+        if keyword_and_summary_maker_model==None:
+            self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
+        self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
+    
+    def run_keyword_and_summary_maker(self, state):
+        text_name = state["main_text_filename"].content
+        text_name=get_filename_without_extension(text_name)
+        with open(f"files/markdowns/{text_name}.mmd", 'r', encoding='utf-8') as f:
+            text = f.read()
+
+        text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+        text = text_splitter.split_text(text)
+        keyword_and_summary = ""
+        print("keyword_and_summary in progress")
+        for i in tqdm(range(len(text))):
+            keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content
+
+        output_filename = f"files/markdowns/{text_name}_keyword_and_summary.mmd"
+        with open(output_filename, 'w', encoding='utf-8') as file:
+            file.write(keyword_and_summary)
+        
+        report = f"keyword_and_summary completed successfully and the resulted file is named {text_name}_keyword_and_summary"
+        print(report)
+        return {"report": HumanMessage(content=report)}
+
+    def create_workflow(self):
+        """
+        Create a workflow that executes the keyword and summary extraction.
+        """
+        workflow = StateGraph(KeywordSummaryState)
+        workflow.set_entry_point("summarizer")
+        workflow.add_node("summarizer", self.run_keyword_and_summary_maker)
+        workflow.add_edge("summarizer", END)
+        return workflow
 
 class TranslationWorkflow:
     def __init__(self, translator_model=None):
@@ -326,14 +364,20 @@ class TranslationWorkflow:
 
 
 class CitationExtractionWorkflow:
-    def __init__(self, citation_extractor_model=None):
+    def __init__(self, citation_extractor_model=None, citation_retriever_model=None):
         if citation_extractor_model==None:
             self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.citation_extractor_model = citation_extractor_model
+        if citation_retriever_model==None:
+            self.citation_retriever_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_retriever_model = citation_retriever_model
+
         self.citation_extractor =citation_extractor_prompt_template | self.citation_extractor_model
-        
-    def run_citation_extractor(self, state):
+        self.citation_retriever= citation_retriever_prompt_template | self.citation_retriever_model
+
+    def run_citation_retriever(self, state):
         main_text_filename = state["main_text_filename"].content
         extraction_type = state["extraction_type"].content
         auxilary_text_filename=state["auxilary_text_filename"].content  
@@ -355,10 +399,40 @@ class CitationExtractionWorkflow:
         listed_text = text_splitter.split_text(text)
         citations = ""
 
-        print(f"Extracting citations from {main_text_filename} in progress")
+        print(f"Retriving full list of  citations from {main_text_filename} in progress")
         
         for i in tqdm(range(len(listed_text))):
-            citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxilary_text": auxilary_text}).content
+            citations = citations + self.citation_retriever.invoke({"main_text": HumanMessage(content=listed_text[i])}).content
+        return {"report": HumanMessage(content=citations)}
+    
+    def run_citation_extractor(self, state):
+        main_text_filename = state["main_text_filename"].content
+        extraction_type = state["extraction_type"].content
+        auxilary_text_filename=state["auxilary_text_filename"].content  
+        list_of_citations=state["report"].content
+        main_text_filename=get_filename_without_extension(main_text_filename)
+        auxilary_text_filename=get_filename_without_extension(auxilary_text_filename)
+
+        text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+        with open(f"files/markdowns/{main_text_filename}.mmd","r", encoding='utf-8') as f:
+                text = f.read()
+
+        try:
+            with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
+                auxilary_text = f.read()
+        except FileNotFoundError:
+            print("File not found: Auxilary file not provided or wrong filename. I proceed without context.")
+            auxilary_text = "No"
+        
+        
+        listed_text = text_splitter.split_text(text)
+        citations = ""
+
+        print(f"Extracting requested type of citations from {main_text_filename} in progress")
+        
+        for i in tqdm(range(len(listed_text))):
+            citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxiliary_text": auxilary_text,
+            "list_of_citations": list_of_citations}).content
 
         with open(f"files/markdowns/{main_text_filename}_citations.mmd", "w", encoding="utf-8") as f:
             f.write(citations)
@@ -367,50 +441,13 @@ class CitationExtractionWorkflow:
 
     def create_workflow(self):
         workflow = StateGraph(CitationExtractorState)
-        workflow.set_entry_point("citation_extractor")
+        workflow.set_entry_point("citation_retriever")
+        workflow.add_node("citation_retriever", self.run_citation_retriever)
         workflow.add_node("citation_extractor", self.run_citation_extractor)
+        workflow.add_edge("citation_retriever", "citation_extractor")
         workflow.add_edge("citation_extractor", END)
         return workflow
 
-
-class KeywordAndSummaryWorkflow:
-    def __init__(self, keyword_and_summary_maker_model=None):
-        if keyword_and_summary_maker_model==None:
-            self.keyword_and_summary_maker_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
-        else:
-            self.keyword_and_summary_maker_model = keyword_and_summary_maker_model
-        self.keyword_and_summary_maker= keyword_and_summary_maker_template | self.keyword_and_summary_maker_model
-    
-    def run_keyword_and_summary_maker(self, state):
-        text_name = state["main_text_filename"].content
-        text_name=get_filename_without_extension(text_name)
-        with open(f"files/markdowns/{text_name}.mmd", 'r', encoding='utf-8') as f:
-            text = f.read()
-
-        text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
-        text = text_splitter.split_text(text)
-        keyword_and_summary = ""
-        print("keyword_and_summary in progress")
-        for i in tqdm(range(len(text))):
-            keyword_and_summary = self.keyword_and_summary_maker.invoke({"text": keyword_and_summary, "page": text[i]}).content
-
-        output_filename = f"files/markdowns/{text_name}_keyword_and_summary.mmd"
-        with open(output_filename, 'w', encoding='utf-8') as file:
-            file.write(keyword_and_summary)
-        
-        report = f"keyword_and_summary completed successfully and the resulted file is named {text_name}_keyword_and_summary"
-        print(report)
-        return {"report": HumanMessage(content=report)}
-
-    def create_workflow(self):
-        """
-        Create a workflow that executes the keyword and summary extraction.
-        """
-        workflow = StateGraph(KeywordSummaryState)
-        workflow.set_entry_point("summarizer")
-        workflow.add_node("summarizer", self.run_keyword_and_summary_maker)
-        workflow.add_edge("summarizer", END)
-        return workflow
     
 
 class TakeAPeakWorkflow:
@@ -468,7 +505,7 @@ class TakeAPeakWorkflow:
             print(f"{mupdf_path} has been deleted.")
         else:
             print(f"{mupdf_path} does not exist.")
-        return {"report": peak}
+        return {"report": HumanMessage(content=peak)}
 
     def create_workflow(self):
         """
