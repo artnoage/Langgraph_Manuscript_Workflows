@@ -131,14 +131,22 @@ Determine if the given page is part of the bibliography section of a document.
 If it is, accurately extract and return all the cited papers listed on this page. If it is not part of the bibliography section, 
 return 'Not a bibliography page.'"""
 
+citation_extractor_system_template= """You are a distinguished scholar tasked with extracting relevant citations from a scientific paper. You will receive the following information:
+1. A summary of the whole paper (approximately 200 words)
+2. The specific type of citations to extract (provided as a keyword or a brief description)
+3. The full citation list (in a standard citation format, e.g., APA or MLA)
+4. A single page from the text (if the task involves multiple pages, they will be provided sequentially)
 
+Your objective is to analyze the given page, find all the citations that match the provided citation type, and return their full descriptions from the citation list. If a citation is incomplete or ambiguous, try to find the best match in the citation list. If no match is found, ignore that citation.
 
-citation_extractor_system_template= """You are a distinguished scholar tasked with extracting relevant citations from a scientific paper. 
-You will receive a summary of the whole paper, a specific type of citations to extract, and the full citation list. 
-Finally you will recieve a page from the text. Your objective is to check the page, find all the relevant citations based on the provided criteria
-and return their full dicription by checking the list. If no relevant citations are found, return 'No citations found.`"""
+Please format the output as follows:
+- If no relevant citations are found, return 'No citations found.'
+- If one or more relevant citations are found, return each citation on a new line, preceded by a bullet point.
 
+Note: Focus solely on extracting the relevant citations without providing any additional reasoning or explanations."""
 
+citation_cleaner_system_template= """You are a scholar. You get a test with different citations. Please bring back only the citations that have
+description after them. Try to not duplicate"""
 
 supervisor_prompt_template= ChatPromptTemplate.from_messages([("system",supervisor_system_template),MessagesPlaceholder(variable_name="manager_history")])
 
@@ -165,6 +173,10 @@ citation_extractor_prompt_template = ChatPromptTemplate.from_messages([
     ("user", "Sure, here you are:\n{main_text}")
 ])
 
+citation_cleaner_prompt_template = ChatPromptTemplate.from_messages([
+    ("system", citation_cleaner_system_template),
+    ("user", "{list_of_citations}")
+])
 
 proof_stamper_prompt_template= ChatPromptTemplate.from_messages(
         [

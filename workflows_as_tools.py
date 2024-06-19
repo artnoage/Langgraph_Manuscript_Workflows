@@ -180,11 +180,20 @@ class TranslationToolClass:
         return state["report"].content
 
 class CitationExtractionToolClass:
-    def __init__(self, citation_extractor_model=None):
+    def __init__(self, citation_extractor_model=None, citation_retriever_model=None, citation_cleaner_model=None):
         if citation_extractor_model==None:
             self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.citation_extractor_model = citation_extractor_model
+        if citation_retriever_model==None:
+            self.citation_retriever_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_retriever_model = citation_retriever_model
+        if citation_cleaner_model==None:
+            self.citation_cleaner_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_cleaner_model = citation_cleaner_model
+
         self.description="""This tool takes three strings that correspond to the filename of a text_file from which we want to extract the citations,
             a type of extraction (all of them, the most important etc etc), and the filename of a text that can be used as a context for better extraction. 
             it extracts the citations and  saves the result as a file on the disk. It returns a report of the process."""

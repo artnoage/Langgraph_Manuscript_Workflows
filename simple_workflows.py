@@ -364,7 +364,7 @@ class TranslationWorkflow:
 
 
 class CitationExtractionWorkflow:
-    def __init__(self, citation_extractor_model=None, citation_retriever_model=None):
+    def __init__(self, citation_extractor_model=None, citation_retriever_model=None, citation_cleaner_model=None):
         if citation_extractor_model==None:
             self.citation_extractor_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
@@ -373,13 +373,17 @@ class CitationExtractionWorkflow:
             self.citation_retriever_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
         else:
             self.citation_retriever_model = citation_retriever_model
-
+        if citation_cleaner_model==None:
+            self.citation_cleaner_model=ChatNVIDIA(model="meta/llama3-70b-instruct")
+        else:
+            self.citation_cleaner_model = citation_cleaner_model
+        
         self.citation_extractor =citation_extractor_prompt_template | self.citation_extractor_model
         self.citation_retriever= citation_retriever_prompt_template | self.citation_retriever_model
+        self.citation_cleaner = citation_cleaner_prompt_template | self.citation_cleaner_model
 
     def run_citation_retriever(self, state):
         main_text_filename = state["main_text_filename"].content
-        extraction_type = state["extraction_type"].content
         auxilary_text_filename=state["auxilary_text_filename"].content  
         main_text_filename=get_filename_without_extension(main_text_filename)
         auxilary_text_filename=get_filename_without_extension(auxilary_text_filename)
@@ -388,14 +392,7 @@ class CitationExtractionWorkflow:
         with open(f"files/markdowns/{main_text_filename}.mmd","r", encoding='utf-8') as f:
                 text = f.read()
 
-        try:
-            with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
-                auxilary_text = f.read()
-        except FileNotFoundError:
-            print("File not found: Auxilary file not provided or wrong filename. I proceed without context.")
-            auxilary_text = "No"
-        
-        
+                
         listed_text = text_splitter.split_text(text)
         citations = ""
 
@@ -434,18 +431,24 @@ class CitationExtractionWorkflow:
             citations = citations + self.citation_extractor.invoke({"extraction_type": extraction_type, "main_text": listed_text[i], "auxiliary_text": auxilary_text,
             "list_of_citations": list_of_citations}).content
 
+        return {"report": HumanMessage(content=list_of_citations)}
+
+    def run_citation_cleaner(self, state):
+        citations=state["report"].content
+        main_text_filename = state["main_text_filename"].content
+        citations=self.citation_cleaner.invoke({"list_of_citations": citations}).content
         with open(f"files/markdowns/{main_text_filename}_citations.mmd", "w", encoding="utf-8") as f:
             f.write(citations)
-
-        return {"report": HumanMessage(content="citation_extraction completed")}
-
+        return {"report": HumanMessage(content="Citations have been saved.")}
     def create_workflow(self):
         workflow = StateGraph(CitationExtractorState)
         workflow.set_entry_point("citation_retriever")
         workflow.add_node("citation_retriever", self.run_citation_retriever)
         workflow.add_node("citation_extractor", self.run_citation_extractor)
+        workflow.add_node("citation_cleaner", self.run_citation_cleaner)
         workflow.add_edge("citation_retriever", "citation_extractor")
-        workflow.add_edge("citation_extractor", END)
+        workflow.add_edge("citation_extractor", "citation_cleaner")
+        workflow.add_edge("citation_cleaner", END)
         return workflow
 
     
