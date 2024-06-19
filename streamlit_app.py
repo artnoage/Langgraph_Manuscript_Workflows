@@ -13,7 +13,7 @@ from streamlit_pdf_viewer import pdf_viewer
 import os
 import time
 from dotenv import load_dotenv
-load_dotenv()
+
 def invoke(state,container):   
     
     supervisor_model=ChatOpenAI(model="gpt-4o",temperature=0)
@@ -66,7 +66,6 @@ def main():
     st_file=None
     openai_api_key = os.getenv('OPENAI_API_KEY')
     nvidia_api_key = os.getenv('NVIDIA_API_KEY')
-    print(nvidia_api_key)
     if not openai_api_key:
         st.warning("Missing OPENAI_API_KEY")
         ready = False
@@ -74,7 +73,7 @@ def main():
         st.warning("Missing Nvidia_API_KEY")
         ready = False
 
-   
+    load_dotenv()
     pdfs = "files\\pdfs"
     mmd = "files\\markdowns"
 
