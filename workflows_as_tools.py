@@ -14,7 +14,7 @@ from langchain.pydantic_v1 import BaseModel, Field
 ### or a chain, the take two variables. One is the models that are used and the 
 ### other is to choose between streaming and printing.
 class TranslationInput(BaseModel):
-    keywords_and_summary_filename: str = Field(description="The auxilary file with keywords and summary"                                               )  
+    auxilary_text_filename: str = Field(description="The auxilary file with keywords and summary"                                               )  
     target_language: str = Field(description="The target language")
     main_text_filename: str = Field(description="The main text file to be translated")
 
@@ -163,13 +163,13 @@ class TranslationToolClass:
         a choice of language, and the filename of a text to be translated. Then it translates it to the 
         target language and saves the result as a file on the disk. It returns a report of the process.
         """
-    def translate_file(self, keywords_and_summary_filename: str, target_language: str, main_text_filename: str) -> str:
+    def translate_file(self, auxilary_text_filename: str, target_language: str, main_text_filename: str) -> str:
         """
         This tool takes three strings that correspond to the filename of a text containing keywords,
         a choice of language, and the filename of a text to be translated. Then it translates it to the 
         target language and saves the result as a file on the disk. It returns a report of the process.
         """
-        input = {"keywords_and_summary_filename": HumanMessage(content=keywords_and_summary_filename),
+        input = {"auxilary_text_filename": HumanMessage(content=auxilary_text_filename),
             "target_language": HumanMessage(content=target_language),
             "main_text_filename": HumanMessage(content=main_text_filename),
             "report": HumanMessage(content="")}
