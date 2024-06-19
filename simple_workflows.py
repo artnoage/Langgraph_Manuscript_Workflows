@@ -334,10 +334,10 @@ class TranslationWorkflow:
                 text = f.read()
         try:
             with open(f"files/markdowns/{auxilary_text_filename}.mmd","r", encoding='utf-8') as f:
-                keyword_and_summary = f.read()
+                auxilary_text = f.read()
         except FileNotFoundError:
-            print("File not found: The keyword_and_summary file does not exist. Assuming keyword_and_summary is blank.")
-            keyword_and_summary = " "
+            print("File not found: The auxilary_text file does not exist. Assuming auxilary_text is blank.")
+            auxilary_text = " "
 
         if "_without_proofs" in main_text_filename:
             main_text_filename = main_text_filename.replace("_without_proofs", "")
@@ -348,7 +348,7 @@ class TranslationWorkflow:
         print(f"Translation of {main_text_filename} in progress")
         
         for i in tqdm(range(len(listed_text))):
-            translation = translation + self.translator.invoke({"language": target_language, "keyword_and_summary": keyword_and_summary, "page": listed_text[i]}).content
+            translation = translation + self.translator.invoke({"language": target_language, "auxilary_text": auxilary_text, "page": listed_text[i]}).content
 
         with open(f"files/markdowns/{main_text_filename}_{target_language}.mmd", "w", encoding="utf-8") as f:
             f.write(translation)

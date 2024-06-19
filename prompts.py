@@ -231,7 +231,7 @@ ocr_enhancer_prompt_template = ChatPromptTemplate.from_messages(
 
 
 translator_prompt_template= ChatPromptTemplate.from_messages([("system",translator_system_template),
-                                                          ("user", "Here is  the contenxt in the form of keywords and summary :{keyword_and_summary}"),
+                                                          ("user", "Here is  the contenxt in the form of keywords and summary :{auxilary_text}"),
                                                           ("assistant", "Thank you very much! Can I have the text now?"),
                                                           ("user","Of course, here is the text:'{page}'")])
 
