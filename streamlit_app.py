@@ -66,7 +66,7 @@ def main():
     st_file=None
     openai_api_key = os.getenv('OPENAI_API_KEY')
     nvidia_api_key = os.getenv('NVIDIA_API_KEY')
-    
+    print(nvidia_api_key)
     if not openai_api_key:
         st.warning("Missing OPENAI_API_KEY")
         ready = False
