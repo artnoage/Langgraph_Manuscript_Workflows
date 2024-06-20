@@ -86,32 +86,34 @@ def main():
         st.session_state.chat_history = []
     if "disable_input" not in st.session_state:
         st.session_state.disable_input = False
+    if "st_file" not in st.session_state:   
+        st.session_state.st_file = None
         
     # Create a sidebar widget to display the folder structure
     left_sidebar, main_content, right_sidebar = st.columns([0.2,0.45, 0.35],gap="large")
     
 # Left sidebar
     with left_sidebar:
-        left_container = st.container(height=400)
+        left_container = st.container(height=305)
         with left_container:
-            selected_type = st.selectbox("Select a type", ["PDF", "Markdown"], index=None)
+            selected_type = st.selectbox("Select a type", ["PDF", "Markdown"], index=None, disabled=st.session_state.disable_input)
             pdf_files = list_files(pdfs)
             markdown_files = list_files(mmd)
             if selected_type == "PDF":
-                selected_file = st.selectbox("Select a file", pdf_files, index=None)
+                selected_file = st.selectbox("Select a file", pdf_files, index=None, disabled=st.session_state.disable_input)
             else:
-                selected_file = st.selectbox("Select a file", markdown_files, index=None)            
+                selected_file = st.selectbox("Select a file", markdown_files, index=None, disabled=st.session_state.disable_input)       
             
             if selected_file:
                 if selected_type=="PDF":
-                    st_file = os.path.join(pdfs, selected_file+".pdf")
+                    st.session_state.st_file = os.path.join(pdfs, selected_file+".pdf", disabled=st.session_state.disable_input)
                 else:
-                    st_file = os.path.join(mmd, selected_file+".mmd")
+                    st.session_state.st_file = os.path.join(mmd, selected_file+".mmd", disabled=st.session_state.disable_input)
 
-            uploaded_file = st.file_uploader("Import Manually", type=["pdf", "mmd"])
+            uploaded_file = st.file_uploader("Import Manually", type=["pdf", "mmd"], disabled=st.session_state.disable_input)
             # Handle the uploaded file
             if uploaded_file is not None:
-                # Save the uploaded file to the specified directory
+            # Save the uploaded file to the specified directory
                 _, file_extension = os.path.splitext(uploaded_file.name)
                 if file_extension == ".pdf":
                     save_path = os.path.join(pdfs, uploaded_file.name)
@@ -123,23 +125,24 @@ def main():
         st.image("files/images/robot2.png", use_column_width=True)    
 
 
+
             
     with right_sidebar:
-        right_container = st.container(height=700)
+        right_container = st.container(height=755)
         with right_container:
             if not openai_api_key:
                 openai_api_key = "You dont have an OPENAI_API_KEY, get one from here: https://platform.openai.com/account/api-keys, and put it in the .env file"
             if not nvidia_api_key:
                 nvidia_api_key= "You dont have an Nvidia_API_KEY, get one from here: https://org.ngc.nvidia.com/setup/api-key, and put it in the .env file"
             
-            if not st_file:
+            if not st.session_state.st_file:
                 with open("README.MD", "r") as file:
                     markdown_content = file.read()
                 st.markdown(markdown_content)
-            elif st_file and selected_type=="PDF":
-                pdf_viewer(st_file)                                                        
-            elif st_file and selected_type=="Markdown":
-                with open(st_file, "r", encoding="utf-8") as file:
+            elif st.session_state.st_file and selected_type=="PDF":
+                pdf_viewer(st.session_state.st_file)                                                        
+            elif st.session_state.st_file and selected_type=="Markdown":
+                with open(st.session_state.st_file, "r", encoding="utf-8") as file:
                     markdown_content = file.read()
                 st.markdown(markdown_content)
            
@@ -171,14 +174,14 @@ def main():
                     with chat_container:
                         with st.chat_message("user"):
                             st.write(prompt)
+                            st.session_state.disable_input = True
+                    st.rerun()
 
             # Generate a new response if last message is not from assistant
             if  st.session_state.awaiting_response:
-                st.session_state.disable_input = True
                 with chat_container:
                     with st.chat_message("assistant"):
-                        with st.spinner("Thinking..., please wait to finish before using side bars....bug to be fixed soon"):
-                        
+                        with st.spinner("Thinking...this may take a while"):
                             st.session_state.awaiting_response = False
                             invoke(st.session_state,chat_container)
                             st.session_state.disable_input = False

@@ -142,7 +142,10 @@ You have three options to work with the various mini-workflows in the project:
 
 ### Warning
 
-**Streamlit and LLM APIs can have difficulty canceling tool calls while they are running.** For this reason, it is recommended to use small files for testing. Additionally, the tool printouts are not currently forwarded to the Streamlit interface.
+**Streamlit has various issues** 1. LLM APIs have difficulty sending the cancelling signal to the tool calls while they are running.  2. The tool printouts are not currently forwarded to the Streamlit interface. For these reasons, it is recommended to use only with small files and only for fun. For main use, try the playground or metaworflow.py
+
+### Troubleshooting
+If you have key errors, deactivate and activate the enviroment.
 
 ## Contributing
 
