@@ -60,7 +60,7 @@ def pdf_to_markdown(pdf_name:str)-> str:
     # Execute the command
     try:
         subprocess.check_call(command)
-        response="File" + pdf_name + "converted successfully"
+        response="File" + pdf_name + "_converted successfully"
     except subprocess.CalledProcessError as e:
         response="Error occurred while converting the file"+ pdf_name +":" +str(e)
     print(response)

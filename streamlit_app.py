@@ -31,8 +31,8 @@ def invoke(state,container):
                     st.write("I am currently applying: "+ action.tool_calls[-1]["name"])
                     st.write("Please be patient, some of the tools take time. Check your terminal for progress.")
                     st.session_state.messages.append({"role": "tool", "content":"Please be patient, some of the tools take time. Check your terminal for progress."})
-                    st.session_state.chat_history.append(action)
                     st.session_state.messages.append({"role": "tool", "content": "I am currently using the following tool: " + action.tool_calls[-1]["name"]})
+                    st.session_state.chat_history.append(action)
                     tool_call = action.tool_calls[-1]
                     st.write(tool_call["name"],tool_call["args"])
                     st.session_state.messages.append({"role": "tool", "content": str(tool_call["name"]) + str(tool_call["args"])})
@@ -40,7 +40,9 @@ def invoke(state,container):
                     try:
                         response = tool_executor.invoke(Invocation)
                     except Exception as e:
-                        response = str(e)                   
+                        response = str(e)   
+                    if response is None:
+                        response="Something went wrong"                
                     st.write(response)
                     st.session_state.messages.append({"role": "tool", "content": str(response)})
                     response=ToolMessage(content=response, tool_call_id=tool_call["id"])
