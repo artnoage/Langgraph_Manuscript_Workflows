@@ -108,9 +108,9 @@ def main():
             
             if selected_file:
                 if selected_type=="PDF":
-                    st.session_state.st_file = os.path.join(pdfs, selected_file+".pdf", disabled=st.session_state.disable_input)
+                    st.session_state.st_file = os.path.join(pdfs, selected_file+".pdf")
                 else:
-                    st.session_state.st_file = os.path.join(mmd, selected_file+".mmd", disabled=st.session_state.disable_input)
+                    st.session_state.st_file = os.path.join(mmd, selected_file+".mmd")
 
             uploaded_file = st.file_uploader("Import Manually", type=["pdf", "mmd"], disabled=st.session_state.disable_input)
             # Handle the uploaded file
